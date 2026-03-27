@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
+import { siteUrl } from "@/lib/textTools";
 
-export const dynamic = 'force-static';
+export const dynamic = "force-static";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -11,7 +12,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/", "/admin/"],
       },
     ],
-    sitemap: "https://adoptmefont.com/sitemap.xml",
-    host: "https://adoptmefont.com",
+    sitemap: `${siteUrl}/sitemap.xml`,
+    host: siteUrl,
   };
 }

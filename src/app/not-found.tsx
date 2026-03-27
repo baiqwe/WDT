@@ -1,23 +1,25 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { generateBreadcrumbSchema } from "@/lib/breadcrumbs";
-import Breadcrumbs from "@/components/Breadcrumbs";
 import Script from "next/script";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import { generateBreadcrumbSchema } from "@/lib/breadcrumbs";
+import { siteUrl } from "@/lib/textTools";
 
 const breadcrumbs = [
-  { name: "Home", url: "https://adoptmefont.com/" },
-  { name: "404", url: "https://adoptmefont.com/404" },
+  { name: "Wingdings Translator", url: siteUrl },
+  { name: "404", url: `${siteUrl}/404` },
 ];
 
 export const metadata: Metadata = {
-  title: "404 - Page Not Found | Adopt Me Fonts",
-  description: "The page you're looking for doesn't exist. Find adopt me fonts generator, preppy fonts, name generator, and more tools for Roblox Adopt Me.",
+  title: "404 | Wingdings Translator",
+  description:
+    "The page you requested could not be found. Try the main Wingdings translator or one of the related text tools.",
   robots: {
     index: false,
     follow: true,
   },
   alternates: {
-    canonical: "https://adoptmefont.com/404",
+    canonical: `${siteUrl}/404`,
   },
 };
 
@@ -27,114 +29,37 @@ export default function NotFound() {
   return (
     <>
       <Script
-        id="breadcrumb-schema"
+        id="not-found-breadcrumb-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <main className="mx-auto max-w-4xl px-4 sm:px-6 py-8 sm:py-12">
+      <main className="mx-auto max-w-5xl px-4 py-12 sm:px-6">
         <Breadcrumbs items={breadcrumbs} />
-
-        <div className="text-center mb-12">
-          <h1 className="text-6xl sm:text-8xl font-bold text-zinc-200 mb-4">404</h1>
-          <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 mb-4">
-            Page Not Found
-          </h2>
-          <p className="text-lg text-zinc-600 mb-8">
-            Oops! The page you're looking for doesn't exist or has been moved.
+        <section className="rounded-[2rem] border border-zinc-200 bg-white p-10 text-center shadow-sm">
+          <p className="text-7xl font-black tracking-tight text-sky-200">404</p>
+          <h1 className="mt-4 text-4xl font-black tracking-tight text-zinc-950">
+            Page not found
+          </h1>
+          <p className="mx-auto mt-4 max-w-2xl text-lg leading-8 text-zinc-600">
+            The link may be outdated, or the old page may have been retired while
+            the site shifted to Wingdings and copy-paste text tools.
           </p>
-        </div>
-
-        <div className="bg-gradient-to-r from-pink-50 to-purple-50 rounded-xl p-6 sm:p-8 border border-pink-200 mb-8">
-          <h3 className="text-xl font-semibold mb-4">Popular Pages</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Link
               href="/"
-              className="block p-4 bg-white rounded-lg border border-zinc-200 hover:border-pink-400 hover:shadow-md transition-all"
+              className="rounded-full bg-zinc-950 px-6 py-3 text-sm font-semibold text-white transition hover:bg-sky-700"
             >
-              <h4 className="font-semibold text-zinc-900 mb-2">🎨 Font Generator</h4>
-              <p className="text-sm text-zinc-600">
-                Generate adopt me fonts with bubble, bold, cute, and more styles
-              </p>
+              Go to Wingdings Translator
             </Link>
-
             <Link
-              href="/preppy-font-generator"
-              className="block p-4 bg-white rounded-lg border border-zinc-200 hover:border-pink-400 hover:shadow-md transition-all"
+              href="/faq"
+              className="rounded-full border border-zinc-200 px-6 py-3 text-sm font-semibold text-zinc-700 transition hover:border-sky-300 hover:text-sky-700"
             >
-              <h4 className="font-semibold text-zinc-900 mb-2">✨ Preppy Fonts</h4>
-              <p className="text-sm text-zinc-600">
-                Create aesthetic preppy fonts with symbols and decorations
-              </p>
-            </Link>
-
-            <Link
-              href="/adopt-me-names-generator"
-              className="block p-4 bg-white rounded-lg border border-zinc-200 hover:border-pink-400 hover:shadow-md transition-all"
-            >
-              <h4 className="font-semibold text-zinc-900 mb-2">🐾 Name Generator</h4>
-              <p className="text-sm text-zinc-600">
-                Generate creative names for your Adopt Me pets
-              </p>
-            </Link>
-
-            <Link
-              href="/tag-filter-checker"
-              className="block p-4 bg-white rounded-lg border border-zinc-200 hover:border-pink-400 hover:shadow-md transition-all"
-            >
-              <h4 className="font-semibold text-zinc-900 mb-2">🔍 Filter Checker</h4>
-              <p className="text-sm text-zinc-600">
-                Test if your names will pass Roblox tag filters
-              </p>
+              Open FAQ
             </Link>
           </div>
-        </div>
-
-        <div className="bg-zinc-50 rounded-xl p-6 border border-zinc-200">
-          <h3 className="text-xl font-semibold mb-4">More Resources</h3>
-          <ul className="space-y-2 text-zinc-700">
-            <li>
-              <Link href="/symbols" className="text-pink-600 hover:underline font-medium">
-                Safe Symbols List
-              </Link>
-              {" - Find Roblox-compatible symbols"}
-            </li>
-            <li>
-              <Link href="/pet-names" className="text-pink-600 hover:underline font-medium">
-                Pet Name Bank
-              </Link>
-              {" - Get inspiration for your pets"}
-            </li>
-            <li>
-              <Link href="/how-to-use-adopt-me-fonts" className="text-pink-600 hover:underline font-medium">
-                How-To Guide
-              </Link>
-              {" - Learn how to use adopt me fonts"}
-            </li>
-            <li>
-              <Link href="/faq" className="text-pink-600 hover:underline font-medium">
-                FAQ
-              </Link>
-              {" - Common questions and answers"}
-            </li>
-            <li>
-              <Link href="/styles" className="text-pink-600 hover:underline font-medium">
-                Bubble Fonts Guide
-              </Link>
-              {" - Learn about bubble font styles"}
-            </li>
-          </ul>
-        </div>
-
-        <div className="mt-8 text-center">
-          <Link
-            href="/"
-            className="inline-block px-6 py-3 bg-black text-white rounded-lg font-medium hover:opacity-90 transition-opacity"
-          >
-            Go to Homepage
-          </Link>
-        </div>
+        </section>
       </main>
     </>
   );
 }
-

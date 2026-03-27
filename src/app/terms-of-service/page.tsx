@@ -1,151 +1,73 @@
 import type { Metadata } from "next";
+import Script from "next/script";
+import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { generateBreadcrumbSchema } from "@/lib/breadcrumbs";
-import Script from "next/script";
+import { siteUrl } from "@/lib/textTools";
 
 const breadcrumbs = [
-  { name: "Home", url: "https://adoptmefont.com/" },
-  { name: "Terms of Service", url: "https://adoptmefont.com/terms-of-service" },
+  { name: "Wingdings Translator", url: siteUrl },
+  { name: "Terms of Service", url: `${siteUrl}/terms-of-service` },
 ];
 
 export const metadata: Metadata = {
-  title: "Terms of Service | Adopt Me Fonts",
-  description: "Terms of Service for Adopt Me Fonts Generator. Read our terms and conditions for using our free font generation tool.",
+  title: "Terms of Service | Wingdings Translator",
+  description:
+    "Read the terms for using Wingdings Translator and its related copy-paste text tools.",
   alternates: {
-    canonical: "https://adoptmefont.com/terms-of-service",
-  },
-  robots: {
-    index: true,
-    follow: true,
+    canonical: `${siteUrl}/terms-of-service`,
   },
 };
 
-export default function TermsOfService() {
+export default function TermsPage() {
   const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
 
   return (
     <>
       <Script
-        id="breadcrumb-schema"
+        id="terms-breadcrumb-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <main className="mx-auto max-w-3xl px-4 sm:px-6 py-8 sm:py-12">
+      <main className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-12">
         <Breadcrumbs items={breadcrumbs} />
-        <h1 className="text-2xl sm:text-3xl font-bold mt-4">Terms of Service</h1>
-        <p className="text-sm text-zinc-600 mt-2">Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+        <h1 className="mt-4 text-3xl font-black tracking-tight text-zinc-950 sm:text-4xl">
+          Terms of Service
+        </h1>
+        <div className="mt-6 space-y-4 text-base leading-8 text-zinc-700">
+          <p>
+            By using Wingdings Translator, you agree to use the site lawfully and
+            responsibly. The tools are provided for general creative and utility use.
+          </p>
+          <p>
+            We do not guarantee identical rendering across every platform, app, or
+            device, because Unicode support and legacy symbol-font behavior can vary.
+          </p>
+          <p>
+            The service is provided as available. If you have a legal or support
+            question, contact{" "}
+            <a href="mailto:hello@wingdingstranslator.org" className="font-semibold text-sky-700 underline">
+              hello@wingdingstranslator.org
+            </a>
+            .
+          </p>
+        </div>
 
-        <section className="mt-6">
-          <h2 className="text-xl font-semibold mb-3">Agreement to Terms</h2>
-          <p className="text-sm sm:text-base text-zinc-700 mb-4">
-            By accessing and using Adopt Me Fonts Generator ("the Service"), you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.
-          </p>
-        </section>
-
-        <section className="mt-6">
-          <h2 className="text-xl font-semibold mb-3">Description of Service</h2>
-          <p className="text-sm sm:text-base text-zinc-700 mb-4">
-            Adopt Me Fonts Generator is a free online tool that converts regular text into styled Unicode characters. The service is provided "as is" for personal, non-commercial use. We do not guarantee that the generated text will work in all applications or platforms, including Roblox.
-          </p>
-        </section>
-
-        <section className="mt-6">
-          <h2 className="text-xl font-semibold mb-3">Acceptable Use</h2>
-          <p className="text-sm sm:text-base text-zinc-700 mb-2">
-            You agree to use the Service only for lawful purposes and in a way that does not infringe the rights of, restrict, or inhibit anyone else's use and enjoyment of the Service. Prohibited behavior includes:
-          </p>
-          <ul className="list-disc pl-6 text-sm sm:text-base text-zinc-700 space-y-2">
-            <li>Using the Service to generate content that is illegal, harmful, threatening, abusive, harassing, defamatory, or otherwise objectionable</li>
-            <li>Attempting to gain unauthorized access to the Service or its related systems</li>
-            <li>Using automated systems (bots, scrapers) to access the Service in a way that could harm or overload our servers</li>
-            <li>Reproducing, duplicating, copying, or selling any portion of the Service without permission</li>
-          </ul>
-        </section>
-
-        <section className="mt-6">
-          <h2 className="text-xl font-semibold mb-3">User-Generated Content</h2>
-          <p className="text-sm sm:text-base text-zinc-700 mb-4">
-            Our font generator processes text entirely in your browser. We do not collect, store, or monitor the text you input. You are solely responsible for the content you generate using our Service. We are not responsible for any consequences resulting from the use of generated text in Roblox or other platforms.
-          </p>
-        </section>
-
-        <section className="mt-6">
-          <h2 className="text-xl font-semibold mb-3">Roblox Compatibility Disclaimer</h2>
-          <p className="text-sm sm:text-base text-zinc-700 mb-4">
-            While our tool generates Unicode characters that are generally compatible with Roblox, we cannot guarantee that all generated text will work in Roblox Adopt Me or other Roblox games. Roblox may filter or reject certain characters at their discretion. We are not responsible if your generated name is rejected by Roblox or if it causes any issues within the game.
-          </p>
-        </section>
-
-        <section className="mt-6">
-          <h2 className="text-xl font-semibold mb-3">Intellectual Property</h2>
-          <p className="text-sm sm:text-base text-zinc-700 mb-4">
-            The Service, including its original content, features, and functionality, is owned by Adopt Me Fonts and is protected by international copyright, trademark, patent, trade secret, and other intellectual property laws. The Unicode characters generated by our tool are part of the Unicode standard and are not our intellectual property.
-          </p>
-        </section>
-
-        <section className="mt-6">
-          <h2 className="text-xl font-semibold mb-3">Disclaimer of Warranties</h2>
-          <p className="text-sm sm:text-base text-zinc-700 mb-4">
-            THE SERVICE IS PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS. WE EXPRESSLY DISCLAIM ALL WARRANTIES OF ANY KIND, WHETHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
-          </p>
-          <p className="text-sm sm:text-base text-zinc-700 mb-4">
-            We do not warrant that:
-          </p>
-          <ul className="list-disc pl-6 text-sm sm:text-base text-zinc-700 space-y-2">
-            <li>The Service will meet your requirements</li>
-            <li>The Service will be uninterrupted, timely, secure, or error-free</li>
-            <li>The results obtained from using the Service will be accurate or reliable</li>
-            <li>Any errors in the Service will be corrected</li>
-          </ul>
-        </section>
-
-        <section className="mt-6">
-          <h2 className="text-xl font-semibold mb-3">Limitation of Liability</h2>
-          <p className="text-sm sm:text-base text-zinc-700 mb-4">
-            IN NO EVENT SHALL ADOPT ME FONTS, ITS OWNERS, OR ITS AFFILIATES BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING WITHOUT LIMITATION, LOSS OF PROFITS, DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES, RESULTING FROM YOUR USE OF THE SERVICE.
-          </p>
-        </section>
-
-        <section className="mt-6">
-          <h2 className="text-xl font-semibold mb-3">Indemnification</h2>
-          <p className="text-sm sm:text-base text-zinc-700 mb-4">
-            You agree to defend, indemnify, and hold harmless Adopt Me Fonts and its owners from and against any claims, damages, obligations, losses, liabilities, costs, or debt, and expenses (including attorney's fees) arising from your use of the Service or violation of these Terms.
-          </p>
-        </section>
-
-        <section className="mt-6">
-          <h2 className="text-xl font-semibold mb-3">Termination</h2>
-          <p className="text-sm sm:text-base text-zinc-700 mb-4">
-            We reserve the right to terminate or suspend your access to the Service immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach the Terms. Upon termination, your right to use the Service will cease immediately.
-          </p>
-        </section>
-
-        <section className="mt-6">
-          <h2 className="text-xl font-semibold mb-3">Changes to Terms</h2>
-          <p className="text-sm sm:text-base text-zinc-700 mb-4">
-            We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material, we will try to provide at least 30 days notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.
-          </p>
-        </section>
-
-        <section className="mt-6">
-          <h2 className="text-xl font-semibold mb-3">Governing Law</h2>
-          <p className="text-sm sm:text-base text-zinc-700 mb-4">
-            These Terms shall be interpreted and governed by the laws of the jurisdiction in which we operate, without regard to its conflict of law provisions. Our failure to enforce any right or provision of these Terms will not be considered a waiver of those rights.
-          </p>
-        </section>
-
-        <section className="mt-6">
-          <h2 className="text-xl font-semibold mb-3">Contact Information</h2>
-          <p className="text-sm sm:text-base text-zinc-700 mb-4">
-            If you have any questions about these Terms of Service, please contact us:
-          </p>
-          <ul className="list-none text-sm sm:text-base text-zinc-700 space-y-2">
-            <li>Email: <a href="mailto:support@adoptmefont.com" className="text-pink-600 underline">support@adoptmefont.com</a></li>
-            <li>Website: <a href="/contact" className="text-pink-600 underline">Contact Us Page</a></li>
-          </ul>
+        <section className="mt-8 rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
+          <h2 className="text-xl font-bold text-zinc-950">Related pages</h2>
+          <div className="mt-4 flex flex-wrap gap-3">
+            <Link href="/privacy-policy" className="rounded-full border border-zinc-200 px-4 py-2 text-sm text-zinc-700 transition hover:border-sky-300 hover:text-sky-700">
+              Privacy Policy
+            </Link>
+            <Link href="/about" className="rounded-full border border-zinc-200 px-4 py-2 text-sm text-zinc-700 transition hover:border-sky-300 hover:text-sky-700">
+              About
+            </Link>
+            <Link href="/contact" className="rounded-full border border-zinc-200 px-4 py-2 text-sm text-zinc-700 transition hover:border-sky-300 hover:text-sky-700">
+              Contact
+            </Link>
+          </div>
         </section>
       </main>
     </>
   );
 }
-

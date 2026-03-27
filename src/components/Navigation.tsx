@@ -3,55 +3,45 @@ import Logo from "./Logo";
 
 export default function Navigation() {
   return (
-    <nav className="border-b border-zinc-200 bg-white/95 backdrop-blur-sm sticky top-0 z-40">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <div className="flex items-center justify-between h-16 sm:h-20">
-          <Link href="/" className="flex-shrink-0">
-            <Logo />
+    <nav className="sticky top-0 z-40 border-b border-zinc-200 bg-white/90 backdrop-blur">
+      <div className="mx-auto flex max-w-[1680px] items-center justify-between px-3 py-3 sm:px-5 xl:px-8">
+        <Link href="/" className="flex-shrink-0">
+          <Logo />
+        </Link>
+
+        <div className="hidden items-center gap-2 md:flex">
+          <Link
+            href="/"
+            className="rounded-full px-4 py-2 text-sm font-medium text-zinc-700 transition hover:bg-sky-50 hover:text-sky-700"
+          >
+            Wingdings
           </Link>
-          <div className="flex items-center gap-3 sm:gap-5">
-            <Link
-              href="/blog"
-              className="px-3 sm:px-4 py-2 rounded-lg text-sm sm:text-base font-medium text-zinc-700 hover:text-pink-600 hover:bg-pink-50 transition-colors"
-            >
-              Blog
-            </Link>
-            <Link
-              href="/about"
-              className="px-3 sm:px-4 py-2 rounded-lg text-sm sm:text-base font-medium text-zinc-700 hover:text-pink-600 hover:bg-pink-50 transition-colors"
-            >
-              About
-            </Link>
-            <Link
-              href="/tag-filter-checker"
-              className="px-3 sm:px-4 py-2 rounded-lg text-sm sm:text-base font-medium text-zinc-700 hover:text-pink-600 hover:bg-pink-50 transition-colors"
-            >
-              🔍 Filter Checker
-            </Link>
-            <Link
-              href="/preppy-font-generator"
-              className="px-3 sm:px-4 py-2 rounded-lg text-sm sm:text-base font-medium text-zinc-700 hover:text-pink-600 hover:bg-pink-50 transition-colors"
-            >
-              ✨ Preppy Fonts
-            </Link>
-            <Link
-              href="/adopt-me-names-generator"
-              className="px-3 sm:px-4 py-2 rounded-lg text-sm sm:text-base font-medium text-zinc-700 hover:text-pink-600 hover:bg-pink-50 transition-colors"
-            >
-              🐾 Generate Names
-            </Link>
-            <a
-              href="https://www.roblox.com/games/920587237/Adopt-Me"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-4 sm:px-5 py-2 rounded-lg text-sm sm:text-base font-semibold text-white bg-pink-600 hover:bg-pink-700 transition-colors shadow-sm"
-            >
-              ▶ Play
-            </a>
-          </div>
+          <Link
+            href="/subscript-generator"
+            className="rounded-full px-4 py-2 text-sm font-medium text-zinc-700 transition hover:bg-sky-50 hover:text-sky-700"
+          >
+            Subscript
+          </Link>
+          <Link
+            href="/cursive-generator"
+            className="rounded-full px-4 py-2 text-sm font-medium text-zinc-700 transition hover:bg-sky-50 hover:text-sky-700"
+          >
+            Cursive
+          </Link>
+          <Link
+            href="/old-english-translator"
+            className="rounded-full px-4 py-2 text-sm font-medium text-zinc-700 transition hover:bg-sky-50 hover:text-sky-700"
+          >
+            Old English
+          </Link>
+          <Link
+            href="/faq"
+            className="rounded-full border border-zinc-200 px-4 py-2 text-sm font-semibold text-zinc-900 transition hover:border-sky-300 hover:bg-sky-50"
+          >
+            FAQ
+          </Link>
         </div>
       </div>
     </nav>
   );
 }
-

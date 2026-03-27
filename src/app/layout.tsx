@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import CookieBanner from "@/components/CookieBanner";
+import { siteUrl } from "@/lib/textTools";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -25,34 +26,28 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "Adopt Me Fonts Generator | (c©py & pa$te) ✂️",
-    template: "%s | Adopt Me Fonts",
+    default: "Wingdings Translator ✌︎︎ Convert Text to Symbols (Copy & Paste)",
+    template: "%s | Wingdings Translator",
   },
   description:
-    "【 𝟙𝟘𝟘% 𝗙𝗿𝗲𝗲 】 Generate 𝒸𝑜𝑜𝓁, ⓑⓤⓑⓑⓛⓔ & 𝓪𝓮𝓼𝓽𝓱𝓮𝓽𝓲𝓬 text for Roblox! ➜ Click to Copy & Paste (No Install). ʕ•́ᴥ•̀ʔ",
+    "The most accurate Wingdings translator online. Convert English to Wingdings-style symbols, decode symbol strings, and explore Gaster alphabet references.",
   keywords: [
-    "adopt me fonts",
-    "adopt me font generator",
-    "roblox adopt me fonts",
-    "cute adopt me fonts",
-    "bubble adopt me fonts",
-    "preppy adopt me fonts",
-    "aesthetic adopt me fonts",
-    "adopt me font styles",
-    "adopt me text generator",
-    "roblox font generator",
-    "adopt me name fonts",
-    "adopt me chat fonts",
-    "free adopt me fonts",
+    "wingdings translator",
+    "wingdings to english",
+    "english to wingdings",
+    "gaster alphabet",
+    "subscript generator",
+    "cursive generator",
+    "old english translator",
   ],
-  metadataBase: new URL("https://adoptmefont.com"),
-  other: {
-    "google-adsense-account": "ca-pub-2499950673294937",
-  },
+  metadataBase: new URL(siteUrl),
+  manifest: "/manifest.json",
   icons: {
     icon: [
+      { url: "/favicon.ico", sizes: "any" },
       { url: "/favicon.svg", type: "image/svg+xml" },
       { url: "/icon-48x48.png", sizes: "48x48", type: "image/png" },
+      { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
       { url: "/icon-96x96.png", sizes: "96x96", type: "image/png" },
       { url: "/icon-144x144.png", sizes: "144x144", type: "image/png" },
       { url: "/icon-192x192.png", sizes: "192x192", type: "image/png" },
@@ -61,32 +56,31 @@ export const metadata: Metadata = {
     apple: [
       { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     ],
-    shortcut: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
-    ],
+    shortcut: [{ url: "/favicon.svg", type: "image/svg+xml" }],
   },
   openGraph: {
-    title: "Adopt Me Fonts Generator | (c©py & pa$te) ✂️",
+    title: "Wingdings Translator ✌︎︎ Convert Text to Symbols (Copy & Paste)",
     description:
-      "【 𝟙𝟘𝟘% 𝗙𝗿𝗲𝗲 】 Generate 𝒸𝑜𝑜𝓁, ⓑⓤⓑⓑⓛⓔ & 𝓪𝓮𝓼𝓽𝓱𝓮𝓽𝓲𝓬 text for Roblox! ➜ Click to Copy & Paste (No Install). ʕ•́ᴥ•̀ʔ",
-    url: "https://adoptmefont.com/",
-    siteName: "Adopt Me Fonts",
+      "Convert plain text into wingdings-style symbols, decode icon strings, and browse related font tools from one authority-style hub.",
+    url: siteUrl,
+    siteName: "Wingdings Translator",
     type: "website",
     locale: "en_US",
     images: [
       {
-        url: "https://adoptmefont.com/og-image.svg",
+        url: `${siteUrl}/og-image.svg`,
         width: 1200,
         height: 630,
-        alt: "Adopt Me Fonts Generator - Free Roblox Font Tool",
+        alt: "Wingdings Translator and symbol converter",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Adopt Me Fonts Generator | (c©py & pa$te) ✂️",
-    description: "【 𝟙𝟘𝟘% 𝗙𝗿𝗲𝗲 】 Generate 𝒸𝑜𝑜𝓁, ⓑⓤⓑⓑⓛⓔ & 𝓪𝓮𝓼𝓽𝓱𝓮𝓽𝓲𝓬 text for Roblox! ➜ Click to Copy & Paste (No Install). ʕ•́ᴥ•̀ʔ",
-    images: ["https://adoptmefont.com/og-image.svg"],
+    title: "Wingdings Translator ✌︎︎ Convert Text to Symbols (Copy & Paste)",
+    description:
+      "Free Wingdings-style converter with reverse decoding, FAQ content, and related symbol tools.",
+    images: [`${siteUrl}/og-image.svg`],
   },
   robots: {
     index: true,
@@ -109,79 +103,40 @@ export default function RootLayout({
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Adopt Me Fonts",
-    url: "https://adoptmefont.com/",
+    name: "Wingdings Translator",
+    url: siteUrl,
     inLanguage: ["en"],
-    description: "Free Adopt Me fonts generator for Roblox. Create stylish adopt me fonts like bubble, bold, cute, small caps, and aesthetic fullwidth.",
+    description:
+      "Authority-style resource for Wingdings translation, symbol conversion, and related copy-paste text tools.",
     potentialAction: {
       "@type": "SearchAction",
-      target: "https://adoptmefont.com/?text={search_term_string}",
+      target: `${siteUrl}/?text={search_term_string}`,
       "query-input": "required name=search_term_string",
     },
   };
 
-  const softwareSchema = {
+  const organizationSchema = {
     "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: "Adopt Me Fonts Generator",
-    applicationCategory: "WebApplication",
-    operatingSystem: "Any",
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD",
-    },
-    description: "Free online tool to generate adopt me fonts for Roblox Adopt Me. Create bubble fonts, bold, cute, small caps, and aesthetic fullwidth styles.",
-    url: "https://adoptmefont.com/",
-
-  };
-
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "How to Use Adopt Me Fonts Generator",
-    description: "Step-by-step guide on how to generate and use adopt me fonts in Roblox Adopt Me",
-    step: [
-      {
-        "@type": "HowToStep",
-        name: "Enter your text",
-        text: "Type the text you want to convert into adopt me fonts in the input field",
-      },
-      {
-        "@type": "HowToStep",
-        name: "Choose a font style",
-        text: "Select from various adopt me fonts styles like bubble fonts, bold, cute, small caps, or aesthetic fullwidth",
-      },
-      {
-        "@type": "HowToStep",
-        name: "Copy the result",
-        text: "Click the Copy button to copy the generated adopt me fonts to your clipboard",
-      },
-      {
-        "@type": "HowToStep",
-        name: "Paste in Roblox",
-        text: "Open Roblox Adopt Me and paste the adopt me fonts into your player name, pet name, or chat",
-      },
-    ],
+    "@type": "Organization",
+    name: "Wingdings Translator",
+    url: siteUrl,
+    logo: `${siteUrl}/icon-192x192.png`,
   };
 
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} bg-zinc-50 antialiased`}
+      >
         <Script
           id="website-schema"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
         <Script
-          id="software-schema"
+          id="organization-schema"
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
-        />
-        <Script
-          id="howto-schema"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-2N6FHJDCPJ"
@@ -190,7 +145,7 @@ export default function RootLayout({
         <Script id="gtag-init" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);} 
+            function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'G-2N6FHJDCPJ');
           `}

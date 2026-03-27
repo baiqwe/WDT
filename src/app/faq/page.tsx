@@ -1,203 +1,155 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import Link from "next/link";
-import { generateBreadcrumbSchema } from "@/lib/breadcrumbs";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import { generateBreadcrumbSchema } from "@/lib/breadcrumbs";
+import { siteUrl } from "@/lib/textTools";
 
 const breadcrumbs = [
-  { name: "Home", url: "https://adoptmefont.com/" },
-  { name: "FAQ", url: "https://adoptmefont.com/faq" },
+  { name: "Wingdings Translator", url: siteUrl },
+  { name: "FAQ", url: `${siteUrl}/faq` },
+];
+
+const faqItems = [
+  {
+    question: "What is a Wingdings translator?",
+    answer:
+      "A Wingdings translator is a tool that turns plain text into symbol-style output or helps decode supported symbols back into readable text. On this site, the tool is designed for practical copy-and-paste use rather than only showing a legacy font sample.",
+  },
+  {
+    question: "Why do different Wingdings translators show different results?",
+    answer:
+      "Different sites often use different mapping philosophies. Some try to imitate older symbol font behavior, while others use simplified or custom A-Z replacement tables that are easier to read, share, and decode on modern devices.",
+  },
+  {
+    question: "What does this site support besides Wingdings?",
+    answer:
+      "The main hub focuses on Wingdings-style mappings, but the site also includes subscript, cursive, and old english text tools to cover adjacent search intent and give visitors useful internal paths instead of dead ends.",
+  },
+  {
+    question: "Can I use the generated text on Discord, TikTok, X, or Instagram?",
+    answer:
+      "Usually yes, but platform support varies. Short strings tend to work best because apps, browsers, and operating systems do not all render the same Unicode characters in the same way.",
+  },
+  {
+    question: "Does this site guarantee that every symbol will look the same on every device?",
+    answer:
+      "No. One of the most important limitations to state clearly is that Unicode display is not universal. A symbol that looks correct on one device can appear differently, fall back to another glyph, or fail to render cleanly somewhere else.",
+  },
+  {
+    question: "How should I choose between Classic Wingdings, Gaster Style, Wingdings 2, Wingdings 3, and Webdings Style?",
+    answer:
+      "Classic Wingdings is the best starting point if you want the most familiar symbol-letter look. Gaster Style is useful for Undertale-inspired aesthetics. Wingdings 2 and 3 are better when you want more geometric or directional symbols, while Webdings is closer to object and icon style output.",
+  },
+  {
+    question: "Is this a downloadable font library?",
+    answer:
+      "No. The site is built around browser-based text transformation and reference content. It is meant to help users understand and copy output quickly rather than distribute desktop font files.",
+  },
+  {
+    question: "How often is the content reviewed or updated?",
+    answer:
+      "The goal is to update pages whenever mappings, layouts, legal information, or support guidance change. Helpful content should stay aligned with what users actually need, so updates focus on clarity, trust, and real task completion instead of filler.",
+  },
 ];
 
 export const metadata: Metadata = {
-  title: "Adopt Me Fonts FAQ - How to Use Adopt Me Fonts",
-  description: "Learn how adopt me fonts work, Roblox compatibility, and how to use adopt me fonts in Adopt Me names and chat. Complete guide to adopt me font styles.",
-  keywords: [
-    "adopt me fonts faq",
-    "how to use adopt me fonts",
-    "adopt me fonts guide",
-    "roblox adopt me fonts compatibility",
-  ],
+  title: "FAQ | Wingdings Translator",
+  description:
+    "Detailed answers about Wingdings translation, Unicode behavior, preset differences, compatibility, and how to use related text tools.",
   alternates: {
-    canonical: "https://adoptmefont.com/faq",
-  },
-  openGraph: {
-    title: "Adopt Me Fonts FAQ - How to Use Adopt Me Fonts",
-    description:
-      "Detailed answers about Roblox Adopt Me fonts, compatibility tips, and how to style your player and pet names safely.",
-    url: "https://adoptmefont.com/faq",
-    type: "article",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Adopt Me Fonts FAQ - Complete Guide",
-    description: "Everything you need to know about using Adopt Me fonts safely in Roblox.",
+    canonical: `${siteUrl}/faq`,
   },
 };
 
-export default function FAQ() {
+export default function FAQPage() {
   const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
 
   return (
     <>
       <Script
-        id="breadcrumb-schema"
+        id="faq-breadcrumb-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <main className="mx-auto max-w-3xl px-4 sm:px-6 py-8 sm:py-12">
+      <Script
+        id="faq-page-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <main className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-12">
         <Breadcrumbs items={breadcrumbs} />
-        <h1 className="text-2xl sm:text-3xl font-bold">Adopt Me Fonts FAQ</h1>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "FAQPage",
-              mainEntity: [
-                {
-                  "@type": "Question",
-                  name: "What are Adopt Me fonts?",
-                  acceptedAnswer: {
-                    "@type": "Answer",
-                    text:
-                      "Adopt Me fonts are Unicode characters that create styled text effects. They're not actual fonts, but special characters that look like bold, italic, bubble, or decorative text. When you paste them into Roblox Adopt Me, they display as styled text in your name or chat.",
-                  },
-                },
-                {
-                  "@type": "Question",
-                  name: "How do I use adopt me fonts in my player name?",
-                  acceptedAnswer: {
-                    "@type": "Answer",
-                    text:
-                      "To change your Roblox player name with adopt me fonts: (1) Generate your styled text using our tool, (2) Copy the result, (3) Go to Roblox Settings → Profile → Display Name, (4) Paste your styled name and save.",
-                  },
-                },
-                {
-                  "@type": "Question",
-                  name: "Can I use adopt me fonts for pet names?",
-                  acceptedAnswer: {
-                    "@type": "Answer",
-                    text:
-                      "Yes! Adopt me fonts work great for pet names. In Adopt Me, select your pet, click the name tag icon, and paste your styled name. Keep pet names under 20 characters for best results.",
-                  },
-                },
-                {
-                  "@type": "Question",
-                  name: "Will Roblox filter these characters?",
-                  acceptedAnswer: {
-                    "@type": "Answer",
-                    text:
-                      "Roblox may filter some adopt me fonts characters, especially if you use too many decorative symbols or very long names. To avoid filtering: keep names short (under 20 characters), use simpler styles like Bold or Bubble, and avoid combining multiple decorative fonts.",
-                  },
-                },
-                {
-                  "@type": "Question",
-                  name: "Which adopt me fonts are most compatible?",
-                  acceptedAnswer: {
-                    "@type": "Answer",
-                    text:
-                      "The most compatible adopt me fonts are: Bold (excellent readability), Bubble (very popular, high compatibility), Small Caps (clean and reliable), and Double Struck (works well across devices).",
-                  },
-                },
-                {
-                  "@type": "Question",
-                  name: "Are adopt me fonts safe to use?",
-                  acceptedAnswer: {
-                    "@type": "Answer",
-                    text:
-                      "Yes, adopt me fonts are completely safe. They use standard Unicode characters that Roblox officially supports. There's no risk of getting banned.",
-                  },
-                },
-              ],
-            }),
-          }}
-        />
-        <section className="mt-6">
-          <h2 className="text-lg sm:text-xl font-semibold">What are Adopt Me fonts?</h2>
-          <p className="mt-2 text-sm sm:text-base text-zinc-700">
-            Adopt Me fonts are Unicode characters that create styled text effects. They&rsquo;re not actual fonts, but special characters that look like bold,
-            italic, bubble, or decorative text. When you paste them into Roblox Adopt Me, they display as styled text in your name or chat.
-            These characters are part of the Unicode standard and are supported by Roblox&rsquo;s text rendering system.
-          </p>
+        <h1 className="mt-4 text-3xl font-black tracking-tight text-zinc-950 sm:text-4xl">
+          Frequently Asked Questions
+        </h1>
+        <p className="mt-4 max-w-4xl text-base leading-8 text-zinc-700">
+          This FAQ is meant to do more than answer short one-line questions. It is
+          here to explain how the tool works, where symbol output can be useful,
+          where Unicode limitations still apply, and how to choose the right preset
+          for the job. That kind of context matters for users and search engines
+          alike, because a helpful page should solve the task and explain the tradeoffs.
+        </p>
+
+        <section className="mt-8 rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
+          <h2 className="text-xl font-bold text-zinc-950">What this page covers</h2>
+          <div className="mt-4 space-y-4 text-base leading-8 text-zinc-700">
+            <p>
+              The most common confusion around Wingdings tools is that people assume
+              there is a single universal alphabet. In reality, many sites publish
+              different mappings and present them as if they were interchangeable.
+              We call that out directly because transparency is part of trust.
+            </p>
+            <p>
+              This page also explains a second important limitation: symbol text may
+              look different depending on the device, browser, app, or operating
+              system. A useful answer page should not hide that reality behind a
+              marketing claim.
+            </p>
+          </div>
         </section>
-        <section className="mt-6">
-          <h2 className="text-lg sm:text-xl font-semibold">How do I use adopt me fonts in my player name?</h2>
-          <p className="mt-2 text-sm sm:text-base text-zinc-700">
-            To change your Roblox player name with adopt me fonts: (1) Generate your styled text using our tool above, (2) Copy the result,
-            (3) Go to Roblox Settings → Profile → Display Name, (4) Paste your styled name and save. Your new name will appear in Adopt Me and all Roblox games.
-            For detailed step-by-step instructions, see our <a href="/how-to-use-adopt-me-fonts" className="text-pink-600 underline">complete guide</a>.
-          </p>
-        </section>
-        <section className="mt-6">
-          <h2 className="text-lg sm:text-xl font-semibold">Can I use adopt me fonts for pet names?</h2>
-          <p className="mt-2 text-sm sm:text-base text-zinc-700">
-            Yes! Adopt me fonts work great for pet names. In Adopt Me, select your pet, click the name tag icon, and paste your styled name.
-            Keep pet names under 20 characters for best results. Bubble and cute fonts are especially popular for pets.
-          </p>
-        </section>
-        <section className="mt-6">
-          <h2 className="text-lg sm:text-xl font-semibold">Will Roblox filter these characters?</h2>
-          <p className="mt-2 text-sm sm:text-base text-zinc-700">
-            Roblox may filter some adopt me fonts characters, especially if you use too many decorative symbols or very long names.
-            To avoid filtering: keep names short (under 20 characters), use simpler styles like Bold or Bubble, and avoid combining multiple decorative fonts.
-            If a name gets rejected, try a shorter version or a different style.
-          </p>
-        </section>
-        <section className="mt-6">
-          <h2 className="text-lg sm:text-xl font-semibold">Which adopt me fonts are most compatible?</h2>
-          <p className="mt-2 text-sm sm:text-base text-zinc-700">
-            The most compatible adopt me fonts are: <strong>Bold</strong> (excellent readability), <strong><a href="/styles" className="text-pink-600 underline">Bubble</a></strong> (very popular, high compatibility),
-            <strong>Small Caps</strong> (clean and reliable), and <strong>Double Struck</strong> (works well across devices).
-            Decorative styles with combining marks (like Underline) may have lower compatibility.
-          </p>
-        </section>
-        <section className="mt-6">
-          <h2 className="text-lg sm:text-xl font-semibold">Why does my name look different on mobile?</h2>
-          <p className="mt-2 text-sm sm:text-base text-zinc-700">
-            Different devices render Unicode characters differently. Some adopt me fonts may appear as question marks or boxes on older devices.
-            Test your name on the device you&rsquo;ll primarily use. Bubble and Bold fonts have the best cross-device compatibility.
-          </p>
-        </section>
-        <section className="mt-6">
-          <h2 className="text-lg sm:text-xl font-semibold">Are adopt me fonts safe to use?</h2>
-          <p className="mt-2 text-sm sm:text-base text-zinc-700">
-            Yes, adopt me fonts are completely safe. They use standard Unicode characters that Roblox officially supports.
-            There&rsquo;s no risk of getting banned. However, if Roblox filters your name, it simply won&rsquo;t be accepted - you can try a different style.
-          </p>
-        </section>
-        <section className="mt-6">
-          <h2 className="text-lg sm:text-xl font-semibold">Can I use adopt me fonts in chat?</h2>
-          <p className="mt-2 text-sm sm:text-base text-zinc-700">
-            Yes, but with limitations. You can paste styled text into chat, but Roblox&rsquo;s chat filter is stricter than name filters.
-            Some decorative characters may be replaced with asterisks or filtered out entirely. Simple styles like Bold work best in chat.
-          </p>
-        </section>
-        <section className="mt-6">
-          <h2 className="text-lg sm:text-xl font-semibold">How do I combine fonts with emojis?</h2>
-          <p className="mt-2 text-sm sm:text-base text-zinc-700">
-            Use our <Link href="/adopt-me-names-generator" className="underline text-pink-600 font-semibold">name generator</Link> to create names with emojis and fonts together.
-            You can also manually add emojis before or after your styled text. Popular combinations include hearts, stars, and animal emojis with bubble or cute fonts.
-            For preppy aesthetic names with symbols, try our <Link href="/preppy-font-generator" className="underline text-pink-600 font-semibold">Preppy Font Generator</Link>.
-          </p>
-        </section>
-        <section className="mt-6">
-          <h2 className="text-lg sm:text-xl font-semibold">My name shows as question marks - what&rsquo;s wrong?</h2>
-          <p className="mt-2 text-sm sm:text-base text-zinc-700">
-            Question marks (???) usually mean your device doesn&rsquo;t support those Unicode characters. Try using more common adopt me fonts like Bold,
-            Bubble, or Small Caps. These have the widest device support and should display correctly on all platforms.
-            You can also use our <Link href="/tag-filter-checker" className="underline text-pink-600 font-semibold">Tag Filter Checker</Link> to test your name before using it.
-          </p>
-        </section>
-        <section className="mt-6 bg-gradient-to-r from-pink-50 to-purple-50 rounded-xl p-6 border border-pink-200">
-          <h2 className="text-lg sm:text-xl font-semibold mb-3">Explore More Tools</h2>
-          <p className="text-sm sm:text-base text-zinc-700 mb-3">
-            Need more help? Check out our <Link href="/how-to-use-adopt-me-fonts" className="underline text-pink-600 font-semibold">complete guide</Link> on using adopt me fonts,
-            or browse our <Link href="/pet-names" className="underline text-pink-600 font-semibold">pet name bank</Link> for name ideas.
-          </p>
-          <p className="text-sm sm:text-base text-zinc-700">
-            Want to find safe symbols? Visit our <Link href="/symbols" className="underline text-pink-600 font-semibold">symbol picker</Link> with tested and labeled symbols.
-          </p>
+
+        <div className="mt-8 space-y-4">
+          {faqItems.map((item) => (
+            <section
+              key={item.question}
+              className="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm"
+            >
+              <h2 className="text-xl font-bold text-zinc-950">{item.question}</h2>
+              <p className="mt-3 text-base leading-8 text-zinc-700">
+                {item.answer}
+              </p>
+            </section>
+          ))}
+        </div>
+
+        <section className="mt-8 rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
+          <h2 className="text-xl font-bold text-zinc-950">Helpful next steps</h2>
+          <div className="mt-4 grid gap-3 sm:grid-cols-2">
+            <Link href="/" className="rounded-2xl border border-zinc-200 px-4 py-4 text-zinc-700 transition hover:border-sky-300 hover:text-sky-700">
+              Open the main Wingdings Translator
+            </Link>
+            <Link href="/help" className="rounded-2xl border border-zinc-200 px-4 py-4 text-zinc-700 transition hover:border-sky-300 hover:text-sky-700">
+              Read the Help Center
+            </Link>
+            <Link href="/about" className="rounded-2xl border border-zinc-200 px-4 py-4 text-zinc-700 transition hover:border-sky-300 hover:text-sky-700">
+              Learn about our editorial approach
+            </Link>
+            <Link href="/contact" className="rounded-2xl border border-zinc-200 px-4 py-4 text-zinc-700 transition hover:border-sky-300 hover:text-sky-700">
+              Contact us with a correction or request
+            </Link>
+          </div>
         </section>
       </main>
     </>

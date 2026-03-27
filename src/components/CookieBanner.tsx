@@ -1,44 +1,46 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
+import { useState } from "react";
+import Link from "next/link";
 
 export default function CookieBanner() {
-    const [showBanner, setShowBanner] = useState(false);
+  const [showBanner, setShowBanner] = useState(
+    () =>
+      typeof window !== "undefined" &&
+      !window.localStorage.getItem("cookie-consent"),
+  );
 
-    useEffect(() => {
-        const consent = localStorage.getItem('cookie-consent');
+  const acceptCookies = () => {
+    window.localStorage.setItem("cookie-consent", "accepted");
+    setShowBanner(false);
+  };
 
-        // TEMPORARY DEBUG: Force show banner
-        if (!consent) {
-            setShowBanner(true);
-        }
-    }, []);
+  if (!showBanner) {
+    return null;
+  }
 
-    const acceptCookies = () => {
-        localStorage.setItem('cookie-consent', 'accepted');
-        setShowBanner(false);
-    };
-
-    if (!showBanner) return null;
-
-    return (
-        <div className="fixed bottom-0 left-0 right-0 bg-zinc-900 text-white p-4 shadow-lg z-50 animate-slide-up">
-            <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-                <p className="text-sm text-center sm:text-left">
-                    🍪 We use cookies and Google AdSense to improve your experience and display relevant ads.
-                    By continuing to use our site, you accept our use of cookies.{' '}
-                    <Link href="/privacy-policy" aria-label="Read our Privacy Policy" className="underline hover:text-pink-300 transition-colors">
-                        Read our Privacy Policy
-                    </Link>
-                </p>
-                <button
-                    onClick={acceptCookies}
-                    className="px-6 py-2 bg-pink-600 hover:bg-pink-700 rounded-lg font-semibold whitespace-nowrap transition-colors shadow-sm flex-shrink-0"
-                >
-                    Accept Cookies
-                </button>
-            </div>
-        </div>
-    );
+  return (
+    <div className="fixed bottom-4 left-4 right-4 z-50">
+      <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 rounded-[1.5rem] border border-zinc-700 bg-zinc-950/95 p-4 text-white shadow-2xl backdrop-blur sm:flex-row">
+        <p className="text-sm leading-7 text-zinc-200">
+          We use cookies, analytics, and ad-tech providers to keep the site running
+          and understand usage patterns.{" "}
+          <Link
+            href="/privacy-policy"
+            aria-label="Read the privacy policy"
+            className="font-semibold text-sky-300 underline"
+          >
+            Privacy Policy
+          </Link>
+        </p>
+        <button
+          type="button"
+          onClick={acceptCookies}
+          className="rounded-full bg-sky-500 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-sky-400"
+        >
+          Accept
+        </button>
+      </div>
+    </div>
+  );
 }

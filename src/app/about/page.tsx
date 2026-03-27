@@ -1,156 +1,136 @@
 import type { Metadata } from "next";
-import Breadcrumbs from "@/components/Breadcrumbs";
-import { generateBreadcrumbSchema } from "@/lib/breadcrumbs";
 import Script from "next/script";
 import Link from "next/link";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import { generateBreadcrumbSchema } from "@/lib/breadcrumbs";
+import { siteUrl } from "@/lib/textTools";
 
 const breadcrumbs = [
-  { name: "Home", url: "https://adoptmefont.com/" },
-  { name: "About", url: "https://adoptmefont.com/about" },
+  { name: "Wingdings Translator", url: siteUrl },
+  { name: "About", url: `${siteUrl}/about` },
 ];
 
 export const metadata: Metadata = {
-  title: "About Us | Adopt Me Fonts",
-  description: "Learn about Adopt Me Fonts Generator. Our mission is to provide free, easy-to-use tools for Roblox Adopt Me players to create unique names and text styles.",
+  title: "About | Wingdings Translator",
+  description:
+    "Learn how Wingdings Translator approaches helpful content, tool transparency, mapping differences, and user trust.",
   alternates: {
-    canonical: "https://adoptmefont.com/about",
-  },
-  robots: {
-    index: true,
-    follow: true,
+    canonical: `${siteUrl}/about`,
   },
 };
 
-export default function About() {
+export default function AboutPage() {
   const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
-
-  const organizationSchema = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Adopt Me Fonts",
-    url: "https://adoptmefont.com",
-    description: "Free Adopt Me fonts generator for Roblox. Create stylish adopt me fonts like bubble, bold, cute, small caps, and aesthetic fullwidth.",
-    sameAs: [],
-  };
 
   return (
     <>
       <Script
-        id="breadcrumb-schema"
+        id="about-breadcrumb-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <Script
-        id="organization-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-      />
-      <main className="mx-auto max-w-3xl px-4 sm:px-6 py-8 sm:py-12">
+      <main className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-12">
         <Breadcrumbs items={breadcrumbs} />
-        <h1 className="text-2xl sm:text-3xl font-bold mt-4">About Adopt Me Fonts</h1>
+        <h1 className="mt-4 text-3xl font-black tracking-tight text-zinc-950 sm:text-4xl">
+          About Wingdings Translator
+        </h1>
 
-        <section className="mt-6">
-          <h2 className="text-xl font-semibold mb-3">Our Mission</h2>
-          <p className="text-sm sm:text-base text-zinc-700 mb-4">
-            Adopt Me Fonts Generator was created to help Roblox Adopt Me players express their creativity through unique text styles. We believe that personalization is a key part of the gaming experience, and our free tools make it easy for players to create distinctive names for their characters, pets, and chat messages.
+        <div className="mt-6 space-y-4 text-base leading-8 text-zinc-700">
+          <p>
+            Wingdings Translator was built to be more than a thin converter page.
+            The project started from a simple observation: many symbol tools can
+            generate output, but far fewer explain why different mappings exist,
+            where the output works well, where it breaks down, and how users should
+            choose between multiple presets with confidence.
           </p>
-          <p className="text-sm sm:text-base text-zinc-700 mb-4">
-            Our mission is to provide high-quality, easy-to-use tools that are completely free and accessible to everyone. We're committed to maintaining user privacy, ensuring our tools work reliably, and continuously improving based on user feedback.
+          <p>
+            That gap matters because genuinely helpful content is not just about
+            adding more text. It is about reducing confusion, making tradeoffs
+            visible, and giving visitors enough context to complete their task
+            without needing to bounce between half-explained pages.
           </p>
-        </section>
+        </div>
 
-        <section className="mt-6">
-          <h2 className="text-xl font-semibold mb-3">What We Do</h2>
-          <p className="text-sm sm:text-base text-zinc-700 mb-4">
-            Adopt Me Fonts Generator is a collection of free online tools designed specifically for Roblox Adopt Me players:
-          </p>
-          <ul className="list-disc pl-6 text-sm sm:text-base text-zinc-700 space-y-2 mb-4">
-            <li><strong>Font Generator:</strong> Convert regular text into 50+ styled Unicode fonts including bubble, bold, cute, preppy, and aesthetic styles</li>
-            <li><strong>Name Generator:</strong> Create unique pet names with emojis and styled fonts</li>
-            <li><strong>Tag Filter Checker:</strong> Test if your generated name will work in Roblox before using it</li>
-            <li><strong>Symbol Library:</strong> Browse safe symbols that work in Roblox, all tested and labeled</li>
-            <li><strong>Pet Name Bank:</strong> Find inspiration for naming your pets with curated name suggestions</li>
-          </ul>
-        </section>
-
-        <section className="mt-6">
-          <h2 className="text-xl font-semibold mb-3">How It Works</h2>
-          <p className="text-sm sm:text-base text-zinc-700 mb-4">
-            Our font generator uses Unicode characters to transform regular text into styled versions. All processing happens entirely in your browser - we don't collect, store, or transmit the text you generate. This ensures your privacy and makes the tool fast and reliable.
-          </p>
-          <p className="text-sm sm:text-base text-zinc-700 mb-4">
-            The Unicode characters we use are part of the official Unicode standard and are supported by Roblox's text rendering system. However, we always recommend testing your generated names in-game, as Roblox may filter certain characters based on their content moderation policies.
-          </p>
-        </section>
-
-        <section className="mt-6">
-          <h2 className="text-xl font-semibold mb-3">Our Values</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="border border-zinc-200 rounded-lg p-4">
-              <h3 className="font-semibold mb-2">🔒 Privacy First</h3>
-              <p className="text-sm text-zinc-700">
-                Your text is processed locally in your browser. We don't collect or store what you generate.
-              </p>
-            </div>
-            <div className="border border-zinc-200 rounded-lg p-4">
-              <h3 className="font-semibold mb-2">🆓 Completely Free</h3>
-              <p className="text-sm text-zinc-700">
-                All our tools are free to use with no hidden costs, registration, or premium features.
-              </p>
-            </div>
-            <div className="border border-zinc-200 rounded-lg p-4">
-              <h3 className="font-semibold mb-2">✨ User-Focused</h3>
-              <p className="text-sm text-zinc-700">
-                We listen to user feedback and continuously improve our tools based on what you need.
-              </p>
-            </div>
-            <div className="border border-zinc-200 rounded-lg p-4">
-              <h3 className="font-semibold mb-2">🎯 Reliable & Safe</h3>
-              <p className="text-sm text-zinc-700">
-                We test our tools regularly and provide accurate information about Roblox compatibility.
-              </p>
-            </div>
+        <section className="mt-8 rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
+          <h2 className="text-xl font-bold text-zinc-950">What we are trying to do well</h2>
+          <div className="mt-4 space-y-4 text-base leading-8 text-zinc-700">
+            <p>
+              The site focuses on three things: working output, clear explanation,
+              and trustworthy structure. Working output means the main tool should
+              help people compare symbol styles quickly. Clear explanation means we
+              tell users that mapping tables differ and that display consistency is
+              not guaranteed across every environment. Trustworthy structure means
+              the site should include legal pages, contact information, breadcrumbs,
+              internal navigation, and content that reads like it was written to help
+              a person instead of only attract a click.
+            </p>
+            <p>
+              We also try to be explicit about what the project is not. It is not a
+              desktop font download service, it is not a perfect archive of every
+              historical symbol-font implementation, and it is not an excuse to hide
+              important caveats behind marketing language.
+            </p>
           </div>
         </section>
 
-        <section className="mt-6">
-          <h2 className="text-xl font-semibold mb-3">Transparency & Trust</h2>
-          <p className="text-sm sm:text-base text-zinc-700 mb-4">
-            We believe in transparency and building trust with our users. That's why we:
-          </p>
-          <ul className="list-disc pl-6 text-sm sm:text-base text-zinc-700 space-y-2">
-            <li>Clearly explain how our tools work and what data we collect (see our <Link href="/privacy-policy" className="text-pink-600 underline">Privacy Policy</Link>)</li>
-            <li>Provide detailed terms of service so you know exactly what to expect (see our <Link href="/terms-of-service" className="text-pink-600 underline">Terms of Service</Link>)</li>
-            <li>Offer multiple ways to contact us for questions or support (see our <Link href="/contact" className="text-pink-600 underline">Contact page</Link>)</li>
-            <li>Maintain accurate, helpful content that follows Google's E-E-A-T guidelines (Expertise, Experience, Authoritativeness, Trustworthiness)</li>
-          </ul>
+        <section className="mt-8 rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
+          <h2 className="text-xl font-bold text-zinc-950">Editorial and update principles</h2>
+          <div className="mt-4 space-y-4 text-base leading-8 text-zinc-700">
+            <p>
+              Our editorial standard follows a simple rule: if a piece of content
+              does not help the user finish a real task, it should not be there.
+              That means pages should explain limitations, define terms plainly,
+              link to the next useful page, and avoid filler that says the same
+              thing five different ways.
+            </p>
+            <p>
+              Updates are most likely to happen when one of the following changes:
+              the tool interface changes, a mapping preset changes, a support page
+              becomes too thin to be useful, or legal and contact information needs
+              to be refreshed. The goal is not constant rewriting for its own sake.
+              The goal is to keep the site accurate, understandable, and easy to use.
+            </p>
+          </div>
         </section>
 
-        <section className="mt-6">
-          <h2 className="text-xl font-semibold mb-3">Content Creation</h2>
-          <p className="text-sm sm:text-base text-zinc-700 mb-4">
-            Our website content is created by our team with the goal of providing helpful, accurate information to Roblox Adopt Me players. We research Roblox's policies, test our tools regularly, and update our content based on user feedback and changes in the Roblox platform.
-          </p>
-          <p className="text-sm sm:text-base text-zinc-700 mb-4">
-            We use automation tools (like our font generator) to help users create styled text, but all our guides, tutorials, and informational content are written by humans to ensure accuracy and helpfulness.
-          </p>
+        <section className="mt-8 rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
+          <h2 className="text-xl font-bold text-zinc-950">Why transparency matters here</h2>
+          <div className="mt-4 space-y-4 text-base leading-8 text-zinc-700">
+            <p>
+              Symbol tools often create avoidable confusion. A visitor may paste the
+              same word into two different sites and get different outputs, then
+              assume one site must be broken. In practice, the more honest answer is
+              that different translators often rely on different mapping systems.
+              Treating that difference as part of the documentation, not a hidden
+              detail, is one of the clearest ways to improve trust.
+            </p>
+            <p>
+              We also believe in being direct about compatibility. Unicode and legacy
+              symbol behavior can vary by platform. Some short strings will travel
+              well across modern apps; others may not. Users deserve to know that
+              before they rely on a result for a puzzle, a profile, or a shareable post.
+            </p>
+          </div>
         </section>
 
-        <section className="mt-6">
-          <h2 className="text-xl font-semibold mb-3">Get Involved</h2>
-          <p className="text-sm sm:text-base text-zinc-700 mb-4">
-            We're always looking to improve! If you have suggestions, found a bug, or want to share feedback, please <Link href="/contact" className="text-pink-600 underline font-semibold">contact us</Link>. Your input helps us make Adopt Me Fonts better for everyone.
-          </p>
-        </section>
-
-        <section className="mt-8 bg-gradient-to-r from-pink-50 to-purple-50 rounded-lg p-6 border border-pink-200">
-          <h2 className="text-xl font-semibold mb-3">Questions?</h2>
-          <p className="text-sm sm:text-base text-zinc-700">
-            Check out our <Link href="/faq" className="text-pink-600 underline font-semibold">FAQ page</Link> for common questions, or <Link href="/contact" className="text-pink-600 underline font-semibold">contact us</Link> if you need more help.
-          </p>
+        <section className="mt-8 rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
+          <h2 className="text-xl font-bold text-zinc-950">Useful pages</h2>
+          <div className="mt-4 grid gap-3 sm:grid-cols-2">
+            <Link href="/" className="rounded-2xl border border-zinc-200 px-4 py-4 text-zinc-700 transition hover:border-sky-300 hover:text-sky-700">
+              Wingdings Translator
+            </Link>
+            <Link href="/faq" className="rounded-2xl border border-zinc-200 px-4 py-4 text-zinc-700 transition hover:border-sky-300 hover:text-sky-700">
+              FAQ
+            </Link>
+            <Link href="/help" className="rounded-2xl border border-zinc-200 px-4 py-4 text-zinc-700 transition hover:border-sky-300 hover:text-sky-700">
+              Help Center
+            </Link>
+            <Link href="/contact" className="rounded-2xl border border-zinc-200 px-4 py-4 text-zinc-700 transition hover:border-sky-300 hover:text-sky-700">
+              Contact
+            </Link>
+          </div>
         </section>
       </main>
     </>
   );
 }
-

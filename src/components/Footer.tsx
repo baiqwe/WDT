@@ -4,125 +4,122 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-zinc-200 bg-white mt-16 sm:mt-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 py-8 sm:py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+    <footer className="mt-16 border-t border-zinc-200 bg-white">
+      <div className="mx-auto max-w-[1680px] px-3 py-10 sm:px-5 xl:px-8">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <h3 className="font-semibold text-lg mb-4">Adopt Me Fonts</h3>
-            <p className="text-sm text-zinc-700 mb-4">
-              Free tools for Roblox Adopt Me players to create unique names and text styles.
+            <h2 className="text-lg font-semibold text-zinc-950">
+              Wingdings Translator
+            </h2>
+            <p className="mt-3 text-sm leading-7 text-zinc-600">
+              An authority-style hub for Wingdings, cursive, subscript, and
+              other copy-paste text tools.
             </p>
           </div>
 
           <div>
-            <h3 className="font-semibold text-base mb-4">Tools</h3>
-            <ul className="space-y-2 text-sm">
+            <h3 className="text-sm font-semibold uppercase tracking-[0.16em] text-zinc-500">
+              Tools
+            </h3>
+            <ul className="mt-4 space-y-3 text-sm">
               <li>
-                <Link href="/" className="text-zinc-700 hover:text-pink-600 transition-colors">
-                  Font Generator
+                <Link href="/" className="text-zinc-700 transition hover:text-sky-700">
+                  Wingdings Translator
                 </Link>
               </li>
               <li>
-                <Link href="/preppy-font-generator" className="text-zinc-700 hover:text-pink-600 transition-colors">
-                  Preppy Font Generator
+                <Link
+                  href="/subscript-generator"
+                  className="text-zinc-700 transition hover:text-sky-700"
+                >
+                  Subscript Generator
                 </Link>
               </li>
               <li>
-                <Link href="/adopt-me-names-generator" className="text-zinc-700 hover:text-pink-600 transition-colors">
-                  Name Generator
+                <Link
+                  href="/cursive-generator"
+                  className="text-zinc-700 transition hover:text-sky-700"
+                >
+                  Cursive Generator
                 </Link>
               </li>
               <li>
-                <Link href="/tag-filter-checker" className="text-zinc-700 hover:text-pink-600 transition-colors">
-                  Tag Filter Checker
-                </Link>
-              </li>
-              <li>
-                <Link href="/symbols" className="text-zinc-700 hover:text-pink-600 transition-colors">
-                  Safe Symbols
+                <Link
+                  href="/old-english-translator"
+                  className="text-zinc-700 transition hover:text-sky-700"
+                >
+                  Old English Translator
                 </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="font-semibold text-base mb-4">Resources</h3>
-            <ul className="space-y-2 text-sm">
+            <h3 className="text-sm font-semibold uppercase tracking-[0.16em] text-zinc-500">
+              Resources
+            </h3>
+            <ul className="mt-4 space-y-3 text-sm">
               <li>
-                <Link href="/how-to-use-adopt-me-fonts" className="text-zinc-700 hover:text-pink-600 transition-colors">
-                  How to Use Guide
-                </Link>
-              </li>
-              <li>
-                <Link href="/faq" className="text-zinc-700 hover:text-pink-600 transition-colors">
+                <Link href="/faq" className="text-zinc-700 transition hover:text-sky-700">
                   FAQ
                 </Link>
               </li>
               <li>
-                <Link href="/pet-names" className="text-zinc-700 hover:text-pink-600 transition-colors">
-                  Pet Names
+                <Link href="/help" className="text-zinc-700 transition hover:text-sky-700">
+                  Help Center
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="text-zinc-700 hover:text-pink-600 transition-colors">
-                  Blog
+                <Link href="/about" className="text-zinc-700 transition hover:text-sky-700">
+                  About
                 </Link>
               </li>
               <li>
-                <a href="https://www.theforgewiki.com" target="_blank" rel="noopener noreferrer" className="text-zinc-700 hover:text-pink-600 transition-colors">
-                  The Forge Wiki
-                </a>
-              </li>
-              <li>
-                <a href="https://www.deadlyblox.com" target="_blank" rel="noopener noreferrer" className="text-zinc-700 hover:text-pink-600 transition-colors">
-                  Deadly Delivery Wiki
-                </a>
+                <Link href="/contact" className="text-zinc-700 transition hover:text-sky-700">
+                  Contact
+                </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="font-semibold text-base mb-4">Legal</h3>
-            <ul className="space-y-2 text-sm">
+            <h3 className="text-sm font-semibold uppercase tracking-[0.16em] text-zinc-500">
+              Legal
+            </h3>
+            <ul className="mt-4 space-y-3 text-sm">
               <li>
-                <Link href="/about" className="text-zinc-700 hover:text-pink-600 transition-colors">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="text-zinc-700 hover:text-pink-600 transition-colors">
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <Link href="/privacy-policy" className="text-zinc-700 hover:text-pink-600 transition-colors">
+                <Link
+                  href="/privacy-policy"
+                  className="text-zinc-700 transition hover:text-sky-700"
+                >
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/terms-of-service" className="text-zinc-700 hover:text-pink-600 transition-colors">
+                <Link
+                  href="/terms-of-service"
+                  className="text-zinc-700 transition hover:text-sky-700"
+                >
                   Terms of Service
+                </Link>
+              </li>
+              <li>
+                <Link href="/about" className="text-zinc-700 transition hover:text-sky-700">
+                  About Us
                 </Link>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-zinc-200 pt-6 mt-6">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-zinc-600 text-center sm:text-left">
-              © {currentYear} Adopt Me Fonts. All rights reserved.
-            </p>
-            <div className="text-xs text-zinc-500 text-center sm:text-right max-w-md">
-              <p>Not affiliated with Roblox Corporation or Adopt Me.</p>
-              <p className="mt-1">
-                Roblox and Adopt Me are trademarks of their respective owners. This is a fan-made website.
-              </p>
-            </div>
-          </div>
+        <div className="mt-8 flex flex-col gap-3 border-t border-zinc-200 pt-6 text-sm text-zinc-500 sm:flex-row sm:items-center sm:justify-between">
+          <p>© {currentYear} Wingdings Translator. All rights reserved.</p>
+          <p className="max-w-2xl text-left sm:text-right">
+            Helpful copy-paste text tools with clear mappings, legal pages, and
+            breadcrumb navigation for better crawlability and user trust.
+          </p>
         </div>
       </div>
     </footer>
   );
 }
-

@@ -1,20 +1,30 @@
 import type { Metadata } from "next";
-import HomeClient from "./HomeClient";
-import HomeHeader from "@/components/Home/HomeHeader";
-import HomeStaticContent from "@/components/Home/HomeStaticContent";
+import ToolPageContent from "@/components/tools/ToolPageContent";
+import { siteUrl, toolConfigs } from "@/lib/textTools";
+
+const tool = toolConfigs.wingdings;
 
 export const metadata: Metadata = {
-    alternates: {
-        canonical: "https://adoptmefont.com/",
-    },
+  title: tool.metaTitle,
+  description: tool.metaDescription,
+  keywords: tool.keywords,
+  alternates: {
+    canonical: siteUrl,
+  },
+  openGraph: {
+    title: tool.metaTitle,
+    description: tool.metaDescription,
+    url: siteUrl,
+    siteName: "Wingdings Translator",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: tool.metaTitle,
+    description: tool.metaDescription,
+  },
 };
 
 export default function Home() {
-    return (
-        <main className="mx-auto max-w-7xl px-4 sm:px-6 py-8 sm:py-12">
-            <HomeHeader />
-            <HomeClient />
-            <HomeStaticContent />
-        </main>
-    );
+  return <ToolPageContent tool={tool} isHome />;
 }
