@@ -1,23 +1,49 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#f8fbff" />
-      <stop offset="55%" stop-color="#eef6ff" />
-      <stop offset="100%" stop-color="#f4f8fc" />
+    <linearGradient id="bg" x1="66" y1="52" x2="1122" y2="598" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F7FBF8" />
+      <stop offset="1" stop-color="#EEF7F2" />
     </linearGradient>
-    <linearGradient id="title" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#0284c7" />
-      <stop offset="50%" stop-color="#0f172a" />
-      <stop offset="100%" stop-color="#1d4ed8" />
+    <linearGradient id="panel" x1="132" y1="94" x2="1070" y2="542" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#123B34" />
+      <stop offset="1" stop-color="#0B2421" />
+    </linearGradient>
+    <linearGradient id="text" x1="438" y1="156" x2="950" y2="156" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B2421" />
+      <stop offset="1" stop-color="#135B4E" />
     </linearGradient>
   </defs>
   <rect width="1200" height="630" fill="url(#bg)" />
-  <circle cx="190" cy="130" r="150" fill="#7dd3fc" opacity="0.18" />
-  <circle cx="1050" cy="500" r="120" fill="#93c5fd" opacity="0.18" />
-  <rect x="95" y="120" width="1010" height="390" rx="38" fill="#ffffff" stroke="#dbeafe" stroke-width="3" />
-  <text x="130" y="210" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#0369a1">AUTHORITY RESOURCE</text>
-  <text x="130" y="300" font-family="Arial, sans-serif" font-size="68" font-weight="700" fill="url(#title)">Wingdings Translator</text>
-  <text x="130" y="362" font-family="Arial, sans-serif" font-size="28" fill="#475569">Compare Wingdings, Wingdings 2, Wingdings 3, and Webdings-style mappings</text>
-  <text x="130" y="425" font-family="Arial, sans-serif" font-size="44" font-weight="700" fill="#0f172a">☀ ☁ ☂ ☃    ⬰ ⬱ ⬲ ⬳    ⌛ ⌚ ⌨ ✉</text>
-  <text x="130" y="475" font-family="Arial, sans-serif" font-size="22" fill="#64748b">Copy, compare, and decode symbol text from one clean interface.</text>
+  <circle cx="112" cy="104" r="58" fill="#FFC78A" opacity=".42" />
+  <circle cx="1084" cy="520" r="72" fill="#B6EDD3" opacity=".6" />
+  <path d="M62 538C128 496 196 476 266 478" stroke="#D7EEDF" stroke-width="16" stroke-linecap="round" />
+  <path d="M888 102C946 80 1000 80 1050 102" stroke="#D7EEDF" stroke-width="12" stroke-linecap="round" />
+  <rect x="72" y="72" width="1056" height="486" rx="46" fill="white" />
+  <rect x="72" y="72" width="1056" height="486" rx="46" stroke="#DCEAE2" stroke-width="3" />
+
+  <rect x="122" y="118" width="250" height="250" rx="70" fill="url(#panel)" />
+  <rect x="122" y="118" width="250" height="250" rx="70" stroke="#D7F7E8" stroke-opacity=".22" stroke-width="5" />
+  <circle cx="194" cy="182" r="18" fill="#FFB86C" />
+  <circle cx="194" cy="182" r="8" fill="#FFF7EA" />
+  <path d="M192 298C192 258.788 223.788 227 263 227H314" stroke="#F4FFF4" stroke-width="22" stroke-linecap="round" />
+  <path d="M294 154L338 198L294 242L250 198L294 154Z" fill="#FFF7EA" />
+  <path d="M284 258L346 320L284 382L222 320L284 258Z" fill="#7AE8C0" />
+  <path d="M284 282L322 320L284 358L246 320L284 282Z" fill="#123B34" />
+
+  <text x="424" y="150" font-family="Arial, sans-serif" font-size="26" font-weight="700" letter-spacing="4" fill="#0F766E">DECODE THE MYSTERY</text>
+  <text x="424" y="236" font-family="Arial, sans-serif" font-size="68" font-weight="800" fill="url(#text)">Wingdings Translator</text>
+  <text x="424" y="290" font-family="Arial, sans-serif" font-size="28" fill="#475569">Convert Wingdings to English or turn plain text into symbols instantly.</text>
+
+  <rect x="424" y="348" width="300" height="116" rx="28" fill="#F8FCFA" stroke="#DCEAE2" />
+  <text x="452" y="392" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#0F766E">ENGLISH</text>
+  <text x="452" y="435" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#0B2421">decode this message</text>
+
+  <rect x="756" y="348" width="300" height="116" rx="28" fill="#123B34" />
+  <text x="784" y="392" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#B6EDD3">SYMBOLS</text>
+  <text x="784" y="435" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#FFF7EA">♎︎☜︎♍︎□︎♎︎☜︎ ⧫︎♒︎♓︎⬧︎</text>
+
+  <path d="M700 406H748" stroke="#0F766E" stroke-width="10" stroke-linecap="round" />
+  <path d="M735 386L755 406L735 426" stroke="#0F766E" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" />
+
+  <text x="424" y="518" font-family="Arial, sans-serif" font-size="24" fill="#64748B">Instant copy-paste tool with Classic, Gaster, Wingdings 2, Wingdings 3, and Webdings presets.</text>
 </svg>

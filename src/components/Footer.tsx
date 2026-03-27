@@ -23,14 +23,14 @@ export default function Footer() {
             </h3>
             <ul className="mt-4 space-y-3 text-sm">
               <li>
-                <Link href="/" className="text-zinc-700 transition hover:text-sky-700">
+                <Link href="/" className="text-zinc-700 transition hover:text-emerald-800">
                   Wingdings Translator
                 </Link>
               </li>
               <li>
                 <Link
                   href="/webdings-translator"
-                  className="text-zinc-700 transition hover:text-sky-700"
+                  className="text-zinc-700 transition hover:text-emerald-800"
                 >
                   Webdings Translator
                 </Link>
@@ -38,7 +38,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/subscript-generator"
-                  className="text-zinc-700 transition hover:text-sky-700"
+                  className="text-zinc-700 transition hover:text-emerald-800"
                 >
                   Subscript Generator
                 </Link>
@@ -46,7 +46,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/superscript-generator"
-                  className="text-zinc-700 transition hover:text-sky-700"
+                  className="text-zinc-700 transition hover:text-emerald-800"
                 >
                   Superscript Generator
                 </Link>
@@ -54,7 +54,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/cursive-generator"
-                  className="text-zinc-700 transition hover:text-sky-700"
+                  className="text-zinc-700 transition hover:text-emerald-800"
                 >
                   Cursive Generator
                 </Link>
@@ -62,7 +62,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/bubble-font-generator"
-                  className="text-zinc-700 transition hover:text-sky-700"
+                  className="text-zinc-700 transition hover:text-emerald-800"
                 >
                   Bubble Font Generator
                 </Link>
@@ -70,7 +70,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/old-english-translator"
-                  className="text-zinc-700 transition hover:text-sky-700"
+                  className="text-zinc-700 transition hover:text-emerald-800"
                 >
                   Old English Translator
                 </Link>
@@ -78,7 +78,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/gothic-font-generator"
-                  className="text-zinc-700 transition hover:text-sky-700"
+                  className="text-zinc-700 transition hover:text-emerald-800"
                 >
                   Gothic Font Generator
                 </Link>
@@ -86,7 +86,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/gaster-translator"
-                  className="text-zinc-700 transition hover:text-sky-700"
+                  className="text-zinc-700 transition hover:text-emerald-800"
                 >
                   Gaster Translator
                 </Link>
@@ -100,22 +100,22 @@ export default function Footer() {
             </h3>
             <ul className="mt-4 space-y-3 text-sm">
               <li>
-                <Link href="/faq" className="text-zinc-700 transition hover:text-sky-700">
+                <Link href="/faq" className="text-zinc-700 transition hover:text-emerald-800">
                   FAQ
                 </Link>
               </li>
               <li>
-                <Link href="/help" className="text-zinc-700 transition hover:text-sky-700">
+                <Link href="/help" className="text-zinc-700 transition hover:text-emerald-800">
                   Help Center
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-zinc-700 transition hover:text-sky-700">
+                <Link href="/about" className="text-zinc-700 transition hover:text-emerald-800">
                   About
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-zinc-700 transition hover:text-sky-700">
+                <Link href="/contact" className="text-zinc-700 transition hover:text-emerald-800">
                   Contact
                 </Link>
               </li>
@@ -130,7 +130,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/privacy-policy"
-                  className="text-zinc-700 transition hover:text-sky-700"
+                  className="text-zinc-700 transition hover:text-emerald-800"
                 >
                   Privacy Policy
                 </Link>
@@ -138,13 +138,13 @@ export default function Footer() {
               <li>
                 <Link
                   href="/terms-of-service"
-                  className="text-zinc-700 transition hover:text-sky-700"
+                  className="text-zinc-700 transition hover:text-emerald-800"
                 >
                   Terms of Service
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-zinc-700 transition hover:text-sky-700">
+                <Link href="/about" className="text-zinc-700 transition hover:text-emerald-800">
                   About Us
                 </Link>
               </li>

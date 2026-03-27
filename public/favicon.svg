@@ -1,28 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <!-- Cute cat face - solid color style -->
-  <!-- Head -->
-  <circle cx="32" cy="32" r="28" fill="#ff7fbf"/>
-  
-  <!-- Ears -->
-  <path d="M20 12 L28 24 L24 24 Z" fill="#ff7fbf"/>
-  <path d="M44 12 L36 24 L40 24 Z" fill="#ff7fbf"/>
-  <path d="M20 12 L26 20 L24 20 Z" fill="#ffb3d6"/>
-  <path d="M44 12 L38 20 L40 20 Z" fill="#ffb3d6"/>
-  
-  <!-- Eyes -->
-  <ellipse cx="24" cy="30" rx="4" ry="6" fill="#ffffff"/>
-  <ellipse cx="40" cy="30" rx="4" ry="6" fill="#ffffff"/>
-  <circle cx="24" cy="30" r="2" fill="#333333"/>
-  <circle cx="40" cy="30" r="2" fill="#333333"/>
-  
-  <!-- Nose -->
-  <path d="M32 36 L30 40 L34 40 Z" fill="#ffb3d6"/>
-  
-  <!-- Mouth -->
-  <path d="M32 40 Q28 44 26 42" stroke="#333333" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <path d="M32 40 Q36 44 38 42" stroke="#333333" stroke-width="2" fill="none" stroke-linecap="round"/>
-  
-  <!-- Cheeks -->
-  <circle cx="16" cy="36" r="3" fill="#ffb3d6" opacity="0.6"/>
-  <circle cx="48" cy="36" r="3" fill="#ffb3d6" opacity="0.6"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <linearGradient id="panel" x1="80" y1="68" x2="432" y2="444" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#123B34" />
+      <stop offset="1" stop-color="#0B2421" />
+    </linearGradient>
+  </defs>
+  <rect x="44" y="44" width="424" height="424" rx="120" fill="url(#panel)" />
+  <rect x="44" y="44" width="424" height="424" rx="120" stroke="#D7F7E8" stroke-opacity=".22" stroke-width="8" />
+  <circle cx="165" cy="153" r="34" fill="#FFB86C" />
+  <circle cx="165" cy="153" r="16" fill="#FFF7EA" />
+  <path d="M154 360C154 292.726 208.726 238 276 238H358" stroke="#F4FFF4" stroke-width="34" stroke-linecap="round" />
+  <path d="M344 112L392 160L344 208L296 160L344 112Z" fill="#FFF7EA" />
+  <path d="M328 266L398 336L328 406L258 336L328 266Z" fill="#7AE8C0" />
+  <path d="M328 292L372 336L328 380L284 336L328 292Z" fill="#123B34" />
 </svg>

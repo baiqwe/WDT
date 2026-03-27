@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+
+Sitemap: https://wingdingstranslator.org/sitemap.xml
+Host: https://wingdingstranslator.org

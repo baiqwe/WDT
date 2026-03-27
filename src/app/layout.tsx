@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist } from "next/font/google";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { siteUrl } from "@/lib/textTools";
@@ -8,11 +8,6 @@ import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
@@ -41,6 +36,9 @@ export const metadata: Metadata = {
   ],
   metadataBase: new URL(siteUrl),
   manifest: "/manifest.json",
+  other: {
+    "google-adsense-account": "ca-pub-2499950673294937",
+  },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -119,13 +117,13 @@ export default function RootLayout({
     "@type": "Organization",
     name: "Wingdings Translator",
     url: siteUrl,
-    logo: `${siteUrl}/icon-192x192.png`,
+    logo: `${siteUrl}/brand-mark.svg`,
   };
 
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} bg-zinc-50 antialiased`}
+        className={`${geistSans.variable} bg-zinc-50 antialiased`}
       >
         <Script
           id="website-schema"
@@ -139,9 +137,9 @@ export default function RootLayout({
         />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-YJ66WXDZ98"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="gtag-init" strategy="afterInteractive">
+        <Script id="gtag-init" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -153,7 +151,7 @@ export default function RootLayout({
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2499950673294937"
           crossOrigin="anonymous"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
         <Navigation />
         {children}
