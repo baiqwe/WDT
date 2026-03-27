@@ -25,11 +25,11 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "Wingdings Translator ✌︎︎ Convert Text to Symbols (Copy & Paste)",
+    default: "Wingdings Translator | Convert Wingdings to English (Copy & Paste)",
     template: "%s | Wingdings Translator",
   },
   description:
-    "The most accurate Wingdings translator online. Convert English to Wingdings-style symbols, decode symbol strings, and explore Gaster alphabet references.",
+    "Convert Wingdings to English or English to Wingdings instantly. Decode symbol strings, compare preset alphabets, and use the tool without downloads.",
   keywords: [
     "wingdings translator",
     "wingdings to english",
@@ -58,9 +58,9 @@ export const metadata: Metadata = {
     shortcut: [{ url: "/favicon.svg", type: "image/svg+xml" }],
   },
   openGraph: {
-    title: "Wingdings Translator ✌︎︎ Convert Text to Symbols (Copy & Paste)",
+    title: "Wingdings Translator | Convert Wingdings to English",
     description:
-      "Convert plain text into wingdings-style symbols, decode icon strings, and browse related font tools from one authority-style hub.",
+      "Instant Wingdings conversion and reverse decoding with copy-paste output, preset comparisons, and no download required.",
     url: siteUrl,
     siteName: "Wingdings Translator",
     type: "website",
@@ -70,15 +70,15 @@ export const metadata: Metadata = {
         url: `${siteUrl}/og-image.svg`,
         width: 1200,
         height: 630,
-        alt: "Wingdings Translator and symbol converter",
+        alt: "Decode the mystery with Wingdings Translator",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Wingdings Translator ✌︎︎ Convert Text to Symbols (Copy & Paste)",
+    title: "Wingdings Translator | Convert Wingdings to English",
     description:
-      "Free Wingdings-style converter with reverse decoding, FAQ content, and related symbol tools.",
+      "Decode Wingdings instantly, convert English to symbols, and copy results without downloading anything.",
     images: [`${siteUrl}/og-image.svg`],
   },
   robots: {

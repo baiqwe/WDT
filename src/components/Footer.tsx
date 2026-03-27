@@ -83,6 +83,14 @@ export default function Footer() {
                   Gothic Font Generator
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/gaster-translator"
+                  className="text-zinc-700 transition hover:text-sky-700"
+                >
+                  Gaster Translator
+                </Link>
+              </li>
             </ul>
           </div>
 

@@ -81,6 +81,30 @@ function createDecodeMap(upperMap: string[], lowerMap: string[] = upperMap) {
   );
 }
 
+function decodeBySymbols(input: string, decodeMap: Map<string, string>) {
+  const symbols = Array.from(decodeMap.keys()).sort(
+    (left, right) => right.length - left.length,
+  );
+  let output = "";
+  let cursor = 0;
+
+  while (cursor < input.length) {
+    const remaining = input.slice(cursor);
+    const matchedSymbol = symbols.find((symbol) => remaining.startsWith(symbol));
+
+    if (matchedSymbol) {
+      output += decodeMap.get(matchedSymbol) ?? matchedSymbol;
+      cursor += matchedSymbol.length;
+      continue;
+    }
+
+    output += input[cursor];
+    cursor += 1;
+  }
+
+  return output;
+}
+
 function buildVariantHelpers(variant: TranslatorVariant) {
   const lowerMap = variant.lowerMap ?? variant.upperMap;
   const decodeMap = createDecodeMap(variant.upperMap, lowerMap);
@@ -90,13 +114,7 @@ function buildVariantHelpers(variant: TranslatorVariant) {
       return translateFromAlphabet(input, variant.upperMap, lowerMap);
     },
     decode(input: string) {
-      let output = "";
-
-      for (const char of input) {
-        output += decodeMap.get(char) ?? char;
-      }
-
-      return output;
+      return decodeBySymbols(input, decodeMap);
     },
     table: upperAlphabet.split("").map((letter, index) => ({
       plain: letter,
@@ -534,6 +552,10 @@ const defaultWingdingsVariantBase = translatorVariants.classic;
 const defaultWingdingsVariant = defaultWingdingsVariantBase
   ? buildVariantHelpers(defaultWingdingsVariantBase)
   : null;
+const defaultGasterVariantBase = translatorVariants.gaster;
+const defaultGasterVariant = defaultGasterVariantBase
+  ? buildVariantHelpers(defaultGasterVariantBase)
+  : null;
 const defaultWebdingsVariantBase = translatorVariants.webdings;
 const defaultWebdingsVariant = defaultWebdingsVariantBase
   ? buildVariantHelpers(defaultWebdingsVariantBase)
@@ -550,6 +572,7 @@ export const toolOrder = [
   "bubble-font-generator",
   "old-english-translator",
   "gothic-font-generator",
+  "gaster-translator",
 ] as const;
 
 export const toolConfigs: Record<(typeof toolOrder)[number], ToolConfig> = {
@@ -558,14 +581,15 @@ export const toolConfigs: Record<(typeof toolOrder)[number], ToolConfig> = {
     name: "Wingdings Translator",
     shortName: "Wingdings",
     title: "Wingdings Translator & Symbol Converter",
-    metaTitle: "Wingdings Translator ✌︎︎ Convert Text to Symbols (Copy & Paste)",
+    metaTitle:
+      "Wingdings Translator | Convert Wingdings to English (Copy & Paste)",
     description:
-      "Translate plain English into Wingdings-style symbols, compare multiple mapping presets, and decode supported symbols back into readable text.",
+      "Convert English to Wingdings-style symbols, decode Wingdings back into English, and compare multiple preset mappings in one fast tool.",
     metaDescription:
-      "The most accurate Wingdings translator online. Compare Wingdings, Wingdings 2, Wingdings 3, and Webdings-style mappings, then copy and paste the result.",
-    h1: "Wingdings Translator & Symbol Converter",
-    placeholder: "Type text like Gaster, mystery, or secret code",
-    sampleInput: "Gaster speaks in symbols",
+      "Convert Wingdings to English or English to Wingdings instantly. Compare Classic, Gaster, Wingdings 2, Wingdings 3, and Webdings-style outputs, then copy and paste the result.",
+    h1: "Wingdings Translator (A-Z Converter)",
+    placeholder: "Enter text to translate...",
+    sampleInput: "Translate this message",
     sampleOutputLabel: "Wingdings-style output",
     supportsReverse: true,
     variantIds: ["classic", "gaster", "wingdings-2", "wingdings-3", "webdings"],
@@ -601,6 +625,13 @@ export const toolConfigs: Record<(typeof toolOrder)[number], ToolConfig> = {
         body: [
           "Type plain English once, switch between presets, and copy the output that best matches the style you want.",
           "If someone sends you a symbol string, paste it into the reverse panel while the matching preset is selected. The comparison table below also helps with manual lookup.",
+        ],
+      },
+      {
+        title: "Common symbols and meanings",
+        body: [
+          "Many visitors use this page to identify familiar Wingdings-style symbols such as hands, arrows, circles, squares, and celestial icons before turning them back into letters.",
+          "That practical lookup behavior matters for puzzle solving, Undertale-inspired Gaster messages, and quick copy-paste symbol experiments shared in Discord, TikTok, and fan communities.",
         ],
       },
     ],
@@ -1113,6 +1144,69 @@ export const toolConfigs: Record<(typeof toolOrder)[number], ToolConfig> = {
     relatedSlugs: ["old-english-translator", "bubble-font-generator", "wingdings"],
     encode: encodeOldEnglish,
   },
+  "gaster-translator": {
+    slug: "gaster-translator",
+    name: "Gaster Translator",
+    shortName: "Gaster",
+    title: "Gaster Translator",
+    metaTitle: "Gaster Translator | Decode Gaster Alphabet to English",
+    description:
+      "Convert plain text into Gaster-style symbols and decode Gaster alphabet strings back into readable English.",
+    metaDescription:
+      "Use this Gaster translator to convert English into Gaster-style symbols or decode Gaster alphabet text back into English instantly.",
+    h1: "Gaster Translator",
+    placeholder: "Type plain English or paste Gaster symbols...",
+    sampleInput: "mystery signal",
+    sampleOutputLabel: "Gaster-style output",
+    supportsReverse: true,
+    variantIds: ["gaster"],
+    keywords: [
+      "gaster translator",
+      "gaster alphabet translator",
+      "gaster to english",
+      "english to gaster",
+    ],
+    intro: [
+      "This page is built for visitors who specifically search for Gaster alphabet translation instead of general Wingdings tools.",
+      "It keeps the focused Gaster-style preset separate so the intent is obvious for both users and search engines.",
+    ],
+    sections: [
+      {
+        title: "How Gaster translation works here",
+        body: [
+          "The Gaster preset on this site is a readable symbol alphabet inspired by Undertale fan usage rather than a claim about one official canonical cipher table.",
+          "That makes it useful for copy-paste messages, puzzle practice, and quick decoding when someone sends you a Gaster-style string.",
+        ],
+      },
+      {
+        title: "When to use a dedicated Gaster page",
+        body: [
+          "Use this page if your search intent is specifically Gaster, mystery text, or Undertale puzzle symbolism and you do not need to compare every other Wingdings family at the same time.",
+          "For broader symbol comparisons, the main Wingdings page is still the best hub because it includes multiple presets and a full mapping reference.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Can I decode Gaster symbols back into English here?",
+        answer:
+          "Yes. Paste the symbol string into the symbol panel and the plain-text panel will decode the matching Gaster-style letters in real time.",
+      },
+      {
+        question: "Is this the same as classic Wingdings?",
+        answer:
+          "Not exactly. This page uses the Gaster-focused preset, which is more puzzle- and fandom-oriented than the classic Wingdings symbol mapping.",
+      },
+      {
+        question: "Can I still compare other symbol styles?",
+        answer:
+          "Yes. The main Wingdings Translator page lets you compare Gaster, Classic Wingdings, Wingdings 2, Wingdings 3, and Webdings-style outputs side by side.",
+      },
+    ],
+    relatedSlugs: ["wingdings", "webdings-translator", "old-english-translator"],
+    encode: defaultGasterVariant ? defaultGasterVariant.encode : (value: string) => value,
+    decode: defaultGasterVariant ? defaultGasterVariant.decode : (value: string) => value,
+  },
   "webdings-translator": {
     slug: "webdings-translator",
     name: "Webdings Translator",
@@ -1124,8 +1218,8 @@ export const toolConfigs: Record<(typeof toolOrder)[number], ToolConfig> = {
     metaDescription:
       "Translate plain text into Webdings-style symbols and icon output you can copy, compare, and use in lightweight creative workflows.",
     h1: "Webdings Translator",
-    placeholder: "Type plain text to try Webdings-style icons",
-    sampleInput: "icon signal",
+    placeholder: "Type plain English here...",
+    sampleInput: "Desktop tools and icons",
     sampleOutputLabel: "Webdings-style output",
     supportsReverse: true,
     variantIds: ["webdings"],
