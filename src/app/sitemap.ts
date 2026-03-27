@@ -1,34 +1,18 @@
 import type { MetadataRoute } from "next";
-import { siteUrl } from "@/lib/textTools";
+import { siteUrl, toolOrder } from "@/lib/textTools";
 
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const toolPages = toolOrder.map((slug, index) => ({
+    url: slug === "wingdings" ? siteUrl : `${siteUrl}/${slug}`,
+    lastModified: new Date("2026-03-27"),
+    changeFrequency: "weekly" as const,
+    priority: index === 0 ? 1 : 0.85,
+  }));
+
   return [
-    {
-      url: siteUrl,
-      lastModified: new Date("2026-03-27"),
-      changeFrequency: "weekly",
-      priority: 1,
-    },
-    {
-      url: `${siteUrl}/subscript-generator`,
-      lastModified: new Date("2026-03-27"),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${siteUrl}/cursive-generator`,
-      lastModified: new Date("2026-03-27"),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${siteUrl}/old-english-translator`,
-      lastModified: new Date("2026-03-27"),
-      changeFrequency: "weekly",
-      priority: 0.85,
-    },
+    ...toolPages,
     {
       url: `${siteUrl}/faq`,
       lastModified: new Date("2026-03-27"),

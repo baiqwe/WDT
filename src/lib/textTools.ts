@@ -390,16 +390,166 @@ const oldEnglishLower = Array.from("𝔞𝔟𝔠𝔡𝔢𝔣𝔤𝔥𝔦𝔧𝔨
 const encodeOldEnglish = (input: string) =>
   translateFromAlphabet(input, oldEnglishUpper, oldEnglishLower);
 
+const superscriptMap: Record<string, string> = {
+  "0": "⁰",
+  "1": "¹",
+  "2": "²",
+  "3": "³",
+  "4": "⁴",
+  "5": "⁵",
+  "6": "⁶",
+  "7": "⁷",
+  "8": "⁸",
+  "9": "⁹",
+  a: "ᵃ",
+  b: "ᵇ",
+  c: "ᶜ",
+  d: "ᵈ",
+  e: "ᵉ",
+  f: "ᶠ",
+  g: "ᵍ",
+  h: "ʰ",
+  i: "ⁱ",
+  j: "ʲ",
+  k: "ᵏ",
+  l: "ˡ",
+  m: "ᵐ",
+  n: "ⁿ",
+  o: "ᵒ",
+  p: "ᵖ",
+  r: "ʳ",
+  s: "ˢ",
+  t: "ᵗ",
+  u: "ᵘ",
+  v: "ᵛ",
+  w: "ʷ",
+  x: "ˣ",
+  y: "ʸ",
+  z: "ᶻ",
+  "+": "⁺",
+  "-": "⁻",
+  "=": "⁼",
+  "(": "⁽",
+  ")": "⁾",
+};
+
+const encodeSuperscript = (input: string) => {
+  let output = "";
+
+  for (const char of input) {
+    const lowerChar = char.toLowerCase();
+    output += superscriptMap[lowerChar] ?? superscriptMap[char] ?? char;
+  }
+
+  return output;
+};
+
+const smallTextMap: Record<string, string> = {
+  a: "ᴀ",
+  b: "ʙ",
+  c: "ᴄ",
+  d: "ᴅ",
+  e: "ᴇ",
+  f: "ꜰ",
+  g: "ɢ",
+  h: "ʜ",
+  i: "ɪ",
+  j: "ᴊ",
+  k: "ᴋ",
+  l: "ʟ",
+  m: "ᴍ",
+  n: "ɴ",
+  o: "ᴏ",
+  p: "ᴘ",
+  q: "ǫ",
+  r: "ʀ",
+  s: "ꜱ",
+  t: "ᴛ",
+  u: "ᴜ",
+  v: "ᴠ",
+  w: "ᴡ",
+  x: "x",
+  y: "ʏ",
+  z: "ᴢ",
+};
+
+const encodeSmallText = (input: string) => {
+  let output = "";
+
+  for (const char of input) {
+    const lowerChar = char.toLowerCase();
+    output += smallTextMap[lowerChar] ?? char;
+  }
+
+  return output;
+};
+
+const tinyTextMap: Record<string, string> = {
+  a: "ᵃ",
+  b: "ᵇ",
+  c: "ᶜ",
+  d: "ᵈ",
+  e: "ᵉ",
+  f: "ᶠ",
+  g: "ᵍ",
+  h: "ʰ",
+  i: "ᶦ",
+  j: "ʲ",
+  k: "ᵏ",
+  l: "ˡ",
+  m: "ᵐ",
+  n: "ⁿ",
+  o: "ᵒ",
+  p: "ᵖ",
+  q: "ᵠ",
+  r: "ʳ",
+  s: "ˢ",
+  t: "ᵗ",
+  u: "ᵘ",
+  v: "ᵛ",
+  w: "ʷ",
+  x: "ˣ",
+  y: "ʸ",
+  z: "ᶻ",
+};
+
+const encodeTinyText = (input: string) => {
+  let output = "";
+
+  for (const char of input) {
+    const lowerChar = char.toLowerCase();
+    output += tinyTextMap[lowerChar] ?? char;
+  }
+
+  return output;
+};
+
+const bubbleUpper = Array.from("ⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏ");
+const bubbleLower = Array.from("ⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ");
+
+const encodeBubble = (input: string) =>
+  translateFromAlphabet(input, bubbleUpper, bubbleLower);
+
 const defaultWingdingsVariantBase = translatorVariants.classic;
 const defaultWingdingsVariant = defaultWingdingsVariantBase
   ? buildVariantHelpers(defaultWingdingsVariantBase)
   : null;
+const defaultWebdingsVariantBase = translatorVariants.webdings;
+const defaultWebdingsVariant = defaultWebdingsVariantBase
+  ? buildVariantHelpers(defaultWebdingsVariantBase)
+  : null;
 
 export const toolOrder = [
   "wingdings",
+  "webdings-translator",
   "subscript-generator",
+  "superscript-generator",
+  "small-text-generator",
+  "tiny-text-generator",
   "cursive-generator",
+  "bubble-font-generator",
   "old-english-translator",
+  "gothic-font-generator",
 ] as const;
 
 export const toolConfigs: Record<(typeof toolOrder)[number], ToolConfig> = {
@@ -540,8 +690,188 @@ export const toolConfigs: Record<(typeof toolOrder)[number], ToolConfig> = {
           "Usually yes, but display depends on the platform and device font support. Copy and test where you plan to use it.",
       },
     ],
-    relatedSlugs: ["wingdings", "cursive-generator", "old-english-translator"],
+    relatedSlugs: ["wingdings", "subscript-generator", "old-english-translator"],
     encode: encodeSubscript,
+  },
+  "superscript-generator": {
+    slug: "superscript-generator",
+    name: "Superscript Generator",
+    shortName: "Superscript",
+    title: "Superscript Text Generator",
+    metaTitle: "Superscript Generator (⁰¹²) — Copy and Paste Small Text",
+    description:
+      "Turn numbers and supported letters into compact superscript text for math, notes, formulas, and social captions.",
+    metaDescription:
+      "Create superscript text (⁰¹²³⁴⁵) for formulas, notes, captions, and bios. Type, generate, and copy-paste anywhere.",
+    h1: "Superscript Text Generator",
+    placeholder: "Try x2, E = mc2, or note1",
+    sampleInput: "x2 + y3",
+    sampleOutputLabel: "Superscript output",
+    keywords: [
+      "superscript generator",
+      "superscript text generator",
+      "copy and paste superscript",
+      "small superscript text",
+    ],
+    intro: [
+      "This page is designed for people who need quick superscript text without switching to a word processor or equation editor.",
+      "It works especially well for light math notation, reference marks, social captions, and compact decorative text.",
+    ],
+    sections: [
+      {
+        title: "When superscript text is useful",
+        body: [
+          "Superscript text is helpful for expressions like x², footnote-like markers, and short styled snippets in bios or notes.",
+          "Unicode coverage is incomplete for some characters, so the tool keeps unsupported characters readable instead of forcing bad replacements.",
+        ],
+      },
+      {
+        title: "How to use it well",
+        body: [
+          "Type the base text once, compare the output, and copy the result into the app or document where you need it.",
+          "For public-facing use, shorter expressions generally render more reliably than long fully-stylized phrases.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Does superscript support every letter and symbol?",
+        answer:
+          "No. Unicode includes many superscript forms, but not every possible character. Unsupported characters stay unchanged.",
+      },
+      {
+        question: "Can I use this for formulas?",
+        answer:
+          "Yes. It is useful for lightweight formula styling such as x², y³, and short note markers in plain-text environments.",
+      },
+      {
+        question: "Will superscript text render the same everywhere?",
+        answer:
+          "Not always. Rendering depends on the app, browser, and device, so it is worth testing important output where it will be used.",
+      },
+    ],
+    relatedSlugs: ["subscript-generator", "small-text-generator", "tiny-text-generator"],
+    encode: encodeSuperscript,
+  },
+  "small-text-generator": {
+    slug: "small-text-generator",
+    name: "Small Text Generator",
+    shortName: "Small Text",
+    title: "Small Text Generator",
+    metaTitle: "Small Text Generator — Copy and Paste Tiny Fonts",
+    description:
+      "Convert normal text into compact small-text styles for bios, captions, usernames, and aesthetic copy-paste use.",
+    metaDescription:
+      "Generate small text and compact Unicode lettering for bios, captions, usernames, and decorative text. Copy and paste instantly.",
+    h1: "Small Text Generator",
+    placeholder: "Type a short phrase for small text",
+    sampleInput: "small text style",
+    sampleOutputLabel: "Small text output",
+    keywords: [
+      "small text generator",
+      "small text",
+      "small font copy and paste",
+      "tiny unicode text",
+    ],
+    intro: [
+      "Small text is a strong search intent because visitors usually want a quick visual effect with almost no learning curve.",
+      "This page focuses on compact, readable output that still feels decorative enough for bios and social copy.",
+    ],
+    sections: [
+      {
+        title: "What small text is good for",
+        body: [
+          "Small text works well in usernames, bios, side notes, profile decorations, and stylized short-form copy.",
+          "The best results usually come from short phrases where readability still matters more than novelty.",
+        ],
+      },
+      {
+        title: "What to expect from Unicode small text",
+        body: [
+          "Small-text output relies on Unicode characters that resemble compact lettering rather than a downloadable font file.",
+          "Because support can vary slightly by platform, it is smart to preview the result where you plan to publish it.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Is small text a real font?",
+        answer:
+          "No. It is Unicode-based styled text that can be copied and pasted like normal characters.",
+      },
+      {
+        question: "Where can I use small text?",
+        answer:
+          "It is commonly used in social bios, captions, decorative notes, usernames, and lightweight aesthetic layouts.",
+      },
+      {
+        question: "What if some letters look inconsistent?",
+        answer:
+          "That can happen because Unicode small-text styles use lookalike characters with uneven support. Shorter output usually looks cleaner.",
+      },
+    ],
+    relatedSlugs: ["superscript-generator", "subscript-generator", "cursive-generator"],
+    encode: encodeSmallText,
+  },
+  "tiny-text-generator": {
+    slug: "tiny-text-generator",
+    name: "Tiny Text Generator",
+    shortName: "Tiny Text",
+    title: "Tiny Text Generator",
+    metaTitle: "Tiny Text Generator — Copy and Paste Mini Letters",
+    description:
+      "Generate tiny text and mini Unicode lettering for captions, bios, decorative notes, and compact visual styling.",
+    metaDescription:
+      "Create tiny text and mini Unicode letters for bios, captions, aesthetic notes, and decorative copy. Copy and paste instantly.",
+    h1: "Tiny Text Generator",
+    placeholder: "Type text to shrink into tiny letters",
+    sampleInput: "tiny caption text",
+    sampleOutputLabel: "Tiny text output",
+    keywords: [
+      "tiny text generator",
+      "tiny text",
+      "mini text copy and paste",
+      "small tiny letters",
+    ],
+    intro: [
+      "Tiny text is closely related to small text, but visitors often search for it as a distinct style and expect even more compact-looking output.",
+      "This page emphasizes mini letterforms that work best in short, decorative strings rather than long paragraphs.",
+    ],
+    sections: [
+      {
+        title: "Best use cases for tiny text",
+        body: [
+          "Tiny text is useful for subtle captions, compact bios, annotations, and design accents where full-size lettering feels too heavy.",
+          "It is especially effective when paired with normal text instead of replacing an entire long sentence.",
+        ],
+      },
+      {
+        title: "Readability advice",
+        body: [
+          "Because tiny Unicode characters can become hard to read quickly, shorter phrases almost always look better than long converted paragraphs.",
+          "If readability matters more than the effect, small text or superscript may be the better choice.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "What is the difference between tiny text and small text?",
+        answer:
+          "They are closely related, but tiny text usually aims for a more miniaturized look, while small text often prioritizes slightly better readability.",
+      },
+      {
+        question: "Can I use tiny text on social platforms?",
+        answer:
+          "Usually yes, but you should test the final output on the target platform because rendering can vary.",
+      },
+      {
+        question: "Why does long tiny text look messy?",
+        answer:
+          "Tiny Unicode styles are best for short decorative phrases. Long converted text often loses clarity very quickly.",
+      },
+    ],
+    relatedSlugs: ["small-text-generator", "superscript-generator", "bubble-font-generator"],
+    encode: encodeTinyText,
   },
   "cursive-generator": {
     slug: "cursive-generator",
@@ -603,6 +933,66 @@ export const toolConfigs: Record<(typeof toolOrder)[number], ToolConfig> = {
     relatedSlugs: ["wingdings", "subscript-generator", "old-english-translator"],
     encode: encodeCursive,
   },
+  "bubble-font-generator": {
+    slug: "bubble-font-generator",
+    name: "Bubble Font Generator",
+    shortName: "Bubble Font",
+    title: "Bubble Font Generator",
+    metaTitle: "Bubble Font Generator ⓑⓤⓑⓑⓛⓔ — Copy and Paste",
+    description:
+      "Convert plain text into rounded bubble-style letters for playful bios, captions, usernames, and decorative copy.",
+    metaDescription:
+      "Generate bubble font text you can copy and paste instantly for usernames, captions, bios, and playful decorative text.",
+    h1: "Bubble Font Generator",
+    placeholder: "Type your text for bubble letters",
+    sampleInput: "bubble letter style",
+    sampleOutputLabel: "Bubble font output",
+    keywords: [
+      "bubble font generator",
+      "bubble font",
+      "bubble letters copy and paste",
+      "rounded unicode text",
+    ],
+    intro: [
+      "Bubble font is one of the clearest style-intent searches because visitors usually want a friendly rounded look they can use immediately.",
+      "This page gives that result without asking users to download anything or learn a design tool.",
+    ],
+    sections: [
+      {
+        title: "Why people like bubble letters",
+        body: [
+          "Bubble-style lettering feels playful, soft, and approachable, which makes it popular for social captions, names, and decorative labels.",
+          "It is especially effective for short phrases where the rounded look stays readable.",
+        ],
+      },
+      {
+        title: "How this generator works",
+        body: [
+          "The output uses Unicode circled characters that visually resemble bubble letters and can be copied like regular text.",
+          "Because it is Unicode-based rather than a font download, the page is useful for quick browser-based copy and paste.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Are bubble letters a downloadable font here?",
+        answer:
+          "No. This page creates Unicode-based bubble-style text for direct copy and paste.",
+      },
+      {
+        question: "Where does bubble font work best?",
+        answer:
+          "It works best in short names, bios, labels, social captions, and decorative snippets.",
+      },
+      {
+        question: "Why do some characters stay unchanged?",
+        answer:
+          "Only letters with matching Unicode forms are transformed cleanly, so unsupported characters remain readable.",
+      },
+    ],
+    relatedSlugs: ["small-text-generator", "cursive-generator", "gothic-font-generator"],
+    encode: encodeBubble,
+  },
   "old-english-translator": {
     slug: "old-english-translator",
     name: "Old English Translator",
@@ -662,6 +1052,133 @@ export const toolConfigs: Record<(typeof toolOrder)[number], ToolConfig> = {
     ],
     relatedSlugs: ["cursive-generator", "wingdings", "subscript-generator"],
     encode: encodeOldEnglish,
+  },
+  "gothic-font-generator": {
+    slug: "gothic-font-generator",
+    name: "Gothic Font Generator",
+    shortName: "Gothic Font",
+    title: "Gothic Font Generator",
+    metaTitle: "Gothic Font Generator 𝔊𝔬𝔱𝔥𝔦𝔠 — Copy and Paste",
+    description:
+      "Create gothic and blackletter-style text for headings, mock branding, poster concepts, tattoos, and dramatic visual copy.",
+    metaDescription:
+      "Generate gothic font text in a blackletter style for headings, posters, mockups, tattoos, and decorative copy.",
+    h1: "Gothic Font Generator",
+    placeholder: "Type a phrase for gothic lettering",
+    sampleInput: "gothic letter style",
+    sampleOutputLabel: "Gothic font output",
+    keywords: [
+      "gothic font generator",
+      "gothic font",
+      "blackletter text generator",
+      "gothic letters copy paste",
+    ],
+    intro: [
+      "This page targets visual-intent searches where people want the look of gothic lettering without opening a design app.",
+      "It overlaps with old english and blackletter searches, but the page is framed specifically around the font-style use case.",
+    ],
+    sections: [
+      {
+        title: "When gothic text works best",
+        body: [
+          "Gothic lettering is strongest in headlines, logos, poster mockups, album art concepts, and short dramatic phrases.",
+          "Because the style is dense and decorative, it is much better for short display text than for long passages.",
+        ],
+      },
+      {
+        title: "What kind of output this page gives",
+        body: [
+          "This generator uses Unicode blackletter-style forms to create a gothic visual effect you can copy and paste quickly.",
+          "It is ideal for exploration and mockups, but final production use should still be checked for readability and context.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Is this the same as Old English text?",
+        answer:
+          "It is closely related in visual style, and many users use the terms interchangeably when they want blackletter-looking text.",
+      },
+      {
+        question: "Can I use gothic font output for posters or mockups?",
+        answer:
+          "Yes. It is useful for concepting and quick copy-paste experiments, especially for short display text.",
+      },
+      {
+        question: "Why is long gothic text hard to read?",
+        answer:
+          "Blackletter styles are visually dense, so they work best in short headings rather than in full paragraphs.",
+      },
+    ],
+    relatedSlugs: ["old-english-translator", "bubble-font-generator", "wingdings"],
+    encode: encodeOldEnglish,
+  },
+  "webdings-translator": {
+    slug: "webdings-translator",
+    name: "Webdings Translator",
+    shortName: "Webdings",
+    title: "Webdings Translator",
+    metaTitle: "Webdings Translator — Convert Text to Webdings Symbols",
+    description:
+      "Convert plain text into Webdings-style icon output for quick symbol experiments, copy-paste sharing, and reference use.",
+    metaDescription:
+      "Translate plain text into Webdings-style symbols and icon output you can copy, compare, and use in lightweight creative workflows.",
+    h1: "Webdings Translator",
+    placeholder: "Type plain text to try Webdings-style icons",
+    sampleInput: "icon signal",
+    sampleOutputLabel: "Webdings-style output",
+    supportsReverse: true,
+    variantIds: ["webdings"],
+    keywords: [
+      "webdings",
+      "webdings translator",
+      "webdings symbols",
+      "webdings copy and paste",
+    ],
+    intro: [
+      "Webdings sits close to Wingdings in user intent, but many visitors search it separately because they want an object- and icon-heavy symbol set.",
+      "This page provides a dedicated Webdings-style workflow instead of burying that intent inside the larger Wingdings page.",
+    ],
+    sections: [
+      {
+        title: "How Webdings differs from Wingdings",
+        body: [
+          "Webdings-style output tends to feel more icon-like and object-centered, while Wingdings pages are often approached more like symbol alphabets.",
+          "That makes Webdings useful for people who want pictographic output rather than mystery-text aesthetics.",
+        ],
+      },
+      {
+        title: "Best use cases",
+        body: [
+          "Webdings-style output is best for quick experiments, icon-like decorative strings, and reference checks when you want symbol-heavy output.",
+          "As with other legacy-inspired mappings, the result should be tested where it will actually appear if consistency matters.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Is Webdings the same as Wingdings?",
+        answer:
+          "No. They are related legacy symbol families, but users often want them for slightly different visual outcomes.",
+      },
+      {
+        question: "Why make Webdings its own page?",
+        answer:
+          "Because it has its own search intent and visitors usually want icon-focused output rather than a broader Wingdings preset list.",
+      },
+      {
+        question: "Can I copy and paste Webdings-style output?",
+        answer:
+          "Yes. This page is designed for direct browser-based copy and paste of the generated icon-like text.",
+      },
+    ],
+    relatedSlugs: ["wingdings", "subscript-generator", "cursive-generator"],
+    encode: defaultWebdingsVariant
+      ? defaultWebdingsVariant.encode
+      : (value: string) => value,
+    decode: defaultWebdingsVariant
+      ? defaultWebdingsVariant.decode
+      : (value: string) => value,
   },
 };
 

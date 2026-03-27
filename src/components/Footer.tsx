@@ -29,10 +29,26 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href="/webdings-translator"
+                  className="text-zinc-700 transition hover:text-sky-700"
+                >
+                  Webdings Translator
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/subscript-generator"
                   className="text-zinc-700 transition hover:text-sky-700"
                 >
                   Subscript Generator
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/superscript-generator"
+                  className="text-zinc-700 transition hover:text-sky-700"
+                >
+                  Superscript Generator
                 </Link>
               </li>
               <li>
@@ -45,10 +61,26 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href="/bubble-font-generator"
+                  className="text-zinc-700 transition hover:text-sky-700"
+                >
+                  Bubble Font Generator
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/old-english-translator"
                   className="text-zinc-700 transition hover:text-sky-700"
                 >
                   Old English Translator
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/gothic-font-generator"
+                  className="text-zinc-700 transition hover:text-sky-700"
+                >
+                  Gothic Font Generator
                 </Link>
               </li>
             </ul>
