@@ -3,7 +3,6 @@ import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import CookieBanner from "@/components/CookieBanner";
 import { siteUrl } from "@/lib/textTools";
 import "./globals.css";
 
@@ -139,7 +138,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-2N6FHJDCPJ"
+          src="https://www.googletagmanager.com/gtag/js?id=G-YJ66WXDZ98"
           strategy="afterInteractive"
         />
         <Script id="gtag-init" strategy="afterInteractive">
@@ -147,7 +146,7 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-2N6FHJDCPJ');
+            gtag('config', 'G-YJ66WXDZ98');
           `}
         </Script>
         <Script
@@ -159,7 +158,6 @@ export default function RootLayout({
         <Navigation />
         {children}
         <Footer />
-        <CookieBanner />
       </body>
     </html>
   );
