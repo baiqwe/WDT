@@ -120,6 +120,45 @@ export default function RootLayout({
     logo: `${siteUrl}/brand-mark.svg`,
   };
 
+  const softwareSchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "Wingdings Translator",
+    applicationCategory: "UtilitiesApplication",
+    operatingSystem: "Any",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+    description:
+      "Free online tool to translate Wingdings to English and English to Wingdings, including Gaster alphabet decoding and symbol comparison presets.",
+    url: siteUrl,
+  };
+
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "How to Translate Wingdings",
+    step: [
+      {
+        "@type": "HowToStep",
+        name: "Enter text or symbols",
+        text: "Type English into the plain-text panel or paste a symbol string into the symbol panel.",
+      },
+      {
+        "@type": "HowToStep",
+        name: "Review the matching preset",
+        text: "Switch between Classic, Gaster, Wingdings 2, Wingdings 3, and Webdings-style presets until the output matches your intent.",
+      },
+      {
+        "@type": "HowToStep",
+        name: "Copy the result",
+        text: "Copy the final translated text and paste it into a message, document, profile, or puzzle workflow.",
+      },
+    ],
+  };
+
   return (
     <html lang="en">
       <body
@@ -134,6 +173,16 @@ export default function RootLayout({
           id="organization-schema"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <Script
+          id="software-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
+        />
+        <Script
+          id="howto-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
         />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-YJ66WXDZ98"

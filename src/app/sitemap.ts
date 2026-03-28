@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { articles } from "@/lib/content";
 import { siteUrl, toolOrder } from "@/lib/textTools";
 
 export const dynamic = "force-static";
@@ -10,9 +11,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "weekly" as const,
     priority: index === 0 ? 1 : 0.85,
   }));
+  const articlePages = articles.map((article) => ({
+    url: `${siteUrl}/blog/${article.slug}`,
+    lastModified: new Date("2026-03-28"),
+    changeFrequency: "monthly" as const,
+    priority: 0.72,
+  }));
 
   return [
     ...toolPages,
+    {
+      url: `${siteUrl}/blog`,
+      lastModified: new Date("2026-03-28"),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    ...articlePages,
+    {
+      url: `${siteUrl}/how-to-read-wingdings`,
+      lastModified: new Date("2026-03-28"),
+      changeFrequency: "monthly",
+      priority: 0.78,
+    },
     {
       url: `${siteUrl}/faq`,
       lastModified: new Date("2026-03-27"),

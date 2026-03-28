@@ -1,8 +1,10 @@
 import Link from "next/link";
 import Script from "next/script";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import { getFeaturedArticles } from "@/lib/content";
 import {
   buildFaqSchema,
+  buildHowToSchema,
   buildSoftwareSchema,
   getRelatedTools,
   getTranslatorVariants,
@@ -29,6 +31,7 @@ export default function ToolPageContent({
       ];
 
   const relatedTools = getRelatedTools(tool.slug);
+  const featuredArticles = getFeaturedArticles(tool.slug).slice(0, 2);
   const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
   const variants = getTranslatorVariants(tool.slug);
   const presetExamples = variants.map((variant) => ({
@@ -75,6 +78,11 @@ export default function ToolPageContent({
         id={`${tool.slug}-faq-schema`}
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(buildFaqSchema(tool)) }}
+      />
+      <Script
+        id={`${tool.slug}-howto-schema`}
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildHowToSchema(tool)) }}
       />
       <Script
         id={`${tool.slug}-breadcrumb-schema`}
@@ -166,6 +174,44 @@ export default function ToolPageContent({
                   </p>
                 </div>
               </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-6 rounded-[1.5rem] border border-[#d8e5dc] bg-white/95 p-5 shadow-sm">
+        <div className="mb-4 flex items-center justify-between gap-3">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
+              Guides
+            </p>
+            <h2 className="mt-1 text-2xl font-black tracking-tight text-zinc-950">
+              Related Reading
+            </h2>
+          </div>
+          <Link
+            href="/blog"
+            className="text-sm font-semibold text-[#0f766e] transition hover:text-emerald-800"
+          >
+            View all articles
+          </Link>
+        </div>
+        <div className="grid gap-3 md:grid-cols-2">
+          {featuredArticles.map((article) => (
+            <Link
+              key={article.slug}
+              href={`/blog/${article.slug}`}
+              className="rounded-[1.15rem] border border-[#d8e5dc] bg-[#fffefb] px-4 py-4 transition hover:-translate-y-0.5 hover:border-emerald-300 hover:shadow-sm"
+            >
+              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#0f766e]">
+                Blog Article
+              </p>
+              <h3 className="mt-2 text-xl font-black tracking-tight text-zinc-950">
+                {article.h1}
+              </h3>
+              <p className="mt-3 text-sm leading-6 text-zinc-600">
+                {article.description}
+              </p>
             </Link>
           ))}
         </div>

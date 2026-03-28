@@ -573,6 +573,7 @@ export const toolOrder = [
   "old-english-translator",
   "gothic-font-generator",
   "gaster-translator",
+  "gaster-alphabet-translator",
 ] as const;
 
 export const toolConfigs: Record<(typeof toolOrder)[number], ToolConfig> = {
@@ -614,6 +615,13 @@ export const toolConfigs: Record<(typeof toolOrder)[number], ToolConfig> = {
         ],
       },
       {
+        title: "What is Wingdings?",
+        body: [
+          "Wingdings is a symbol-heavy legacy font family that became famous for turning ordinary letters into hands, shapes, arrows, and other pictographic forms.",
+          "Modern visitors usually do not want the original desktop font file itself. They want quick translation, reverse decoding, and copy-paste output that works in the browser.",
+        ],
+      },
+      {
         title: "W.D. Gaster and Undertale context",
         body: [
           "W.D. Gaster is strongly associated with Wingdings in Undertale fan culture, so the page keeps a Gaster-friendly preset for readable symbol text and puzzle-style decoding.",
@@ -634,6 +642,13 @@ export const toolConfigs: Record<(typeof toolOrder)[number], ToolConfig> = {
           "That practical lookup behavior matters for puzzle solving, Undertale-inspired Gaster messages, and quick copy-paste symbol experiments shared in Discord, TikTok, and fan communities.",
         ],
       },
+      {
+        title: "Supported symbol families",
+        body: [
+          "This translator currently covers Classic Wingdings, a Gaster-friendly preset, Wingdings 2 style, Wingdings 3 style, and Webdings style.",
+          "That broader coverage helps with long-tail searches such as wingdings to english, gaster font translator, hands symbol font translator, and webdings converter queries.",
+        ],
+      },
     ],
     faq: [
       {
@@ -650,6 +665,46 @@ export const toolConfigs: Record<(typeof toolOrder)[number], ToolConfig> = {
         question: "Can I convert supported symbols back to English?",
         answer:
           "Yes. The reverse lookup panel decodes the currently selected preset, which is useful when you are working with puzzles or fan-made Gaster text.",
+      },
+      {
+        question: "What is the difference between Wingdings and Webdings?",
+        answer:
+          "Wingdings and Webdings are related legacy symbol families, but they use different visual sets. Wingdings often feels more symbolic, while Webdings tends to look more like interface and object icons.",
+      },
+      {
+        question: "Can I use this as a Wingdings to English translator?",
+        answer:
+          "Yes. The site is built for both directions, so you can decode supported symbol strings back into readable English as well as convert English into symbol output.",
+      },
+      {
+        question: "Does this page support Gaster alphabet translation?",
+        answer:
+          "Yes. The Gaster-style preset and the dedicated Gaster Translator page both support mystery-text workflows inspired by Undertale fan usage.",
+      },
+      {
+        question: "Why do some letters look like hands or shapes?",
+        answer:
+          "That is part of the appeal of legacy symbol fonts. Instead of behaving like a normal alphabet, they swap letters for pictographic marks such as hands, arrows, squares, and icons.",
+      },
+      {
+        question: "Can I copy and paste the output into Discord, TikTok, or social bios?",
+        answer:
+          "Usually yes. Results can be copied directly, but display still depends on the font and Unicode support of the app or device where you paste them.",
+      },
+      {
+        question: "What if my decoded result still looks wrong?",
+        answer:
+          "Try a different preset. Many mystery strings fail to decode at first simply because the original message used a different symbol family or a custom simplified alphabet.",
+      },
+      {
+        question: "Does the site include a full A-Z mapping table?",
+        answer:
+          "Yes. The mapping table below the tool shows a letter-by-letter reference for every available preset so you can compare exact outputs manually.",
+      },
+      {
+        question: "Is this page only for fans and puzzle solvers?",
+        answer:
+          "No. It is useful for quick symbol experiments, copy-paste text effects, reference lookups, and mystery-message decoding even if you are not part of a fandom community.",
       },
     ],
     relatedSlugs: [
@@ -1151,9 +1206,9 @@ export const toolConfigs: Record<(typeof toolOrder)[number], ToolConfig> = {
     title: "Gaster Translator",
     metaTitle: "Gaster Translator | Decode Gaster Alphabet to English",
     description:
-      "Convert plain text into Gaster-style symbols and decode Gaster alphabet strings back into readable English.",
+      "Convert plain text into Gaster-style symbols and decode mystery strings back into readable English with a fandom-friendly preset.",
     metaDescription:
-      "Use this Gaster translator to convert English into Gaster-style symbols or decode Gaster alphabet text back into English instantly.",
+      "Use this Gaster translator to turn English into Gaster-style symbols, decode mystery strings, and test puzzle text with a fandom-friendly preset.",
     h1: "Gaster Translator",
     placeholder: "Type plain English or paste Gaster symbols...",
     sampleInput: "mystery signal",
@@ -1167,8 +1222,8 @@ export const toolConfigs: Record<(typeof toolOrder)[number], ToolConfig> = {
       "english to gaster",
     ],
     intro: [
-      "This page is built for visitors who specifically search for Gaster alphabet translation instead of general Wingdings tools.",
-      "It keeps the focused Gaster-style preset separate so the intent is obvious for both users and search engines.",
+      "This page is built for visitors who specifically want a Gaster translator for quick mystery-text conversion, not a broad symbol comparison interface.",
+      "It is the best fit when your intent is playful encoding, reverse decoding, or puzzle-style experimentation with a Gaster-friendly symbol set.",
     ],
     sections: [
       {
@@ -1179,10 +1234,17 @@ export const toolConfigs: Record<(typeof toolOrder)[number], ToolConfig> = {
         ],
       },
       {
-        title: "When to use a dedicated Gaster page",
+        title: "When to use this translator page",
         body: [
-          "Use this page if your search intent is specifically Gaster, mystery text, or Undertale puzzle symbolism and you do not need to compare every other Wingdings family at the same time.",
+          "Use this page if your main goal is to write or decode Gaster-style messages quickly and you do not need lots of surrounding reference material.",
           "For broader symbol comparisons, the main Wingdings page is still the best hub because it includes multiple presets and a full mapping reference.",
+        ],
+      },
+      {
+        title: "Translator versus alphabet reference",
+        body: [
+          "This page is optimized as an interactive translator. It focuses on immediate conversion, not on teaching the letter table in detail.",
+          "If your intent is closer to a decrypter, glossary, or alphabet reference, the Gaster Alphabet Translator page will fit better.",
         ],
       },
     ],
@@ -1202,8 +1264,88 @@ export const toolConfigs: Record<(typeof toolOrder)[number], ToolConfig> = {
         answer:
           "Yes. The main Wingdings Translator page lets you compare Gaster, Classic Wingdings, Wingdings 2, Wingdings 3, and Webdings-style outputs side by side.",
       },
+      {
+        question: "Is this page better for making messages than studying the alphabet?",
+        answer:
+          "Yes. This page is designed around quick translation workflows. If you want a more reference-oriented Gaster page, use the Gaster Alphabet Translator.",
+      },
     ],
-    relatedSlugs: ["wingdings", "webdings-translator", "old-english-translator"],
+    relatedSlugs: ["gaster-alphabet-translator", "wingdings", "webdings-translator"],
+    encode: defaultGasterVariant ? defaultGasterVariant.encode : (value: string) => value,
+    decode: defaultGasterVariant ? defaultGasterVariant.decode : (value: string) => value,
+  },
+  "gaster-alphabet-translator": {
+    slug: "gaster-alphabet-translator",
+    name: "Gaster Alphabet Translator",
+    shortName: "Gaster Alphabet",
+    title: "Gaster Alphabet Translator",
+    metaTitle: "Gaster Alphabet Translator | Decode Gaster Font to English",
+    description:
+      "Decode Gaster alphabet strings, study the letter mapping, and convert English into Gaster-style symbols with a focused decrypter workflow.",
+    metaDescription:
+      "Use the Gaster Alphabet Translator to decode Gaster font messages, study the symbol alphabet, and turn English into Gaster-style output instantly.",
+    h1: "Gaster Alphabet Translator",
+    placeholder: "Paste a Gaster-style message or type English here...",
+    sampleInput: "hidden signal",
+    sampleOutputLabel: "Gaster alphabet output",
+    supportsReverse: true,
+    variantIds: ["gaster"],
+    keywords: [
+      "gaster alphabet translator",
+      "gaster font translator",
+      "wd gaster alphabet decrypter",
+      "gaster alphabet to english",
+    ],
+    intro: [
+      "This page is designed for the narrower search intent around Gaster alphabet translation, decoding, and letter-by-letter decrypter use.",
+      "It keeps the Gaster preset front and center for users who want to study the symbol alphabet as much as they want to translate it.",
+    ],
+    sections: [
+      {
+        title: "Why this page exists separately",
+        body: [
+          "Many users search specifically for Gaster alphabet, Gaster font translator, or W.D. Gaster decrypter instead of broader Wingdings terms.",
+          "A dedicated page lets the title, H1, examples, FAQ, and long-tail copy all align with that specific search intent.",
+        ],
+      },
+      {
+        title: "Best use cases for an alphabet page",
+        body: [
+          "This page is best for users searching terms like gaster alphabet translator, gaster font translator, or W.D. Gaster alphabet decrypter.",
+          "It works well when you want to inspect mappings, decode messages carefully, or move between reference reading and actual translation.",
+        ],
+      },
+      {
+        title: "How it differs from the Gaster Translator",
+        body: [
+          "The Gaster Translator page is more action-oriented and better for fast message conversion.",
+          "This alphabet page is more reference-oriented and better when your intent is to learn, inspect, or decode the symbol table itself.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Can I decode Gaster symbols into English?",
+        answer:
+          "Yes. Paste the symbol string into the symbol panel and the matching English letters will appear in the plain-text panel.",
+      },
+      {
+        question: "Is the Gaster alphabet officially standardized?",
+        answer:
+          "No single table is used everywhere. This page uses a clear Gaster-friendly preset that is useful for decoding and copy-paste workflows.",
+      },
+      {
+        question: "What should I do if the message still does not decode?",
+        answer:
+          "The most likely reason is that the original message used another Wingdings-style mapping or a custom fan-made alphabet. In that case, compare against the main Wingdings hub.",
+      },
+      {
+        question: "Should I use this page or the Gaster Translator page?",
+        answer:
+          "Use this page if you are approaching the problem like an alphabet reference or decrypter. Use the Gaster Translator page if you mainly want fast two-way conversion.",
+      },
+    ],
+    relatedSlugs: ["gaster-translator", "wingdings", "webdings-translator"],
     encode: defaultGasterVariant ? defaultGasterVariant.encode : (value: string) => value,
     decode: defaultGasterVariant ? defaultGasterVariant.decode : (value: string) => value,
   },
@@ -1214,9 +1356,9 @@ export const toolConfigs: Record<(typeof toolOrder)[number], ToolConfig> = {
     title: "Webdings Translator",
     metaTitle: "Webdings Translator — Convert Text to Webdings Symbols",
     description:
-      "Convert plain text into Webdings-style icon output for quick symbol experiments, copy-paste sharing, and reference use.",
+      "Convert plain text into Webdings-style icon output for desktop-like symbols, object-heavy strings, and quick reverse decoding.",
     metaDescription:
-      "Translate plain text into Webdings-style symbols and icon output you can copy, compare, and use in lightweight creative workflows.",
+      "Translate plain text into Webdings-style symbols and icon output you can copy, compare, decode, and use in icon-heavy creative workflows.",
     h1: "Webdings Translator",
     placeholder: "Type plain English here...",
     sampleInput: "Desktop tools and icons",
@@ -1230,8 +1372,8 @@ export const toolConfigs: Record<(typeof toolOrder)[number], ToolConfig> = {
       "webdings copy and paste",
     ],
     intro: [
-      "Webdings sits close to Wingdings in user intent, but many visitors search it separately because they want an object- and icon-heavy symbol set.",
-      "This page provides a dedicated Webdings-style workflow instead of burying that intent inside the larger Wingdings page.",
+      "Webdings sits close to Wingdings in search intent, but many visitors search it separately because they want an object- and icon-heavy symbol set.",
+      "This page provides a dedicated Webdings workflow for users who care more about desktop-like icons than about puzzle-style symbol alphabets.",
     ],
     sections: [
       {
@@ -1246,6 +1388,13 @@ export const toolConfigs: Record<(typeof toolOrder)[number], ToolConfig> = {
         body: [
           "Webdings-style output is best for quick experiments, icon-like decorative strings, and reference checks when you want symbol-heavy output.",
           "As with other legacy-inspired mappings, the result should be tested where it will actually appear if consistency matters.",
+        ],
+      },
+      {
+        title: "Why users search this separately",
+        body: [
+          "Some users are not trying to decode mystery text at all. They want interface-like icons, object symbols, and desktop-era pictograms.",
+          "That is why a dedicated Webdings page can rank for its own intent instead of forcing icon-focused searches through a more general Wingdings hub.",
         ],
       },
     ],
@@ -1265,8 +1414,13 @@ export const toolConfigs: Record<(typeof toolOrder)[number], ToolConfig> = {
         answer:
           "Yes. This page is designed for direct browser-based copy and paste of the generated icon-like text.",
       },
+      {
+        question: "Is Webdings better for icon-heavy text than classic Wingdings?",
+        answer:
+          "Often yes. Users who want a more object-centered look usually prefer Webdings-style output because it feels more pictographic and interface-oriented.",
+      },
     ],
-    relatedSlugs: ["wingdings", "subscript-generator", "cursive-generator"],
+    relatedSlugs: ["wingdings", "gaster-translator", "subscript-generator"],
     encode: defaultWebdingsVariant
       ? defaultWebdingsVariant.encode
       : (value: string) => value,
@@ -1321,5 +1475,37 @@ export function buildFaqSchema(tool: ToolConfig) {
         text: item.answer,
       },
     })),
+  };
+}
+
+export function buildHowToSchema(tool: ToolConfig) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: `How to use ${tool.name}`,
+    totalTime: "PT1M",
+    supply: [
+      {
+        "@type": "HowToSupply",
+        name: "Any browser or device",
+      },
+    ],
+    step: [
+      {
+        "@type": "HowToStep",
+        name: "Enter text or symbols",
+        text: `Type or paste content into the ${tool.shortName} translator input panel.`,
+      },
+      {
+        "@type": "HowToStep",
+        name: "Review the converted output",
+        text: "Use the available presets or output panel to compare the translated result.",
+      },
+      {
+        "@type": "HowToStep",
+        name: "Copy the final version",
+        text: "Copy the translated text and paste it into your document, message, or profile.",
+      },
+    ],
   };
 }

@@ -110,6 +110,19 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/blog" className="text-zinc-700 transition hover:text-emerald-800">
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/how-to-read-wingdings"
+                  className="text-zinc-700 transition hover:text-emerald-800"
+                >
+                  How to Read Wingdings
+                </Link>
+              </li>
+              <li>
                 <Link href="/about" className="text-zinc-700 transition hover:text-emerald-800">
                   About
                 </Link>
