@@ -576,6 +576,21 @@ export const toolOrder = [
   "gaster-alphabet-translator",
 ] as const;
 
+export const toolUpdatedAt: Record<(typeof toolOrder)[number], string> = {
+  wingdings: "2026-03-29",
+  "webdings-translator": "2026-03-29",
+  "subscript-generator": "2026-03-24",
+  "superscript-generator": "2026-03-24",
+  "small-text-generator": "2026-03-24",
+  "tiny-text-generator": "2026-03-24",
+  "cursive-generator": "2026-03-22",
+  "bubble-font-generator": "2026-03-24",
+  "old-english-translator": "2026-03-24",
+  "gothic-font-generator": "2026-03-24",
+  "gaster-translator": "2026-03-29",
+  "gaster-alphabet-translator": "2026-03-29",
+};
+
 export const toolConfigs: Record<(typeof toolOrder)[number], ToolConfig> = {
   wingdings: {
     slug: "wingdings",

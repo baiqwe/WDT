@@ -23,6 +23,7 @@ export default function ToolConverter({
     supportsReverse: false,
   };
   const variants = getTranslatorVariants(slug);
+  const canReverse = tool.supportsReverse;
   const [selectedVariantId, setSelectedVariantId] = useState(
     variants[0]?.id ?? "default",
   );
@@ -68,7 +69,7 @@ export default function ToolConverter({
   };
 
   const handleRightChange = (value: string) => {
-    if (!tool.supportsReverse) {
+    if (!canReverse) {
       return;
     }
 
@@ -88,24 +89,24 @@ export default function ToolConverter({
   };
 
   return (
-    <section className="rounded-[1.9rem] border border-[#d6e3da] bg-white/95 p-4 shadow-[0_20px_60px_rgba(15,23,42,0.06)] backdrop-blur sm:p-5 lg:p-6">
-      <div className="grid gap-4 xl:grid-cols-[0.96fr_auto_1.04fr] xl:items-stretch">
+    <section className="rounded-[1.7rem] border border-zinc-200/70 bg-white/88 p-3 shadow-[0_18px_45px_rgba(15,23,42,0.05)] backdrop-blur-sm sm:rounded-[1.9rem] sm:p-5 lg:p-6">
+      <div className="grid gap-3 xl:grid-cols-[0.96fr_auto_1.04fr] xl:items-stretch xl:gap-4">
         <div
-          className={`rounded-[1.45rem] border bg-[#fffefb] p-4 transition sm:p-5 ${
+          className={`rounded-[1.35rem] border bg-[#fffefb]/96 p-3.5 transition sm:rounded-[1.45rem] sm:p-5 ${
             activePane === "left"
-              ? "border-emerald-300 shadow-[0_0_0_4px_rgba(16,185,129,0.08)]"
-              : "border-[#d8e5dc]"
+              ? "border-emerald-400 shadow-[0_0_0_3px_rgba(16,185,129,0.12)]"
+              : "border-zinc-200/80"
           }`}
         >
-          <div className="mb-4 flex items-start justify-between gap-3">
+          <div className="mb-3 flex items-start justify-between gap-3 sm:mb-4">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#5e6f66]">
                 Text
               </p>
-              <h2 className="mt-1 text-xl font-black tracking-tight text-zinc-950">
+              <h2 className="mt-1 text-lg font-black tracking-tight text-zinc-950 sm:text-xl">
                 Plain English
               </h2>
-              <p className="mt-1 text-sm text-zinc-500">
+              <p className="mt-1 text-sm leading-6 text-zinc-500">
                 {activePane === "left"
                   ? "Type here to generate symbols on the right."
                   : "Decoded letters appear here while you type symbols on the right."}
@@ -115,7 +116,7 @@ export default function ToolConverter({
               <button
                 type="button"
                 onClick={() => copyText(leftText, "Text")}
-                className="inline-flex items-center gap-1 rounded-full border border-zinc-200 bg-white px-3 py-1.5 text-xs font-semibold text-zinc-500 transition hover:border-zinc-300 hover:text-zinc-700"
+                className="inline-flex min-h-11 items-center gap-1 rounded-full border border-zinc-200 bg-white px-3.5 py-2 text-xs font-semibold text-zinc-600 transition hover:border-zinc-300 hover:text-zinc-800"
               >
                 <span aria-hidden="true">⧉</span>
                 Copy
@@ -129,7 +130,7 @@ export default function ToolConverter({
                     setActivePane("left");
                   }
                 }}
-                className="inline-flex items-center gap-1 rounded-full border border-zinc-200 bg-white px-3 py-1.5 text-xs font-semibold text-zinc-500 transition hover:border-zinc-300 hover:text-zinc-700"
+                className="inline-flex min-h-11 items-center gap-1 rounded-full border border-zinc-200 bg-white px-3.5 py-2 text-xs font-semibold text-zinc-600 transition hover:border-zinc-300 hover:text-zinc-800"
               >
                 <span aria-hidden="true">✕</span>
                 Clear
@@ -141,22 +142,49 @@ export default function ToolConverter({
             value={leftText}
             onChange={(event) => handleLeftChange(event.target.value)}
             placeholder={placeholder}
-            className="min-h-[240px] w-full resize-y rounded-[1.35rem] border border-[#d5e4da] bg-white px-4 py-4 text-lg text-zinc-900 outline-none transition focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100"
+            className="min-h-[132px] w-full resize-y rounded-[1.2rem] border border-zinc-200/80 bg-white px-4 py-3.5 text-base leading-7 text-zinc-900 outline-none transition focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 sm:min-h-[180px] sm:rounded-[1.35rem] sm:py-4 sm:text-lg xl:min-h-[240px]"
           />
 
-          <div className="mt-3 flex flex-wrap items-center justify-end gap-3 text-sm text-zinc-500">
+          <div className="mt-3 flex flex-wrap items-center justify-end gap-x-3 gap-y-1 text-sm text-zinc-500">
             <span>Characters: {leftText.length}</span>
             <span>Words: {leftWords}</span>
           </div>
         </div>
 
-        {tool.supportsReverse ? (
+        {canReverse ? (
+          <div className="-my-1 flex justify-center xl:hidden">
+            <button
+              type="button"
+              onClick={toggleDirection}
+              className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-emerald-200 bg-white text-emerald-700 shadow-[0_10px_24px_rgba(16,185,129,0.18)] transition hover:-translate-y-0.5 hover:border-emerald-400 hover:text-emerald-800"
+              aria-label="Swap translation direction"
+            >
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                className="h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.9"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M8 7h9l-2.6-2.6" />
+                <path d="M16 17H7l2.6 2.6" />
+                <path d="M17 7c-1.9 0-3.2.8-4.4 2.2L11 11" />
+                <path d="M7 17c1.9 0 3.2-.8 4.4-2.2L13 13" />
+              </svg>
+            </button>
+          </div>
+        ) : null}
+
+        {canReverse ? (
           <div className="hidden xl:flex xl:items-center xl:justify-center">
             <button
               type="button"
               onClick={toggleDirection}
-              className="inline-flex h-16 w-16 items-center justify-center rounded-[1.35rem] border border-[#cfe2d6] bg-white text-[#0f766e] shadow-sm transition hover:-translate-y-0.5 hover:border-emerald-400 hover:shadow-[0_14px_30px_rgba(16,185,129,0.18)]"
-              aria-label="Toggle reverse translation"
+              className="inline-flex h-16 w-16 items-center justify-center rounded-[1.35rem] border border-emerald-200 bg-white text-emerald-700 shadow-sm transition hover:-translate-y-0.5 hover:border-emerald-400 hover:shadow-[0_14px_30px_rgba(16,185,129,0.18)]"
+              aria-label="Swap translation direction"
             >
               <svg
                 aria-hidden="true"
@@ -168,29 +196,31 @@ export default function ToolConverter({
                 strokeLinecap="round"
                 strokeLinejoin="round"
               >
-                <path d="M7 7h11l-3-3" />
-                <path d="M17 17H6l3 3" />
+                <path d="M8 7h9l-2.6-2.6" />
+                <path d="M16 17H7l2.6 2.6" />
+                <path d="M17 7c-1.9 0-3.2.8-4.4 2.2L11 11" />
+                <path d="M7 17c1.9 0 3.2-.8 4.4-2.2L13 13" />
               </svg>
             </button>
           </div>
         ) : null}
 
         <div
-          className={`rounded-[1.45rem] border bg-[#fafdff] p-4 transition sm:p-5 ${
+          className={`rounded-[1.35rem] border bg-[#fcfffd]/96 p-3.5 transition sm:rounded-[1.45rem] sm:p-5 ${
             activePane === "right"
-              ? "border-emerald-300 shadow-[0_0_0_4px_rgba(16,185,129,0.08)]"
-              : "border-[#dce8e0]"
+              ? "border-emerald-400 shadow-[0_0_0_3px_rgba(16,185,129,0.12)]"
+              : "border-zinc-200/80"
           }`}
         >
-          <div className="mb-4 flex items-start justify-between gap-3">
+          <div className="mb-3 flex items-start justify-between gap-3 sm:mb-4">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#5e6f66]">
                 Symbols
               </p>
-              <h2 className="mt-1 text-xl font-black tracking-tight text-zinc-950">
+              <h2 className="mt-1 text-lg font-black tracking-tight text-zinc-950 sm:text-xl">
                 {sampleOutputLabel}
               </h2>
-              <p className="mt-1 text-sm text-zinc-500">
+              <p className="mt-1 text-sm leading-6 text-zinc-500">
                 {activePane === "right"
                   ? "Type or paste symbols here to decode them on the left."
                   : "Styled output appears here and stays editable for reverse translation."}
@@ -199,76 +229,54 @@ export default function ToolConverter({
             <button
               type="button"
               onClick={() => copyText(rightText, shortName)}
-              className="inline-flex items-center gap-1 rounded-full border border-zinc-200 bg-white px-3 py-1.5 text-xs font-semibold text-zinc-500 transition hover:border-zinc-300 hover:text-zinc-700"
+              className="inline-flex min-h-11 items-center gap-1 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-2 text-xs font-semibold text-emerald-800 transition hover:border-emerald-300 hover:bg-emerald-100"
             >
               <span aria-hidden="true">⧉</span>
               Copy
             </button>
           </div>
 
-          <div className="mb-4 flex gap-2 overflow-x-auto pb-1">
-            {(variants.length > 0
-              ? variants
-              : [{ id: "default", name: shortName, description: sampleOutputLabel }]
-            ).map((variant) => {
-              const isSelected = variant.id === selectedVariantId;
+          <div className="relative mb-4">
+            <div className="no-scrollbar flex gap-2 overflow-x-auto pb-1 pr-6 [mask-image:linear-gradient(to_right,black_0,black_calc(100%-1.75rem),transparent_100%)]">
+              {(variants.length > 0
+                ? variants
+                : [{ id: "default", name: shortName, description: sampleOutputLabel }]
+              ).map((variant) => {
+                const isSelected = variant.id === selectedVariantId;
 
-              return (
-                <button
-                  key={variant.id}
-                  type="button"
-                  onClick={() => setSelectedVariantId(variant.id)}
-                  className={`shrink-0 rounded-full border px-4 py-2 text-sm font-semibold transition ${
-                    isSelected
-                      ? "border-emerald-300 bg-emerald-50 text-emerald-900 shadow-[inset_0_-2px_0_0_#10b981]"
-                      : "border-zinc-200 bg-white text-zinc-600 hover:border-emerald-300 hover:text-emerald-800"
-                  }`}
-                >
-                  {variant.name}
-                </button>
-              );
-            })}
+                return (
+                  <button
+                    key={variant.id}
+                    type="button"
+                    onClick={() => setSelectedVariantId(variant.id)}
+                    className={`shrink-0 rounded-full border px-4 py-2.5 text-sm font-semibold transition ${
+                      isSelected
+                        ? "border-emerald-400 bg-emerald-50 text-emerald-900 shadow-[inset_0_-2px_0_0_#10b981]"
+                        : "border-zinc-200 bg-white text-zinc-600 hover:border-emerald-300 hover:text-emerald-800"
+                    } min-h-11`}
+                  >
+                    {variant.name}
+                  </button>
+                );
+              })}
+            </div>
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-[#fcfffd] to-transparent" />
           </div>
 
-          {tool.supportsReverse ? (
-            <div className="mb-4 xl:hidden">
-              <button
-                type="button"
-                onClick={toggleDirection}
-                className="inline-flex items-center gap-2 rounded-full border border-[#cfe2d6] bg-white px-4 py-2 text-sm font-semibold text-[#0f766e] shadow-sm transition hover:border-emerald-400 hover:text-emerald-700"
-              >
-                <svg
-                  aria-hidden="true"
-                  viewBox="0 0 24 24"
-                  className="h-5 w-5"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.9"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M7 7h11l-3-3" />
-                  <path d="M17 17H6l3 3" />
-                </svg>
-                Reverse Translate
-              </button>
-            </div>
-          ) : null}
-
-          <div className="rounded-[1.35rem] border border-[#d9e4dc] bg-white px-4 py-5 shadow-sm">
-            <div className="mb-2 text-sm text-zinc-500">
+          <div className="rounded-[1.2rem] border border-transparent bg-transparent px-0 py-1 sm:rounded-[1.35rem] sm:border-[#d9e4dc] sm:bg-white sm:px-4 sm:py-5 sm:shadow-sm">
+            <div className="mb-2 text-sm text-zinc-500 sm:text-[0.95rem]">
               {selectedVariant?.description ?? sampleOutputLabel}
             </div>
             <textarea
               value={rightText}
               onChange={(event) => handleRightChange(event.target.value)}
               placeholder="Paste symbols here to decode..."
-              readOnly={!tool.supportsReverse}
-              className={`min-h-[220px] w-full resize-y bg-transparent text-[2rem] leading-[1.65] text-zinc-950 outline-none ${
-                tool.supportsReverse ? "" : "cursor-default"
+              readOnly={!canReverse}
+              className={`min-h-[132px] w-full resize-y bg-transparent text-2xl leading-[1.55] text-zinc-950 outline-none sm:min-h-[170px] sm:text-3xl xl:min-h-[220px] xl:text-[2rem] ${
+                canReverse ? "" : "cursor-default"
               }`}
             />
-            <div className="mt-3 flex flex-wrap items-center justify-end gap-3 text-sm text-zinc-500">
+            <div className="mt-3 flex flex-wrap items-center justify-end gap-x-3 gap-y-1 text-sm text-zinc-500">
               <span>Characters: {rightText.length}</span>
               <span>Words: {rightWords}</span>
             </div>

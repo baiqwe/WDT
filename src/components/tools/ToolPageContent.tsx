@@ -157,7 +157,10 @@ export default function ToolPageContent({
               className="rounded-[1.15rem] border border-[#d8e5dc] bg-[#fffefb] px-4 py-4 transition hover:-translate-y-0.5 hover:border-emerald-300 hover:shadow-sm"
             >
               <div className="flex items-start gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#edf8f2] text-lg font-bold text-[#0f766e]">
+                <div
+                  aria-hidden="true"
+                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#edf8f2] text-lg font-bold text-[#0f766e]"
+                >
                   {toolIcons[relatedTool.slug] ?? "✦"}
                 </div>
                 <div>
@@ -214,43 +217,50 @@ export default function ToolPageContent({
         <div className="space-y-6">
           {infoBlocks.length > 0 ? (
             <section className="rounded-[1.5rem] border border-[#d8e5dc] bg-white p-6 shadow-sm">
-              <details>
-                <summary className="cursor-pointer list-none text-2xl font-black tracking-tight text-zinc-950">
-                  <span className="flex items-center justify-between gap-4">
-                    <span>Overview & Usage Notes</span>
-                    <span className="text-sm font-semibold text-zinc-500">Expand</span>
-                  </span>
-                </summary>
-                <div className="mt-5 grid gap-4 md:grid-cols-2">
-                  {infoBlocks.map((section) => (
-                    <article
-                      key={section.title}
-                      className="rounded-[1.25rem] border border-[#e4ece6] bg-[#fafcfb] p-4"
-                    >
-                      <h2 className="text-lg font-black tracking-tight text-zinc-950">
-                        {section.title}
-                      </h2>
-                      <ul className="mt-3 space-y-3 text-sm leading-7 text-zinc-700">
-                        {section.body.map((paragraph) => (
-                          <li key={paragraph} className="flex gap-3">
-                            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#10b981]" />
-                            <span>{paragraph}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </article>
-                  ))}
-                </div>
-              </details>
+              <div className="flex items-center justify-between gap-4">
+                <h2 className="m-0 text-2xl font-black tracking-tight text-zinc-950">
+                  Overview & Usage Notes
+                </h2>
+                <span className="text-sm font-semibold text-zinc-500">
+                  Always visible
+                </span>
+              </div>
+              <div className="mt-5 grid gap-4 md:grid-cols-2">
+                {infoBlocks.map((section) => (
+                  <article
+                    key={section.title}
+                    className="rounded-[1.25rem] border border-[#e4ece6] bg-[#fafcfb] p-4"
+                  >
+                    <h3 className="text-lg font-black tracking-tight text-zinc-950">
+                      {section.title}
+                    </h3>
+                    <ul className="mt-3 space-y-3 text-sm leading-7 text-zinc-700">
+                      {section.body.map((paragraph) => (
+                        <li key={paragraph} className="flex gap-3">
+                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#10b981]" />
+                          <span>{paragraph}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </article>
+                ))}
+              </div>
             </section>
           ) : null}
 
           {variants.length > 0 ? (
             <section className="rounded-[1.5rem] border border-[#d8e5dc] bg-white p-6 shadow-sm">
+              <p className="mb-4 text-base leading-8 text-zinc-700">
+                This mapping table gives Google and human visitors a clear A-Z
+                reference for each available preset, including Classic Wingdings,
+                Gaster style, Wingdings 2, Wingdings 3, and Webdings-inspired output.
+              </p>
               <details>
-                <summary className="cursor-pointer list-none text-2xl font-black tracking-tight text-zinc-950">
+                <summary className="cursor-pointer list-none">
                   <span className="flex items-center justify-between gap-4">
-                    <span>View Full Mapping Table (A-Z)</span>
+                    <h2 className="m-0 text-2xl font-black tracking-tight text-zinc-950">
+                      View Full Mapping Table (A-Z)
+                    </h2>
                     <span className="text-sm font-semibold text-zinc-500">Expand</span>
                   </span>
                 </summary>
@@ -301,9 +311,11 @@ export default function ToolPageContent({
         <div>
           <section className="rounded-[1.5rem] border border-[#d8e5dc] bg-white p-6 shadow-sm">
             <details open>
-              <summary className="cursor-pointer list-none text-2xl font-black tracking-tight text-zinc-950">
+              <summary className="cursor-pointer list-none">
                 <span className="flex items-center justify-between gap-4">
-                  <span>Frequently Asked Questions</span>
+                  <h2 className="m-0 text-2xl font-black tracking-tight text-zinc-950">
+                    Frequently Asked Questions
+                  </h2>
                   <span className="text-sm font-semibold text-zinc-500">Toggle</span>
                 </span>
               </summary>

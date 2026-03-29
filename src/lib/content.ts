@@ -5,6 +5,7 @@ export type Article = {
   title: string;
   description: string;
   h1: string;
+  updatedAt: string;
   intro: string;
   relatedSlugs: string[];
   sections: {
@@ -20,6 +21,7 @@ export const articles: Article[] = [
     description:
       "Learn how Wingdings emerged, why it became culturally memorable, and why legacy symbol fonts still drive search demand today.",
     h1: "The History of the Wingdings Font",
+    updatedAt: "2026-03-29",
     intro:
       "Wingdings became one of the most recognizable symbol fonts of the desktop era because it mixed novelty, utility, and mystery in a way plain text fonts never did.",
     relatedSlugs: ["wingdings", "webdings-translator", "gaster-translator"],
@@ -53,6 +55,7 @@ export const articles: Article[] = [
     description:
       "A practical guide to identifying symbol alphabets, choosing the right preset, and decoding mystery strings from fandom and social posts.",
     h1: "How to Decode Mystery Symbol Messages",
+    updatedAt: "2026-03-29",
     intro:
       "Most mystery symbol strings are not random. They usually follow a visual system, and your first job is to identify whether you are looking at a readable preset, a legacy-style Wingdings mapping, or another symbol family entirely.",
     relatedSlugs: ["wingdings", "gaster-translator", "gaster-alphabet-translator"],
