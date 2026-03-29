@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { generateBreadcrumbSchema } from "@/lib/breadcrumbs";
 import { siteUrl } from "@/lib/textTools";
 
 const breadcrumbs = [
@@ -20,16 +18,8 @@ export const metadata: Metadata = {
 };
 
 export default function PrivacyPolicyPage() {
-  const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
-
   return (
-    <>
-      <Script
-        id="privacy-breadcrumb-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <main className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-12">
+    <main className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-12">
         <Breadcrumbs items={breadcrumbs} />
         <h1 className="mt-4 text-3xl font-black tracking-tight text-zinc-950 sm:text-4xl">
           Privacy Policy
@@ -40,9 +30,22 @@ export default function PrivacyPolicyPage() {
             privacy-conscious. Most text processing happens in the browser.
           </p>
           <p>
-            We may use basic analytics, advertising, and cookie storage for site
-            functionality such as consent preferences. If you contact us by email,
-            we only use the information you provide to respond to your message.
+            We may use analytics, advertising, and cookie storage for site
+            functionality such as consent preferences and ad delivery. If you
+            contact us by email, we only use the information you provide to
+            respond to your message.
+          </p>
+          <p>
+            Because the site uses Google AdSense, Google and its partners may use
+            cookies or similar technologies, including signals associated with
+            ad personalization and measurement, to serve and report ads. This may
+            include technologies historically associated with Google advertising
+            systems such as DoubleClick.
+          </p>
+          <p>
+            Users can learn more about how Google uses information in advertising
+            products and can manage or opt out of personalized advertising
+            through Google&apos;s ad settings and related privacy controls.
           </p>
           <p>
             For privacy questions, contact{" "}
@@ -68,6 +71,5 @@ export default function PrivacyPolicyPage() {
           </div>
         </section>
       </main>
-    </>
   );
 }

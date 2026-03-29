@@ -11,7 +11,6 @@ import {
   siteUrl,
   type ToolConfig,
 } from "@/lib/textTools";
-import { generateBreadcrumbSchema } from "@/lib/breadcrumbs";
 import ToolConverter from "./ToolConverter";
 
 type ToolPageContentProps = {
@@ -32,7 +31,6 @@ export default function ToolPageContent({
 
   const relatedTools = getRelatedTools(tool.slug);
   const featuredArticles = getFeaturedArticles(tool.slug).slice(0, 2);
-  const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
   const variants = getTranslatorVariants(tool.slug);
   const presetExamples = variants.map((variant) => ({
     id: variant.id,
@@ -83,11 +81,6 @@ export default function ToolPageContent({
         id={`${tool.slug}-howto-schema`}
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(buildHowToSchema(tool)) }}
-      />
-      <Script
-        id={`${tool.slug}-breadcrumb-schema`}
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
       {!isHome ? <Breadcrumbs items={breadcrumbs} /> : null}

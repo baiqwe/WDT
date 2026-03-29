@@ -56,6 +56,7 @@ export default async function BlogArticlePage({ params }: BlogPageProps) {
     <ArticlePage
       title={articleData.article.h1}
       intro={articleData.article.intro}
+      relatedSlugs={articleData.article.relatedSlugs}
       sections={articleData.article.sections}
       breadcrumbs={breadcrumbs}
       articleUrl={articleData.url}

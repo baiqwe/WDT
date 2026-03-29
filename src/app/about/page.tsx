@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { generateBreadcrumbSchema } from "@/lib/breadcrumbs";
 import { siteUrl } from "@/lib/textTools";
 
 const breadcrumbs = [
@@ -20,16 +18,8 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
-  const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
-
   return (
-    <>
-      <Script
-        id="about-breadcrumb-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <main className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-12">
+    <main className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-12">
         <Breadcrumbs items={breadcrumbs} />
         <h1 className="mt-4 text-3xl font-black tracking-tight text-zinc-950 sm:text-4xl">
           About Wingdings Translator
@@ -131,6 +121,5 @@ export default function AboutPage() {
           </div>
         </section>
       </main>
-    </>
   );
 }

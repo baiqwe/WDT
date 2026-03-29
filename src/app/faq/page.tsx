@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { generateBreadcrumbSchema } from "@/lib/breadcrumbs";
 import { siteUrl } from "@/lib/textTools";
 
 const breadcrumbs = [
@@ -63,7 +62,6 @@ export const metadata: Metadata = {
 };
 
 export default function FAQPage() {
-  const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -79,11 +77,6 @@ export default function FAQPage() {
 
   return (
     <>
-      <Script
-        id="faq-breadcrumb-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
       <Script
         id="faq-page-schema"
         type="application/ld+json"

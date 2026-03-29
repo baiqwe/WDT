@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Script from "next/script";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { generateBreadcrumbSchema } from "@/lib/breadcrumbs";
 import { siteUrl } from "@/lib/textTools";
 
 const breadcrumbs = [
@@ -24,16 +22,8 @@ export const metadata: Metadata = {
 };
 
 export default function NotFound() {
-  const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
-
   return (
-    <>
-      <Script
-        id="not-found-breadcrumb-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <main className="mx-auto max-w-5xl px-4 py-12 sm:px-6">
+    <main className="mx-auto max-w-5xl px-4 py-12 sm:px-6">
         <Breadcrumbs items={breadcrumbs} />
         <section className="rounded-[2rem] border border-zinc-200 bg-white p-10 text-center shadow-sm">
           <p className="text-7xl font-black tracking-tight text-sky-200">404</p>
@@ -60,6 +50,5 @@ export default function NotFound() {
           </div>
         </section>
       </main>
-    </>
   );
 }

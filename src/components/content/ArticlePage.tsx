@@ -1,11 +1,11 @@
-import Script from "next/script";
+import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { generateBreadcrumbSchema } from "@/lib/breadcrumbs";
-import { siteUrl } from "@/lib/textTools";
+import { getToolBySlug, siteUrl } from "@/lib/textTools";
 
 type ArticlePageProps = {
   title: string;
   intro: string;
+  relatedSlugs: string[];
   sections: {
     title: string;
     body: string[];
@@ -20,11 +20,11 @@ type ArticlePageProps = {
 export default function ArticlePage({
   title,
   intro,
+  relatedSlugs,
   sections,
   breadcrumbs,
   articleUrl,
 }: ArticlePageProps) {
-  const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -44,16 +44,20 @@ export default function ArticlePage({
       },
     },
   };
+  const relatedTools = relatedSlugs
+    .map((slug) => getToolBySlug(slug))
+    .filter((tool): tool is NonNullable<ReturnType<typeof getToolBySlug>> => Boolean(tool));
+  const relatedLinkLabels: Record<string, string> = {
+    wingdings: "Use our Wingdings translator",
+    "webdings-translator": "Try the Webdings converter",
+    "gaster-translator": "Use the Gaster translator",
+    "gaster-alphabet-translator": "Open the Gaster alphabet translator",
+    "old-english-translator": "Try the Old English translator",
+  };
 
   return (
     <main className="mx-auto max-w-[1280px] px-3 py-5 sm:px-5 sm:py-8 xl:px-8">
-      <Script
-        id={`${articleUrl}-breadcrumb-schema`}
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <Script
-        id={`${articleUrl}-article-schema`}
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
@@ -88,6 +92,29 @@ export default function ArticlePage({
             </section>
           ))}
         </div>
+
+        {relatedTools.length > 0 ? (
+          <section className="mt-8 rounded-[1.35rem] border border-[#d8e5dc] bg-[#f8fcfa] p-5">
+            <h2 className="text-2xl font-black tracking-tight text-zinc-950">
+              Related tools
+            </h2>
+            <p className="mt-3 text-base leading-8 text-zinc-700">
+              If you want to apply the ideas from this guide immediately, use one
+              of these tools:
+            </p>
+            <div className="mt-4 flex flex-wrap gap-3">
+              {relatedTools.map((tool) => (
+                <Link
+                  key={tool.slug}
+                  href={tool.slug === "wingdings" ? "/" : `/${tool.slug}`}
+                  className="rounded-full border border-[#d8e5dc] bg-white px-4 py-2 text-sm font-semibold text-[#0f766e] transition hover:border-emerald-300 hover:text-emerald-800"
+                >
+                  {relatedLinkLabels[tool.slug] ?? tool.name}
+                </Link>
+              ))}
+            </div>
+          </section>
+        ) : null}
       </article>
     </main>
   );
