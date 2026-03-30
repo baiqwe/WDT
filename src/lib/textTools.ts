@@ -563,6 +563,7 @@ const defaultWebdingsVariant = defaultWebdingsVariantBase
 
 export const toolOrder = [
   "wingdings",
+  "english-to-wingdings",
   "webdings-translator",
   "subscript-generator",
   "superscript-generator",
@@ -578,6 +579,7 @@ export const toolOrder = [
 
 export const toolUpdatedAt: Record<(typeof toolOrder)[number], string> = {
   wingdings: "2026-03-29",
+  "english-to-wingdings": "2026-03-30",
   "webdings-translator": "2026-03-29",
   "subscript-generator": "2026-03-24",
   "superscript-generator": "2026-03-24",
@@ -722,10 +724,103 @@ export const toolConfigs: Record<(typeof toolOrder)[number], ToolConfig> = {
       },
     ],
     relatedSlugs: [
+      "english-to-wingdings",
       "subscript-generator",
       "cursive-generator",
       "old-english-translator",
     ],
+    encode: defaultWingdingsVariant
+      ? defaultWingdingsVariant.encode
+      : (value: string) => value,
+    decode: defaultWingdingsVariant
+      ? defaultWingdingsVariant.decode
+      : (value: string) => value,
+  },
+  "english-to-wingdings": {
+    slug: "english-to-wingdings",
+    name: "English to Wingdings Converter",
+    shortName: "English to Wingdings",
+    title: "English to Wingdings Converter",
+    metaTitle: "English to Wingdings Converter | Fast & Free Translation",
+    description:
+      "Convert plain English into Wingdings-style symbols instantly, compare multiple presets, and copy the result for puzzles, posts, or creative text.",
+    metaDescription:
+      "Instantly convert English text into Wingdings symbols. Free online translator with copy and paste support for Classic, Gaster, Wingdings 2, Wingdings 3, and Webdings styles.",
+    h1: "English to Wingdings Converter",
+    placeholder: "Enter English text to convert into symbols...",
+    sampleInput: "Turn this message into symbols",
+    sampleOutputLabel: "Wingdings symbol output",
+    supportsReverse: true,
+    variantIds: ["classic", "gaster", "wingdings-2", "wingdings-3", "webdings"],
+    keywords: [
+      "english to wingdings",
+      "english to wingdings translator",
+      "convert english to wingdings",
+      "english to wingdings copy and paste",
+      "wingdings converter",
+    ],
+    intro: [
+      "This page is built for visitors who already know they want one thing: turn readable English into Wingdings-style symbols as fast as possible.",
+      "It uses the same conversion engine as the main translator, but the wording, examples, and on-page explanations all focus on the English-to-symbol workflow instead of general decoding.",
+    ],
+    sections: [
+      {
+        title: "Why use a dedicated English to Wingdings page",
+        body: [
+          "Many searchers do not want a mixed decoder page. They want to paste plain English, get a symbol result immediately, and copy it into a post, puzzle, profile, or design mockup.",
+          "A dedicated page reduces friction because the intent is obvious from the title, heading, sample text, and surrounding guidance.",
+        ],
+      },
+      {
+        title: "Compare multiple symbol styles before you copy",
+        body: [
+          "Classic Wingdings is the best place to start if you want the most recognizable symbol-heavy look.",
+          "If you are chasing a different mood, compare Gaster, Wingdings 2, Wingdings 3, and Webdings-style outputs side by side before you decide which one to use.",
+        ],
+      },
+      {
+        title: "Best use cases for symbol conversion",
+        body: [
+          "English to Wingdings conversion is popular for secret-message aesthetics, fandom puzzles, profile styling, mock graphics, and short copy-paste experiments on social platforms.",
+          "Shorter text usually works better than long paragraphs because symbol output stays more readable and is easier to verify after pasting.",
+        ],
+      },
+      {
+        title: "What to do if the result looks different somewhere else",
+        body: [
+          "Different sites often use different mapping tables, which is why copied output can vary across translators.",
+          "If you are trying to match another screenshot or another site exactly, switch presets first instead of assuming the tool is wrong.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Can I convert plain English directly into Wingdings symbols?",
+        answer:
+          "Yes. Type or paste normal English into the input field and the tool will generate symbol output instantly.",
+      },
+      {
+        question: "Does this page support copy and paste?",
+        answer:
+          "Yes. The generated symbol text can be copied and pasted into messages, bios, notes, mockups, and many social platforms.",
+      },
+      {
+        question: "Which preset should I choose first?",
+        answer:
+          "Classic Wingdings is the most recognizable starting point. After that, compare Gaster, Wingdings 2, Wingdings 3, and Webdings if you want a different visual feel.",
+      },
+      {
+        question: "Why is my result different from another Wingdings site?",
+        answer:
+          "Many translators use different letter mappings for convenience or style, so switching presets is the first thing to try when outputs do not match.",
+      },
+      {
+        question: "Can I decode symbols back into English here too?",
+        answer:
+          "Yes. This page still includes reverse support, but the content and examples are tuned for English-to-symbol searches.",
+      },
+    ],
+    relatedSlugs: ["wingdings", "gaster-translator", "webdings-translator"],
     encode: defaultWingdingsVariant
       ? defaultWingdingsVariant.encode
       : (value: string) => value,

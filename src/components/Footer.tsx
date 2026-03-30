@@ -29,6 +29,14 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href="/english-to-wingdings"
+                  className="text-zinc-700 transition hover:text-emerald-800"
+                >
+                  English to Wingdings
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/webdings-translator"
                   className="text-zinc-700 transition hover:text-emerald-800"
                 >
@@ -99,6 +107,30 @@ export default function Footer() {
               Resources
             </h3>
             <ul className="mt-4 space-y-3 text-sm">
+              <li>
+                <Link
+                  href="/wingdings-alphabet"
+                  className="text-zinc-700 transition hover:text-emerald-800"
+                >
+                  Wingdings Alphabet Chart
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/gaster-language"
+                  className="text-zinc-700 transition hover:text-emerald-800"
+                >
+                  Gaster Language Guide
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/wingdings-font"
+                  className="text-zinc-700 transition hover:text-emerald-800"
+                >
+                  Wingdings Font Guide
+                </Link>
+              </li>
               <li>
                 <Link href="/faq" className="text-zinc-700 transition hover:text-emerald-800">
                   FAQ

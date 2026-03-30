@@ -39,6 +39,7 @@ export default function ToolPageContent({
     example: variant.encode(tool.sampleInput),
   }));
   const toolIcons: Record<string, string> = {
+    "english-to-wingdings": "A→✦",
     "subscript-generator": "x₂",
     "superscript-generator": "x²",
     "small-text-generator": "ᴀʙ",

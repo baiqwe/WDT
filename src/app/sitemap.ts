@@ -34,6 +34,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.78,
     },
     {
+      url: `${siteUrl}/wingdings-alphabet`,
+      lastModified: new Date("2026-03-30"),
+      changeFrequency: "weekly",
+      priority: 0.86,
+    },
+    {
+      url: `${siteUrl}/gaster-language`,
+      lastModified: new Date("2026-03-30"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/wingdings-font`,
+      lastModified: new Date("2026-03-30"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${siteUrl}/faq`,
       lastModified: new Date("2026-03-29"),
       changeFrequency: "monthly",

@@ -49,6 +49,7 @@ export default function ArticlePage({
     .filter((tool): tool is NonNullable<ReturnType<typeof getToolBySlug>> => Boolean(tool));
   const relatedLinkLabels: Record<string, string> = {
     wingdings: "Use our Wingdings translator",
+    "english-to-wingdings": "Open the English to Wingdings converter",
     "webdings-translator": "Try the Webdings converter",
     "gaster-translator": "Use the Gaster translator",
     "gaster-alphabet-translator": "Open the Gaster alphabet translator",
