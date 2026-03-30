@@ -33,6 +33,7 @@ export default function HowToReadWingdingsPage() {
       intro="Reading Wingdings starts with pattern recognition. The fastest way to decode a symbol string is to identify the symbol family first, then test the matching preset rather than assuming every site uses the same alphabet."
       breadcrumbs={breadcrumbs}
       articleUrl={pageUrl}
+      relatedSlugs={["wingdings", "english-to-wingdings", "webdings-translator"]}
       sections={[
         {
           title: "Look for repeated symbol patterns",
