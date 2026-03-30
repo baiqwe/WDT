@@ -20,11 +20,11 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "Wingdings Translator | Convert Wingdings to English (Copy & Paste)",
+    default: "Wingdings Translator - Convert Wingdings to English Fast",
     template: "%s | Wingdings Translator",
   },
   description:
-    "Convert Wingdings to English or English to Wingdings instantly. Decode symbol strings, compare preset alphabets, and use the tool without downloads.",
+    "Free online Wingdings translator. Decode symbols to English or convert text to Wingdings instantly. Easy copy & paste for Gaster font and social media.",
   keywords: [
     "wingdings translator",
     "wingdings to english",

@@ -26,7 +26,9 @@ export async function generateMetadata({
   const url = `${siteUrl}/${tool.slug}`;
 
   return {
-    title: tool.metaTitle,
+    title: {
+      absolute: tool.metaTitle,
+    },
     description: tool.metaDescription,
     keywords: tool.keywords,
     alternates: {

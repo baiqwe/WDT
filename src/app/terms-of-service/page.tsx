@@ -9,7 +9,7 @@ const breadcrumbs = [
 ];
 
 export const metadata: Metadata = {
-  title: "Terms of Service | Wingdings Translator",
+  title: "Terms of Service",
   description:
     "Read the terms for using Wingdings Translator and its related copy-paste text tools.",
   alternates: {

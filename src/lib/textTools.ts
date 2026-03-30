@@ -597,13 +597,12 @@ export const toolConfigs: Record<(typeof toolOrder)[number], ToolConfig> = {
     name: "Wingdings Translator",
     shortName: "Wingdings",
     title: "Wingdings Translator & Symbol Converter",
-    metaTitle:
-      "Wingdings Translator | Convert Wingdings to English (Copy & Paste)",
+    metaTitle: "Wingdings Translator - Convert & Decode Wingdings Online",
     description:
       "Convert English to Wingdings-style symbols, decode Wingdings back into English, and compare multiple preset mappings in one fast tool.",
     metaDescription:
-      "Convert Wingdings to English or English to Wingdings instantly. Compare Classic, Gaster, Wingdings 2, Wingdings 3, and Webdings-style outputs, then copy and paste the result.",
-    h1: "Wingdings Translator (A-Z Converter)",
+      "Instantly convert Wingdings to English and back. Free online decoder to translate symbols, copy & paste results for Gaster alphabet, social media, and more. No download required!",
+    h1: "Wingdings Translator: Convert & Decode Wingdings Online",
     placeholder: "Enter text to translate...",
     sampleInput: "Translate this message",
     sampleOutputLabel: "Wingdings-style output",
