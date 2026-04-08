@@ -53,11 +53,34 @@ const faqItems = [
 ];
 
 export const metadata: Metadata = {
-  title: "FAQ",
+  title: {
+    absolute: "Wingdings Translator FAQ | How to Use, Copy, and Decode Symbols",
+  },
   description:
-    "Detailed answers about Wingdings translation, Unicode behavior, preset differences, compatibility, and how to use related text tools.",
+    "Find clear answers about how to translate Wingdings, copy and paste symbols, decode messages, and understand device compatibility.",
+  keywords: [
+    "wingdings translator faq",
+    "how to use wingdings translator",
+    "how to decode wingdings",
+    "copy and paste wingdings symbols",
+    "wingdings compatibility",
+  ],
   alternates: {
     canonical: `${siteUrl}/faq`,
+  },
+  openGraph: {
+    title: "Wingdings Translator FAQ | How to Use, Copy, and Decode Symbols",
+    description:
+      "Read the most common questions about translating Wingdings, copying symbols, reverse decoding, presets, and Unicode support.",
+    url: `${siteUrl}/faq`,
+    siteName: "Wingdings Translator",
+    type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Wingdings Translator FAQ | How to Use, Copy, and Decode Symbols",
+    description:
+      "Get quick answers about Wingdings translation, copy-paste behavior, presets, and symbol compatibility.",
   },
 };
 
