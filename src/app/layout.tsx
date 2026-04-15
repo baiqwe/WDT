@@ -27,6 +27,8 @@ export const metadata: Metadata = {
     "Free online Wingdings translator. Decode symbols to English or convert text to Wingdings instantly. Easy copy & paste for Gaster font and social media.",
   keywords: [
     "wingdings translator",
+    "wingdings decoder",
+    "wingdings generator",
     "wingdings to english",
     "english to wingdings",
     "gaster alphabet",

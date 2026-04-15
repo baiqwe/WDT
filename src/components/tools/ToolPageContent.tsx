@@ -38,8 +38,14 @@ export default function ToolPageContent({
     description: variant.description,
     example: variant.encode(tool.sampleInput),
   }));
+  const variantSummary = variants.map((variant) => variant.name).join(", ");
   const toolIcons: Record<string, string> = {
+    "wingdings-decoder": "⇄",
+    "wingdings-generator": "✎",
     "english-to-wingdings": "A→✦",
+    "wingdings-2-translator": "◐",
+    "wingdings-3-translator": "➜",
+    "undertale-wingdings-translator": "☠",
     "subscript-generator": "x₂",
     "superscript-generator": "x²",
     "small-text-generator": "ᴀʙ",
@@ -104,6 +110,7 @@ export default function ToolPageContent({
         placeholder={tool.placeholder}
         sampleInput={tool.sampleInput}
         sampleOutputLabel={tool.sampleOutputLabel}
+        converterUi={tool.converterUi}
       />
 
       {presetExamples.length > 0 ? (
@@ -117,7 +124,9 @@ export default function ToolPageContent({
             </h2>
             <p className="mt-2 max-w-4xl text-sm leading-7 text-zinc-600">
               These server-rendered examples show how the same phrase changes
-              across the available symbol families.
+              {variants.length > 1
+                ? " across the available symbol families."
+                : " in the preset used on this page."}
             </p>
           </div>
           <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-5">
@@ -253,8 +262,10 @@ export default function ToolPageContent({
             <section className="rounded-[1.5rem] border border-[#d8e5dc] bg-white p-6 shadow-sm">
               <p className="mb-4 text-base leading-8 text-zinc-700">
                 This mapping table gives Google and human visitors a clear A-Z
-                reference for each available preset, including Classic Wingdings,
-                Gaster style, Wingdings 2, Wingdings 3, and Webdings-inspired output.
+                reference
+                {variants.length > 1
+                  ? ` for each available preset, including ${variantSummary}.`
+                  : ` for ${variantSummary} on this page.`}
               </p>
               <details>
                 <summary className="cursor-pointer list-none">

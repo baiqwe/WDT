@@ -14,6 +14,8 @@ export const metadata: Metadata = {
   keywords: [
     "free wingdings translator",
     "wingdings translator",
+    "wingdings decoder",
+    "wingdings generator",
     "wingdings converter",
     "wingdings to english",
     "english to wingdings",

@@ -10,6 +10,19 @@ export type ToolFaq = {
   answer: string;
 };
 
+export type ConverterUiConfig = {
+  defaultActivePane?: "left" | "right";
+  leftEyebrow?: string;
+  leftTitle?: string;
+  leftDescriptionEncode?: string;
+  leftDescriptionDecode?: string;
+  rightEyebrow?: string;
+  rightTitle?: string;
+  rightPlaceholder?: string;
+  rightDescriptionEncode?: string;
+  rightDescriptionDecode?: string;
+};
+
 export type TranslatorVariant = {
   id: string;
   name: string;
@@ -38,6 +51,7 @@ export type ToolConfig = {
   faq: ToolFaq[];
   relatedSlugs: string[];
   variantIds?: string[];
+  converterUi?: ConverterUiConfig;
   encode: (input: string) => string;
   decode?: (input: string) => string;
 };
@@ -552,6 +566,14 @@ const defaultWingdingsVariantBase = translatorVariants.classic;
 const defaultWingdingsVariant = defaultWingdingsVariantBase
   ? buildVariantHelpers(defaultWingdingsVariantBase)
   : null;
+const defaultWingdingsTwoVariantBase = translatorVariants["wingdings-2"];
+const defaultWingdingsTwoVariant = defaultWingdingsTwoVariantBase
+  ? buildVariantHelpers(defaultWingdingsTwoVariantBase)
+  : null;
+const defaultWingdingsThreeVariantBase = translatorVariants["wingdings-3"];
+const defaultWingdingsThreeVariant = defaultWingdingsThreeVariantBase
+  ? buildVariantHelpers(defaultWingdingsThreeVariantBase)
+  : null;
 const defaultGasterVariantBase = translatorVariants.gaster;
 const defaultGasterVariant = defaultGasterVariantBase
   ? buildVariantHelpers(defaultGasterVariantBase)
@@ -563,7 +585,12 @@ const defaultWebdingsVariant = defaultWebdingsVariantBase
 
 export const toolOrder = [
   "wingdings",
+  "wingdings-decoder",
+  "wingdings-generator",
   "english-to-wingdings",
+  "wingdings-2-translator",
+  "wingdings-3-translator",
+  "undertale-wingdings-translator",
   "webdings-translator",
   "subscript-generator",
   "superscript-generator",
@@ -578,9 +605,14 @@ export const toolOrder = [
 ] as const;
 
 export const toolUpdatedAt: Record<(typeof toolOrder)[number], string> = {
-  wingdings: "2026-03-29",
-  "english-to-wingdings": "2026-03-30",
-  "webdings-translator": "2026-03-29",
+  wingdings: "2026-04-15",
+  "wingdings-decoder": "2026-04-15",
+  "wingdings-generator": "2026-04-15",
+  "english-to-wingdings": "2026-04-15",
+  "wingdings-2-translator": "2026-04-15",
+  "wingdings-3-translator": "2026-04-15",
+  "undertale-wingdings-translator": "2026-04-15",
+  "webdings-translator": "2026-04-15",
   "subscript-generator": "2026-03-24",
   "superscript-generator": "2026-03-24",
   "small-text-generator": "2026-03-24",
@@ -724,10 +756,238 @@ export const toolConfigs: Record<(typeof toolOrder)[number], ToolConfig> = {
       },
     ],
     relatedSlugs: [
+      "wingdings-decoder",
+      "wingdings-generator",
+      "undertale-wingdings-translator",
+      "wingdings-2-translator",
+    ],
+    encode: defaultWingdingsVariant
+      ? defaultWingdingsVariant.encode
+      : (value: string) => value,
+    decode: defaultWingdingsVariant
+      ? defaultWingdingsVariant.decode
+      : (value: string) => value,
+  },
+  "wingdings-decoder": {
+    slug: "wingdings-decoder",
+    name: "Wingdings Decoder",
+    shortName: "Decoder",
+    title: "Wingdings Decoder",
+    metaTitle: "Wingdings Decoder | Translate Wingdings to English Instantly",
+    description:
+      "Paste Wingdings symbols, decode them back into English, and compare multiple symbol presets when the mystery text came from an unknown source.",
+    metaDescription:
+      "Free online Wingdings decoder. Paste your symbols and convert Wingdings to English text, letters, and words instantly. Supports Classic, Gaster, Wingdings 2, Wingdings 3, and Webdings.",
+    h1: "Wingdings Decoder (Wingdings to English)",
+    placeholder: "Decoded English appears here...",
+    sampleInput: "secret message",
+    sampleOutputLabel: "Wingdings symbol input",
+    supportsReverse: true,
+    variantIds: ["classic", "gaster", "wingdings-2", "wingdings-3", "webdings"],
+    converterUi: {
+      defaultActivePane: "right",
+      leftEyebrow: "English",
+      leftTitle: "Decoded English",
+      leftDescriptionEncode: "Type here if you want to switch back into encoder mode.",
+      leftDescriptionDecode:
+        "Decoded letters appear here while you paste or edit Wingdings symbols on the right.",
+      rightEyebrow: "Decoder",
+      rightTitle: "Wingdings Symbols",
+      rightPlaceholder: "Paste Wingdings symbols here to decode...",
+      rightDescriptionEncode:
+        "Encoded symbols appear here when you type plain text on the left.",
+      rightDescriptionDecode:
+        "Paste mystery symbols here to translate them back into readable English.",
+    },
+    keywords: [
+      "wingdings decoder",
+      "wingdings to english",
+      "wingdings translator to english",
+      "convert wingdings to english",
+      "decode wingdings",
+      "wingdings to text",
+      "wingdings to letters",
+    ],
+    intro: [
+      "This page is tuned for the reverse-translation workflow: you already have a line of symbols and need plain English fast.",
+      "It keeps reverse decoding front and center while still letting you switch presets when the source message does not match the first mapping you try.",
+    ],
+    sections: [
+      {
+        title: "Why a dedicated Wingdings decoder matters",
+        body: [
+          "Users searching wingdings decoder or wingdings to english usually do not want a general-purpose converter. They want a page that starts from unreadable symbols and ends with readable text.",
+          "That is why this page opens in decoder mode first and frames the workflow around pasting mystery strings rather than typing normal English.",
+        ],
+      },
+      {
+        title: "Try another preset before assuming the message is broken",
+        body: [
+          "A failed decode does not always mean the symbols are random. Many online pages use different simplified symbol tables, so the same message may only decode cleanly under one preset.",
+          "Switch between Classic, Gaster, Wingdings 2, Wingdings 3, and Webdings until the output starts looking like actual words.",
+        ],
+      },
+      {
+        title: "Common misspellings still lead here",
+        body: [
+          "People often search for windings decoder, wing ding translator, or wingding decoder when they are trying to solve the same problem.",
+          "Google usually understands those variants, so it is better to answer them naturally inside the page copy and FAQ than to publish duplicate typo pages.",
+        ],
+      },
+      {
+        title: "Best use cases for this page",
+        body: [
+          "This decoder is useful for mystery text screenshots, copy-pasted fandom messages, puzzle hunts, social posts, and any string of symbols you suspect came from a Wingdings-style alphabet.",
+          "If your real goal is to create a stylized message from scratch, the generator page will be the better fit.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "How do I decode Wingdings to English?",
+        answer:
+          "Paste the Wingdings-style symbols into the right-hand decoder panel, then switch presets if the first result does not look readable.",
+      },
+      {
+        question: "Why does my decoded text still look wrong?",
+        answer:
+          "The most common reason is a preset mismatch. Many symbol translators use different mapping tables, so try another preset before giving up on the message.",
+      },
+      {
+        question: "Can this decode wing ding or windings text too?",
+        answer:
+          "Yes. Those searches usually refer to the same Wingdings-style decoding task, so the workflow here is the same even if the query spelling is off.",
+      },
+      {
+        question: "Does the decoder support Wingdings 2 and Wingdings 3?",
+        answer:
+          "Yes. This page includes dedicated presets for Wingdings 2, Wingdings 3, Classic Wingdings, Gaster, and Webdings-style output.",
+      },
+      {
+        question: "Can I encode text from this page too?",
+        answer:
+          "Yes. Even though it opens in decoder mode, you can still switch back and create symbol output from normal English.",
+      },
+    ],
+    relatedSlugs: [
+      "wingdings",
+      "wingdings-generator",
+      "undertale-wingdings-translator",
+      "wingdings-3-translator",
+    ],
+    encode: defaultWingdingsVariant
+      ? defaultWingdingsVariant.encode
+      : (value: string) => value,
+    decode: defaultWingdingsVariant
+      ? defaultWingdingsVariant.decode
+      : (value: string) => value,
+  },
+  "wingdings-generator": {
+    slug: "wingdings-generator",
+    name: "Wingdings Text Generator",
+    shortName: "Generator",
+    title: "Wingdings Text Generator & Copy Paste Tool",
+    metaTitle: "Wingdings Text Generator (Copy & Paste Font Online)",
+    description:
+      "Type normal English, generate Wingdings-style text instantly, and copy-paste the result into bios, posts, usernames, and decorative layouts.",
+    metaDescription:
+      "Generate custom Wingdings text online. Type your English words and copy-paste the Wingdings font style anywhere. Free text generator for Classic, Gaster, Wingdings 2, Wingdings 3, and Webdings.",
+    h1: "Wingdings Text Generator & Copy Paste Tool",
+    placeholder: "Type your English text for Wingdings copy and paste...",
+    sampleInput: "copy paste style",
+    sampleOutputLabel: "Copy-paste Wingdings output",
+    supportsReverse: true,
+    variantIds: ["classic", "gaster", "wingdings-2", "wingdings-3", "webdings"],
+    converterUi: {
+      leftEyebrow: "Generator",
+      leftTitle: "Plain English Input",
+      leftDescriptionEncode:
+        "Type names, captions, or short phrases here to generate copy-paste Wingdings text.",
+      leftDescriptionDecode:
+        "Decoded English appears here if you switch into reverse translation.",
+      rightEyebrow: "Copy & Paste",
+      rightTitle: "Wingdings Text Output",
+      rightPlaceholder: "Generated Wingdings text appears here...",
+      rightDescriptionEncode:
+        "Choose a preset, review the style, and copy the final version wherever you want to use it.",
+      rightDescriptionDecode:
+        "Paste symbols here if you want to reverse the generator and decode a message instead.",
+    },
+    keywords: [
+      "wingdings generator",
+      "wingdings text generator",
+      "text to wingdings",
+      "wingdings copy paste",
+      "wingding copy and paste",
+      "wingdings font online",
+      "wingdings text",
+    ],
+    intro: [
+      "This page is built for the forward-generation use case: take plain English, turn it into stylized symbols, and copy the result into another app.",
+      "The wording leans into names, social media, captions, and decorative text so users instantly understand that this is the generator workflow rather than the decoder workflow.",
+    ],
+    sections: [
+      {
+        title: "Why this page exists separately from the converter",
+        body: [
+          "Many visitors do not think in terms of encoding tables or symbol families. They just want a Wingdings text generator that feels fast, visual, and ready to copy.",
+          "A dedicated generator page lets the title, headings, examples, and FAQs match that intent without forcing everyone through a mixed-purpose tool page.",
+        ],
+      },
+      {
+        title: "Best use cases for Wingdings copy and paste",
+        body: [
+          "This workflow is useful for profile names, playful captions, mystery-style posts, graphic mockups, and short decorative lines you want to paste somewhere else immediately.",
+          "Short phrases usually work best because they stay readable enough to verify before you share them.",
+        ],
+      },
+      {
+        title: "These are text characters, not emoji stickers",
+        body: [
+          "People sometimes look for a wingdings translator with no emojis because they want actual copyable text rather than large emoji artwork.",
+          "This page focuses on Unicode-compatible symbol output you can paste like text, although final appearance still depends on the app and device.",
+        ],
+      },
+      {
+        title: "Preset choice changes the vibe",
+        body: [
+          "Classic Wingdings gives you the most recognizable symbol-heavy look, while Wingdings 3 feels more like arrows and directional marks.",
+          "If you want Undertale-adjacent mystery text, the Gaster preset is usually the fastest place to start.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "How do I generate Wingdings text online?",
+        answer:
+          "Type plain English into the input field, choose the preset you want, and copy the generated symbol text from the output panel.",
+      },
+      {
+        question: "Can I copy and paste the generated text anywhere?",
+        answer:
+          "Usually yes. The output is designed for browser-based copy and paste, although rendering still depends on the target app and device.",
+      },
+      {
+        question: "Is this different from the Wingdings decoder?",
+        answer:
+          "Yes. This page is tuned for creating new symbol text from normal English, while the decoder page starts with symbols and turns them back into English.",
+      },
+      {
+        question: "Which Wingdings style should I pick first?",
+        answer:
+          "Classic Wingdings is the best starting point for a familiar symbol look. If you want arrows, try Wingdings 3. If you want fandom-style mystery text, try Gaster.",
+      },
+      {
+        question: "Can I decode text here too?",
+        answer:
+          "Yes. The page still supports reverse translation, but the primary framing and examples are designed for generation and copy-paste use.",
+      },
+    ],
+    relatedSlugs: [
+      "wingdings",
       "english-to-wingdings",
-      "subscript-generator",
-      "cursive-generator",
-      "old-english-translator",
+      "wingdings-decoder",
+      "undertale-wingdings-translator",
     ],
     encode: defaultWingdingsVariant
       ? defaultWingdingsVariant.encode
@@ -743,9 +1003,9 @@ export const toolConfigs: Record<(typeof toolOrder)[number], ToolConfig> = {
     title: "English to Wingdings Converter",
     metaTitle: "English to Wingdings Converter | Fast & Free Translation",
     description:
-      "Convert plain English into Wingdings-style symbols instantly, compare multiple presets, and copy the result for puzzles, posts, or creative text.",
+      "Convert plain English into Wingdings-style symbols, compare mapping tables, and validate which preset best matches the output you need.",
     metaDescription:
-      "Instantly convert English text into Wingdings symbols. Free online translator with copy and paste support for Classic, Gaster, Wingdings 2, Wingdings 3, and Webdings styles.",
+      "Convert English text into Wingdings symbols with preset comparison for Classic, Gaster, Wingdings 2, Wingdings 3, and Webdings styles. Ideal for exact matching and reference checks.",
     h1: "English to Wingdings Converter",
     placeholder: "Enter English text to convert into symbols...",
     sampleInput: "Turn this message into symbols",
@@ -756,33 +1016,33 @@ export const toolConfigs: Record<(typeof toolOrder)[number], ToolConfig> = {
       "english to wingdings",
       "english to wingdings translator",
       "convert english to wingdings",
-      "english to wingdings copy and paste",
       "wingdings converter",
+      "wingdings encoder",
     ],
     intro: [
-      "This page is built for visitors who already know they want one thing: turn readable English into Wingdings-style symbols as fast as possible.",
-      "It uses the same conversion engine as the main translator, but the wording, examples, and on-page explanations all focus on the English-to-symbol workflow instead of general decoding.",
+      "This page is intentionally narrower than the main Wingdings generator. It is built for users who care about conversion accuracy, preset comparison, and controlled English-to-symbol output.",
+      "If the generator page is the creative front door, this converter page is the precision view for users comparing mappings and trying to match a specific symbol table.",
     ],
     sections: [
       {
         title: "Why use a dedicated English to Wingdings page",
         body: [
-          "Many searchers do not want a mixed decoder page. They want to paste plain English, get a symbol result immediately, and copy it into a post, puzzle, profile, or design mockup.",
-          "A dedicated page reduces friction because the intent is obvious from the title, heading, sample text, and surrounding guidance.",
+          "Some visitors want a more technical English-to-symbol workflow than a broad generator page provides. They are comparing presets, checking mappings, or trying to reproduce a known output style more exactly.",
+          "A dedicated converter page makes that workflow clearer by focusing on conversion logic and preset differences instead of social styling language.",
         ],
       },
       {
-        title: "Compare multiple symbol styles before you copy",
+        title: "Compare multiple symbol styles before you finalize the output",
         body: [
           "Classic Wingdings is the best place to start if you want the most recognizable symbol-heavy look.",
           "If you are chasing a different mood, compare Gaster, Wingdings 2, Wingdings 3, and Webdings-style outputs side by side before you decide which one to use.",
         ],
       },
       {
-        title: "Best use cases for symbol conversion",
+        title: "Best use cases for this converter page",
         body: [
-          "English to Wingdings conversion is popular for secret-message aesthetics, fandom puzzles, profile styling, mock graphics, and short copy-paste experiments on social platforms.",
-          "Shorter text usually works better than long paragraphs because symbol output stays more readable and is easier to verify after pasting.",
+          "This page works best when you are matching screenshots, validating preset behavior, preparing puzzle text, or testing which mapping produces the closest result to another source.",
+          "If your main goal is quick decorative copy-paste for bios or captions, the dedicated generator page is a better fit.",
         ],
       },
       {
@@ -802,7 +1062,7 @@ export const toolConfigs: Record<(typeof toolOrder)[number], ToolConfig> = {
       {
         question: "Does this page support copy and paste?",
         answer:
-          "Yes. The generated symbol text can be copied and pasted into messages, bios, notes, mockups, and many social platforms.",
+          "Yes. You can still copy the output anywhere, but this page is optimized more for exact conversion and preset comparison than for social-style generation.",
       },
       {
         question: "Which preset should I choose first?",
@@ -820,7 +1080,12 @@ export const toolConfigs: Record<(typeof toolOrder)[number], ToolConfig> = {
           "Yes. This page still includes reverse support, but the content and examples are tuned for English-to-symbol searches.",
       },
     ],
-    relatedSlugs: ["wingdings", "gaster-translator", "webdings-translator"],
+    relatedSlugs: [
+      "wingdings-generator",
+      "wingdings",
+      "wingdings-decoder",
+      "webdings-translator",
+    ],
     encode: defaultWingdingsVariant
       ? defaultWingdingsVariant.encode
       : (value: string) => value,
@@ -1308,6 +1573,260 @@ export const toolConfigs: Record<(typeof toolOrder)[number], ToolConfig> = {
     relatedSlugs: ["old-english-translator", "bubble-font-generator", "wingdings"],
     encode: encodeOldEnglish,
   },
+  "wingdings-2-translator": {
+    slug: "wingdings-2-translator",
+    name: "Wingdings 2 Translator",
+    shortName: "Wingdings 2",
+    title: "Wingdings 2 Translator",
+    metaTitle: "Wingdings 2 Translator | Convert Text with Wingdings 2 Symbols",
+    description:
+      "Translate text with a dedicated Wingdings 2 preset and decode Wingdings 2-style symbols without switching through unrelated mappings first.",
+    metaDescription:
+      "Use this Wingdings 2 translator to convert English into Wingdings 2 symbols and decode Wingdings 2 text back to English with a focused one-preset tool.",
+    h1: "Wingdings 2 Translator",
+    placeholder: "Type plain English or paste Wingdings 2 symbols...",
+    sampleInput: "round signal",
+    sampleOutputLabel: "Wingdings 2 output",
+    supportsReverse: true,
+    variantIds: ["wingdings-2"],
+    keywords: [
+      "wingdings 2 translator",
+      "wingdings 2 font translator",
+      "wingdings 2 decoder",
+      "wingdings 2 to english",
+    ],
+    intro: [
+      "This page is the dedicated answer for visitors who already know they need Wingdings 2 rather than a broader symbol comparison tool.",
+      "By removing unrelated presets from the first screen, it makes the workflow faster for users who are matching Wingdings 2 strings specifically.",
+    ],
+    sections: [
+      {
+        title: "Why Wingdings 2 deserves its own page",
+        body: [
+          "Someone searching wingdings 2 translator is showing a much narrower intent than a generic wingdings visitor. They are often trying to match one specific symbol family rather than browse multiple options.",
+          "A dedicated page reduces the chance that they bounce after seeing Classic Wingdings or Gaster before the version they actually wanted.",
+        ],
+      },
+      {
+        title: "What makes Wingdings 2 feel different",
+        body: [
+          "Wingdings 2-style output leans into geometric and dial-like forms rather than the more eclectic symbol mix many people associate with classic Wingdings.",
+          "That visual difference matters when you are trying to recreate a screenshot, match a puzzle source, or keep a consistent symbol style.",
+        ],
+      },
+      {
+        title: "When to use this page instead of the main hub",
+        body: [
+          "Use this dedicated page when you know the source message or target aesthetic is Wingdings 2 specifically.",
+          "Use the main hub when you are not sure which symbol family you are looking at and need to compare multiple presets side by side.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Does this page only use Wingdings 2?",
+        answer:
+          "Yes. It is intentionally focused on the Wingdings 2 preset so you can convert and decode without switching through unrelated symbol families first.",
+      },
+      {
+        question: "Can I decode Wingdings 2 back into English?",
+        answer:
+          "Yes. Paste the symbols into the tool and it will decode them using the Wingdings 2 mapping on this page.",
+      },
+      {
+        question: "Should I use this page or the main Wingdings translator?",
+        answer:
+          "Use this page if you already know the message is Wingdings 2. Use the main hub if you still need to compare multiple presets.",
+      },
+    ],
+    relatedSlugs: [
+      "wingdings",
+      "wingdings-3-translator",
+      "wingdings-decoder",
+      "webdings-translator",
+    ],
+    encode: defaultWingdingsTwoVariant
+      ? defaultWingdingsTwoVariant.encode
+      : (value: string) => value,
+    decode: defaultWingdingsTwoVariant
+      ? defaultWingdingsTwoVariant.decode
+      : (value: string) => value,
+  },
+  "wingdings-3-translator": {
+    slug: "wingdings-3-translator",
+    name: "Wingdings 3 Translator",
+    shortName: "Wingdings 3",
+    title: "Wingdings 3 Translator",
+    metaTitle: "Wingdings 3 Translator | Arrows & Direction Symbol Converter",
+    description:
+      "Convert text into Wingdings 3 arrows and directional symbols, or decode Wingdings 3 strings back into readable English.",
+    metaDescription:
+      "Use this Wingdings 3 translator to generate arrow-heavy symbol text and decode Wingdings 3 output back to English. Focused on the Wingdings 3 preset only.",
+    h1: "Wingdings 3 Translator",
+    placeholder: "Type plain English or paste Wingdings 3 symbols...",
+    sampleInput: "arrow route",
+    sampleOutputLabel: "Wingdings 3 output",
+    supportsReverse: true,
+    variantIds: ["wingdings-3"],
+    keywords: [
+      "wingdings 3 translator",
+      "wingdings 3 translation",
+      "wingdings 3 decoder",
+      "wingdings 3 arrows",
+    ],
+    intro: [
+      "Wingdings 3 has a much more directional, arrow-heavy feel than the other presets on the site, which makes it worth treating as its own landing page.",
+      "This page removes distraction and speaks directly to users who want arrows, pointers, and navigation-like symbol output rather than a broad symbol catalog.",
+    ],
+    sections: [
+      {
+        title: "Why Wingdings 3 stands apart",
+        body: [
+          "Wingdings 3 is the most obviously directional preset in the current lineup. Many of its symbols feel like arrows, pointers, or interface markers rather than mixed pictograms.",
+          "That means it attracts a different kind of searcher: someone looking for arrow symbols, direction marks, or a very specific Wingdings 3-style screenshot.",
+        ],
+      },
+      {
+        title: "Great for arrows and direction symbols",
+        body: [
+          "If you want symbol text that feels more like route markers than decorative icons, Wingdings 3 is usually the strongest fit.",
+          "It can work well for stylized labels, direction-themed mockups, and any short text where arrow energy is part of the visual concept.",
+        ],
+      },
+      {
+        title: "Why a focused preset helps",
+        body: [
+          "A single-preset page makes it easier to validate whether the arrow-rich output you are seeing matches Wingdings 3 or another symbol table.",
+          "It also gives search engines a much clearer target for wingdings 3 translator intent than burying the preset inside a general hub alone.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Does this page only generate Wingdings 3 symbols?",
+        answer:
+          "Yes. The tool is intentionally focused on Wingdings 3 so you can work with the arrow-heavy preset directly.",
+      },
+      {
+        question: "Can I decode Wingdings 3 back into English?",
+        answer:
+          "Yes. Paste Wingdings 3 symbols into the tool and it will decode them using the page's dedicated preset.",
+      },
+      {
+        question: "Why does Wingdings 3 look more like arrows?",
+        answer:
+          "Because this symbol family is much more directional than classic Wingdings, which is exactly why people often search for it separately.",
+      },
+    ],
+    relatedSlugs: [
+      "wingdings",
+      "wingdings-2-translator",
+      "wingdings-generator",
+      "webdings-translator",
+    ],
+    encode: defaultWingdingsThreeVariant
+      ? defaultWingdingsThreeVariant.encode
+      : (value: string) => value,
+    decode: defaultWingdingsThreeVariant
+      ? defaultWingdingsThreeVariant.decode
+      : (value: string) => value,
+  },
+  "undertale-wingdings-translator": {
+    slug: "undertale-wingdings-translator",
+    name: "Undertale Wingdings Translator",
+    shortName: "Undertale",
+    title: "Undertale Wingdings Translator",
+    metaTitle: "Undertale Wingdings Translator | W.D. Gaster Decoder",
+    description:
+      "Decode Undertale-style Wingdings messages, write Gaster-inspired text, and explore mystery-symbol translation through an Undertale-focused lens.",
+    metaDescription:
+      "The ultimate Undertale Wingdings translator. Decode W.D. Gaster-inspired messages and translate English into mysterious Undertale-style Wingdings text.",
+    h1: "Undertale Wingdings Translator (Gaster Font)",
+    placeholder: "Type plain English or paste Undertale-style symbols...",
+    sampleInput: "entry number seventeen",
+    sampleOutputLabel: "Undertale Wingdings output",
+    supportsReverse: true,
+    variantIds: ["gaster"],
+    converterUi: {
+      leftEyebrow: "Undertale",
+      leftTitle: "Plain Text or Decoded Lore Text",
+      leftDescriptionEncode:
+        "Type a line here to generate Undertale-flavored mystery symbols inspired by Gaster fan usage.",
+      leftDescriptionDecode:
+        "Decoded English appears here while you paste Gaster-style symbols on the right.",
+      rightEyebrow: "Gaster",
+      rightTitle: "Undertale Wingdings Symbols",
+      rightPlaceholder: "Paste Undertale or Gaster-style symbols here...",
+      rightDescriptionEncode:
+        "Use this output for fan projects, lore posts, puzzle practice, or stylized Undertale messages.",
+      rightDescriptionDecode:
+        "Paste a mystery string here to see whether it decodes cleanly as Undertale-style Gaster text.",
+    },
+    keywords: [
+      "undertale wingdings translator",
+      "wingdings gaster translator",
+      "wingdings translator gaster",
+      "wingdings translator undertale",
+      "wing ding translator gaster",
+    ],
+    intro: [
+      "This page targets the fandom-heavy query set around Undertale Wingdings, W.D. Gaster, and mystery text decoding.",
+      "Under the hood it uses the Gaster-friendly preset, but the copy, examples, and FAQs are shaped around Undertale search intent rather than generic symbol translation.",
+    ],
+    sections: [
+      {
+        title: "Why Undertale deserves its own landing page",
+        body: [
+          "Undertale searchers are not always looking for a neutral font converter. Many of them want a page that immediately signals Gaster, Entry Number Seventeen, hidden messages, and fandom decoding context.",
+          "A dedicated page makes that intent match explicit instead of forcing all of that traffic through a generic translator page.",
+        ],
+      },
+      {
+        title: "How this differs from the regular Gaster translator",
+        body: [
+          "The regular Gaster translator is still the more neutral tool page. This Undertale page is the fandom wrapper around the same core preset, tuned for lore language and Undertale-specific search demand.",
+          "That means it is better for users who search from game context first and tool intent second.",
+        ],
+      },
+      {
+        title: "Best use cases for this page",
+        body: [
+          "Use it to decode fan-made Gaster messages, write stylized Undertale posts, practice mystery text, or compare how a phrase looks in a Gaster-inspired symbol set.",
+          "It also works well as the bridge page between Undertale lore content and direct interactive translation.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Is this the same as a Gaster translator?",
+        answer:
+          "Mostly yes under the hood, but this page is framed specifically for Undertale and W.D. Gaster search intent rather than generic symbol conversion alone.",
+      },
+      {
+        question: "Can I decode Undertale Wingdings back into English?",
+        answer:
+          "Yes. Paste the symbol string into the tool and the page will decode it using the Gaster-friendly preset.",
+      },
+      {
+        question: "Does this use the one official canonical Gaster alphabet?",
+        answer:
+          "No single fan mapping is universal. This page uses a clear Gaster-style preset that works well for translation and lore-inspired copy-paste workflows.",
+      },
+      {
+        question: "Why mention Entry Number 17 and other lore terms here?",
+        answer:
+          "Because Undertale fans often arrive through lore searches first, and those references help align the page with the fandom context behind the query.",
+      },
+    ],
+    relatedSlugs: [
+      "gaster-translator",
+      "gaster-alphabet-translator",
+      "wingdings-decoder",
+      "wingdings",
+    ],
+    encode: defaultGasterVariant ? defaultGasterVariant.encode : (value: string) => value,
+    decode: defaultGasterVariant ? defaultGasterVariant.decode : (value: string) => value,
+  },
   "gaster-translator": {
     slug: "gaster-translator",
     name: "Gaster Translator",
@@ -1379,7 +1898,12 @@ export const toolConfigs: Record<(typeof toolOrder)[number], ToolConfig> = {
           "Yes. This page is designed around quick translation workflows. If you want a more reference-oriented Gaster page, use the Gaster Alphabet Translator.",
       },
     ],
-    relatedSlugs: ["gaster-alphabet-translator", "wingdings", "webdings-translator"],
+    relatedSlugs: [
+      "undertale-wingdings-translator",
+      "gaster-alphabet-translator",
+      "wingdings",
+      "webdings-translator",
+    ],
     encode: defaultGasterVariant ? defaultGasterVariant.encode : (value: string) => value,
     decode: defaultGasterVariant ? defaultGasterVariant.decode : (value: string) => value,
   },
@@ -1454,7 +1978,12 @@ export const toolConfigs: Record<(typeof toolOrder)[number], ToolConfig> = {
           "Use this page if you are approaching the problem like an alphabet reference or decrypter. Use the Gaster Translator page if you mainly want fast two-way conversion.",
       },
     ],
-    relatedSlugs: ["gaster-translator", "wingdings", "webdings-translator"],
+    relatedSlugs: [
+      "undertale-wingdings-translator",
+      "gaster-translator",
+      "wingdings",
+      "webdings-translator",
+    ],
     encode: defaultGasterVariant ? defaultGasterVariant.encode : (value: string) => value,
     decode: defaultGasterVariant ? defaultGasterVariant.decode : (value: string) => value,
   },

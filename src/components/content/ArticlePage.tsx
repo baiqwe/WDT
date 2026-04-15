@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { getToolBySlug, siteUrl } from "@/lib/textTools";
+import { getToolBySlug, siteUrl, type ConverterUiConfig } from "@/lib/textTools";
+import ToolConverter from "@/components/tools/ToolConverter";
 
 type ArticlePageProps = {
   title: string;
@@ -15,6 +16,14 @@ type ArticlePageProps = {
     url: string;
   }[];
   articleUrl: string;
+  embeddedTool?: {
+    slug: string;
+    shortName: string;
+    placeholder: string;
+    sampleInput: string;
+    sampleOutputLabel: string;
+    converterUi?: ConverterUiConfig;
+  };
 };
 
 export default function ArticlePage({
@@ -24,6 +33,7 @@ export default function ArticlePage({
   sections,
   breadcrumbs,
   articleUrl,
+  embeddedTool,
 }: ArticlePageProps) {
   const articleSchema = {
     "@context": "https://schema.org",
@@ -75,6 +85,19 @@ export default function ArticlePage({
           </h1>
           <p className="mt-4 text-lg leading-8 text-zinc-600">{intro}</p>
         </header>
+
+        {embeddedTool ? (
+          <section className="mt-8">
+            <ToolConverter
+              slug={embeddedTool.slug}
+              shortName={embeddedTool.shortName}
+              placeholder={embeddedTool.placeholder}
+              sampleInput={embeddedTool.sampleInput}
+              sampleOutputLabel={embeddedTool.sampleOutputLabel}
+              converterUi={embeddedTool.converterUi}
+            />
+          </section>
+        ) : null}
 
         <div className="mt-8 grid gap-5">
           {sections.map((section) => (

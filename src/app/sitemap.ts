@@ -52,6 +52,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${siteUrl}/es/traductor-wingdings`,
+      lastModified: new Date("2026-04-15"),
+      changeFrequency: "monthly",
+      priority: 0.72,
+    },
+    {
+      url: `${siteUrl}/pt/tradutor-wingdings`,
+      lastModified: new Date("2026-04-15"),
+      changeFrequency: "monthly",
+      priority: 0.72,
+    },
+    {
+      url: `${siteUrl}/ru/wingdings-translator`,
+      lastModified: new Date("2026-04-15"),
+      changeFrequency: "monthly",
+      priority: 0.72,
+    },
+    {
       url: `${siteUrl}/faq`,
       lastModified: new Date("2026-03-29"),
       changeFrequency: "monthly",

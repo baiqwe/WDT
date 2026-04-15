@@ -60,6 +60,7 @@ export default async function BlogArticlePage({ params }: BlogPageProps) {
       sections={articleData.article.sections}
       breadcrumbs={breadcrumbs}
       articleUrl={articleData.url}
+      embeddedTool={articleData.article.embeddedTool}
     />
   );
 }

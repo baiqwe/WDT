@@ -1,7 +1,11 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { getToolBySlug, getTranslatorVariants } from "@/lib/textTools";
+import {
+  getToolBySlug,
+  getTranslatorVariants,
+  type ConverterUiConfig,
+} from "@/lib/textTools";
 
 type ToolConverterProps = {
   slug: string;
@@ -9,6 +13,7 @@ type ToolConverterProps = {
   placeholder: string;
   sampleInput: string;
   sampleOutputLabel: string;
+  converterUi?: ConverterUiConfig;
 };
 
 export default function ToolConverter({
@@ -17,6 +22,7 @@ export default function ToolConverter({
   placeholder,
   sampleInput,
   sampleOutputLabel,
+  converterUi,
 }: ToolConverterProps) {
   const tool = getToolBySlug(slug) ?? {
     encode: (value: string) => value,
@@ -24,6 +30,7 @@ export default function ToolConverter({
   };
   const variants = getTranslatorVariants(slug);
   const canReverse = tool.supportsReverse;
+  const initialActivePane = converterUi?.defaultActivePane ?? "left";
   const [selectedVariantId, setSelectedVariantId] = useState(
     variants[0]?.id ?? "default",
   );
@@ -39,11 +46,29 @@ export default function ToolConverter({
 
   const [leftDraft, setLeftDraft] = useState(sampleInput);
   const [rightDraft, setRightDraft] = useState(() => encodeValue(sampleInput));
-  const [activePane, setActivePane] = useState<"left" | "right">("left");
+  const [activePane, setActivePane] = useState<"left" | "right">(initialActivePane);
   const leftText = activePane === "left" ? leftDraft : decodeValue(rightDraft);
   const rightText = activePane === "right" ? rightDraft : encodeValue(leftDraft);
   const leftWords = leftText.trim() ? leftText.trim().split(/\s+/).length : 0;
   const rightWords = rightText.trim() ? rightText.trim().split(/\s+/).length : 0;
+  const leftEyebrow = converterUi?.leftEyebrow ?? "Text";
+  const leftTitle = converterUi?.leftTitle ?? "Plain English";
+  const leftDescription =
+    activePane === "left"
+      ? converterUi?.leftDescriptionEncode ??
+        "Type here to generate symbols on the right."
+      : converterUi?.leftDescriptionDecode ??
+        "Decoded letters appear here while you type symbols on the right.";
+  const rightEyebrow = converterUi?.rightEyebrow ?? "Symbols";
+  const rightTitle = converterUi?.rightTitle ?? sampleOutputLabel;
+  const rightPlaceholder =
+    converterUi?.rightPlaceholder ?? "Paste symbols here to decode...";
+  const rightDescription =
+    activePane === "right"
+      ? converterUi?.rightDescriptionDecode ??
+        "Type or paste symbols here to decode them on the left."
+      : converterUi?.rightDescriptionEncode ??
+        "Styled output appears here and stays editable for reverse translation.";
 
   useEffect(() => {
     if (!copied) {
@@ -101,16 +126,12 @@ export default function ToolConverter({
           <div className="mb-3 flex items-start justify-between gap-3 sm:mb-4">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#5e6f66]">
-                Text
+                {leftEyebrow}
               </p>
               <h2 className="mt-1 text-lg font-black tracking-tight text-zinc-950 sm:text-xl">
-                Plain English
+                {leftTitle}
               </h2>
-              <p className="mt-1 text-sm leading-6 text-zinc-500">
-                {activePane === "left"
-                  ? "Type here to generate symbols on the right."
-                  : "Decoded letters appear here while you type symbols on the right."}
-              </p>
+              <p className="mt-1 text-sm leading-6 text-zinc-500">{leftDescription}</p>
             </div>
             <div className="flex items-center gap-2">
               <button
@@ -215,16 +236,12 @@ export default function ToolConverter({
           <div className="mb-3 flex items-start justify-between gap-3 sm:mb-4">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#5e6f66]">
-                Symbols
+                {rightEyebrow}
               </p>
               <h2 className="mt-1 text-lg font-black tracking-tight text-zinc-950 sm:text-xl">
-                {sampleOutputLabel}
+                {rightTitle}
               </h2>
-              <p className="mt-1 text-sm leading-6 text-zinc-500">
-                {activePane === "right"
-                  ? "Type or paste symbols here to decode them on the left."
-                  : "Styled output appears here and stays editable for reverse translation."}
-              </p>
+              <p className="mt-1 text-sm leading-6 text-zinc-500">{rightDescription}</p>
             </div>
             <button
               type="button"
@@ -265,12 +282,12 @@ export default function ToolConverter({
 
           <div className="rounded-[1.2rem] border border-transparent bg-transparent px-0 py-1 sm:rounded-[1.35rem] sm:border-[#d9e4dc] sm:bg-white sm:px-4 sm:py-5 sm:shadow-sm">
             <div className="mb-2 text-sm text-zinc-500 sm:text-[0.95rem]">
-              {selectedVariant?.description ?? sampleOutputLabel}
+              {selectedVariant?.description ?? rightTitle}
             </div>
             <textarea
               value={rightText}
               onChange={(event) => handleRightChange(event.target.value)}
-              placeholder="Paste symbols here to decode..."
+              placeholder={rightPlaceholder}
               readOnly={!canReverse}
               className={`min-h-[132px] w-full resize-y bg-transparent text-2xl leading-[1.55] text-zinc-950 outline-none sm:min-h-[170px] sm:text-3xl xl:min-h-[220px] xl:text-[2rem] ${
                 canReverse ? "" : "cursor-default"

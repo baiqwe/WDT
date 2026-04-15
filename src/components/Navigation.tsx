@@ -17,22 +17,22 @@ export default function Navigation() {
             Wingdings
           </Link>
           <Link
-            href="/subscript-generator"
+            href="/wingdings-decoder"
             className="rounded-full px-4 py-2 text-sm font-medium text-zinc-700 transition hover:bg-emerald-50 hover:text-emerald-800"
           >
-            Subscript
+            Decoder
           </Link>
           <Link
-            href="/cursive-generator"
+            href="/wingdings-generator"
             className="rounded-full px-4 py-2 text-sm font-medium text-zinc-700 transition hover:bg-emerald-50 hover:text-emerald-800"
           >
-            Cursive
+            Generator
           </Link>
           <Link
-            href="/old-english-translator"
+            href="/undertale-wingdings-translator"
             className="rounded-full px-4 py-2 text-sm font-medium text-zinc-700 transition hover:bg-emerald-50 hover:text-emerald-800"
           >
-            Old English
+            Undertale
           </Link>
           <Link
             href="/faq"
