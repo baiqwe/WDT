@@ -1,6 +1,11 @@
 import type { MetadataRoute } from "next";
 import { articles } from "@/lib/content";
-import { siteUrl, toolOrder, toolUpdatedAt } from "@/lib/textTools";
+import {
+  localizedWingdingsAlternates,
+  siteUrl,
+  toolOrder,
+  toolUpdatedAt,
+} from "@/lib/textTools";
 
 export const dynamic = "force-static";
 
@@ -10,6 +15,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(toolUpdatedAt[slug]),
     changeFrequency: "weekly" as const,
     priority: index === 0 ? 1 : 0.85,
+    ...(slug === "wingdings"
+      ? { alternates: { languages: localizedWingdingsAlternates } }
+      : {}),
   }));
   const articlePages = articles.map((article) => ({
     url: `${siteUrl}/blog/${article.slug}`,
@@ -56,18 +64,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date("2026-04-15"),
       changeFrequency: "monthly",
       priority: 0.72,
+      alternates: {
+        languages: localizedWingdingsAlternates,
+      },
     },
     {
       url: `${siteUrl}/pt/tradutor-wingdings`,
       lastModified: new Date("2026-04-15"),
       changeFrequency: "monthly",
       priority: 0.72,
+      alternates: {
+        languages: localizedWingdingsAlternates,
+      },
     },
     {
       url: `${siteUrl}/ru/wingdings-translator`,
       lastModified: new Date("2026-04-15"),
       changeFrequency: "monthly",
       priority: 0.72,
+      alternates: {
+        languages: localizedWingdingsAlternates,
+      },
     },
     {
       url: `${siteUrl}/faq`,

@@ -1,5 +1,13 @@
 export const siteUrl = "https://wingdingstranslator.org";
 
+export const localizedWingdingsAlternates = {
+  "x-default": siteUrl,
+  en: siteUrl,
+  es: `${siteUrl}/es/traductor-wingdings`,
+  pt: `${siteUrl}/pt/tradutor-wingdings`,
+  ru: `${siteUrl}/ru/wingdings-translator`,
+};
+
 export type ToolSection = {
   title: string;
   body: string[];

@@ -1,14 +1,8 @@
 import type { Metadata } from "next";
 import ToolLandingPage from "@/components/content/ToolLandingPage";
-import { siteUrl } from "@/lib/textTools";
+import { localizedWingdingsAlternates, siteUrl } from "@/lib/textTools";
 
 const pageUrl = `${siteUrl}/es/traductor-wingdings`;
-const languageAlternates = {
-  en: siteUrl,
-  es: pageUrl,
-  pt: `${siteUrl}/pt/tradutor-wingdings`,
-  ru: `${siteUrl}/ru/wingdings-translator`,
-};
 
 export const metadata: Metadata = {
   title: {
@@ -18,7 +12,7 @@ export const metadata: Metadata = {
     "Traductor de Wingdings gratis. Convierte texto a simbolos Wingdings o decodifica Wingdings a texto legible online.",
   alternates: {
     canonical: pageUrl,
-    languages: languageAlternates,
+    languages: localizedWingdingsAlternates,
   },
   openGraph: {
     title: "Traductor Wingdings | Convertir Wingdings Online",

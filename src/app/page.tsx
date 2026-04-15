@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import ToolPageContent from "@/components/tools/ToolPageContent";
-import { siteUrl, toolConfigs } from "@/lib/textTools";
+import {
+  localizedWingdingsAlternates,
+  siteUrl,
+  toolConfigs,
+} from "@/lib/textTools";
 
 const tool = toolConfigs.wingdings;
 
@@ -25,6 +29,7 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: siteUrl,
+    languages: localizedWingdingsAlternates,
   },
   openGraph: {
     title: "Free Wingdings Translator | Convert Text Instantly",
